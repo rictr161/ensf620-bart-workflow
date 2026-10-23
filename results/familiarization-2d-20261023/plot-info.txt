@@ -1,0 +1,8 @@
+NumPy: 2.5.4
+Matplotlib: 3.11.2
+NumPy input: numpy-check-20261023T043232860963Z/reconstruction_numpy.npy
+Shared image display range: 0 to 1.000000000e+00
+K-space display: ln(1 + |K|); separate display range.
+Residual display: |NumPy - reference|; separate display range.
+Array axis 0 displayed horizontally; no anatomical orientation assigned.
+No reconstruction performed; original arrays were not modified.

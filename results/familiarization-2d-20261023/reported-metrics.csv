@@ -1,0 +1,4 @@
+comparison,relative_l2_error,denominator,source,numerical_threshold_applied
+BART vs reference,1.442448308e-07,norm(reference),Transcribed from author-supplied console output,No
+NumPy vs reference,9.412963986e-08,norm(reference),Transcribed from author-supplied console output,No
+BART vs NumPy,1.029663011e-07,norm(NumPy reconstruction),Transcribed from author-supplied console output,No

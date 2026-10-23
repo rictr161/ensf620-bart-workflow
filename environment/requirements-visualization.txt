@@ -1,0 +1,3 @@
+# Direct observed dependencies only; preserve the original pip-freeze snapshot too.
+-r requirements-core.txt
+matplotlib==3.11.2

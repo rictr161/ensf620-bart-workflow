@@ -1,0 +1,45 @@
+# Version-control safeguard only: not a filesystem or AI access control.
+# Restricted laboratory material must stay outside this workspace.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.AppleDouble
+*.swp
+*.swo
+*~
+.vscode/
+/runs/
+/data/
+/local_private/
+/configs/local.*
+*.log
+# Measurements and generated arrays; regenerate synthetic arrays as needed.
+*.h5
+*.hdf5
+*.hdf
+*.cfl
+*.hdr
+*.npy
+*.npz
+*.mat
+*.nii
+*.nii.gz
+*.dcm
+*.dicom
+# Secrets and private keys
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+# Review archive content explicitly rather than staging archives routinely.
+*.zip
+*.tar
+*.tar.gz
+*.tgz

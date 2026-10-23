@@ -1,0 +1,2 @@
+# Direct observed dependency only; not a complete environment lock.
+numpy==2.5.4

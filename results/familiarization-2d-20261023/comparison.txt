@@ -1,0 +1,11 @@
+Independent Fourier comparison - exploratory 64 x 64 case
+UTC time: 2026-10-23T04:32:32.860963+00:00
+Python: 3.13.17
+NumPy: 2.5.4
+Shape: (64, 64); axes: (0, 1); normalization: ortho; centered: yes
+Disk data: complex64; NumPy computation and comparison: complex128
+Relative L2 errors (denominator is the second named array):
+BART vs reference: 1.442448308e-07
+NumPy vs reference: 9.412963986e-08
+BART vs NumPy: 1.029663011e-07
+Measurements only: no numerical acceptance threshold applied.
