@@ -1,19 +1,26 @@
 # Input Inventory — Shareable Summary
 
-Consolidated: 2026-10-23. Source: Ricardo's reports, not inspection of laboratory files.
+Consolidated from Ricardo's reports, not inspection of laboratory files.
 Detailed identifiers, private paths and steward records remain in approved storage.
 
-| Configuration | Received | Reported input stage | Extension | Readiness |
+The current experimental input boundary is author-reported BART `.cfl`/`.hdr` data.
+The current brain MRI data are described as 3D Cartesian, including CS work. File
+availability is not file inspection, recipe validation, or reconstruction evidence.
+
+| Configuration | Historical report | Current reported input stage | Current extension | Readiness |
 | --- | --- | --- | --- | --- |
-| 2D Cartesian | Yes | Original scanner files | `.h5` | Not verified |
-| 3D Cartesian | Yes | Original scanner files | `.h5` | Not verified |
-| 3D CS | Yes | Not confirmed | Not confirmed | Not verified |
+| 2D Cartesian | Yes | Original scanner files | `.h5` (historical) | Not verified |
+| 3D Cartesian | Yes | BART-format reconstruction input reported | `.cfl`/`.hdr` | Not verified |
+| 3D CS | Yes, historical report | BART-format reconstruction input reported | `.cfl`/`.hdr` | Not verified |
 
 These are configuration categories, not independently established dataset or file
 counts. A previous "No" for 3D CS was corrected by Ricardo as a reporting error,
 not a new receipt/availability change. Individual receipt dates remain unrecorded.
 
-## 3D CS description supplied by Ricardo
+## Historical 3D CS description
+
+The following details belong to an earlier report and must not be assigned to the
+current brain datasets without established correspondence.
 
 | Field | Reported information | Status |
 | --- | --- | --- |
@@ -26,12 +33,13 @@ not a new receipt/availability change. Individual receipt dates remain unrecorde
 Do not interpret "200" as matrix size, slices or another quantity. The short label
 does not establish axis meanings, trajectory, mask or a reconstruction recipe.
 
-## Extraction
+## Historical extraction context
 
-Ricardo received code for the 3D Cartesian data, described as "GE recon code", used
-with Python. Exact name/version, requirements, invocation, outputs and compatibility
-with macOS/arm64 or Python 3.13.17 remain pending. Do not guess a particular GE
-product. Applicability to the other configurations is also unconfirmed.
+Ricardo previously reported Python code described as "GE recon code" for 3D
+Cartesian data. Extraction, `.h5` conversion and installation/debugging of that
+utility are outside the current workflow implementation boundary. Preserve the
+historical provenance questions, but they are not current implementation blockers.
+Do not guess a particular GE product or transfer its metadata to the current data.
 
 ## Provenance and authority
 
@@ -45,5 +53,6 @@ Privately record source/steward, identifier/version, receipt date, completeness,
 permitted uses and locations, retention and sharing rules for each included dataset.
 Non-human measurements are not automatically publicly redistributable.
 
-The proposal listed 4D Cartesian, 4D CS, 2D radial and 3D radial as pending. Their
-current status has not been reconfirmed in this inventory.
+The proposal listed 4D Cartesian, 4D CS, 2D radial and 3D radial as pending. They
+remain outside the current implementation scope; their historical status is not a
+claim about future availability.

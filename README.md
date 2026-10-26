@@ -1,8 +1,8 @@
 # ENSF 620 — BART Reconstruction Workflow
 
 Author: Ricardo Andrés Aguilar Trejo  
-Documentation consolidated: 2026-10-23  
-Stage: familiarization evidence and initial repository organization
+Documentation consolidated: 2026-10-23; current context clarified subsequently  
+Stage: familiarization evidence and contextual documentation review
 
 ## Question and scope
 
@@ -12,10 +12,19 @@ maintaining numerical equivalence with verified reference reconstructions?
 
 The instructor's recommended core is **one verified 3D Cartesian manual–automated
 pair**, with the main evaluation capped at the three datasets identified in the
-proposal. Additional configurations are optional and subject to the November 6,
-2026 admission gate. The project organizes BART use; it does not modify BART's
-reconstruction algorithms. Operator intervention is the primary outcome. Runtime
-and memory are secondary outcomes.
+proposal. Python is the primary workflow language, providing a simpler interface
+for configuring, validating, executing and recording reviewed BART procedures.
+The current implementation scope is Cartesian 2D and 3D reconstruction, including
+compressed sensing; radial and 4D are outside that scope. Intended support,
+reported availability, validated recipes and implemented functionality remain
+distinct. The project organizes BART use; it does not modify BART's reconstruction
+algorithms. Operator intervention is the primary outcome. Runtime and memory are
+secondary outcomes.
+
+Current experimental inputs are author-reported BART `.cfl`/`.hdr` files for brain
+MRI 3D Cartesian reconstruction, including CS work. Their availability does not
+establish inspection or validation. Scanner extraction and `.h5` conversion are
+outside the current workflow implementation boundary.
 
 ## Current evidence
 
@@ -37,6 +46,11 @@ or validation of all BART functionality.
 The current local platform is a MacBook Pro with Apple M5 and 24 GB memory,
 replacing the Windows/WSL platform described in the submitted proposal. TALC needs
 a separate environment record.
+
+BART-generated synthetic phantoms will be used to develop and test matched manual
+and automated procedures. Fixtures, settings, tests and acceptance criteria remain
+to be defined and verified. DICOM comparison is only a proposed complementary
+reference; it is not approved ground truth or a defined validation protocol.
 
 ## Navigation
 
@@ -83,15 +97,18 @@ scripts/check_fourier_numpy.py
 scripts/visualize_synthetic.py
 ```
 
-Git is initialized locally on `main`. Ricardo verified SSH authentication as
-`rictr161` and identified the following destination, reported empty at this checkpoint:
+The initial `main` branch push at commit `aad0525` is supported by author-supplied
+terminal output. This does not establish publication of the current working branch,
+clean-checkout reproduction, experimental validation or implementation of contract
+controls.
+
+Earlier assembly notes recorded SSH authentication as `rictr161` and identified the
+following destination:
 
 ```text
 git@github.com:rictr161/ensf620-bart-workflow.git
 ```
 
-This records preparation for the first publication, not a successful push. Consult
-Git history and the actual push output for subsequent commit/publication evidence.
 Do not include credentials or laboratory files. Review the imported contents before
 committing; presence in a listing is not a byte-for-byte provenance check.
 
@@ -109,10 +126,12 @@ sharing restricted material. Keep the upstream BART source and the existing
 virtual environment separate. Generate synthetic arrays rather than committing
 all run outputs.
 
-At the assembly checkpoint, author review and initial commit/publication remain
-to be completed. Scientific work still pending includes clean-checkout reproduction,
-permitted-use/retention records, a verified experimental reference recipe, its
-automated counterpart, fixed tolerances/action-count rules, and HPC evaluation.
+Scientific work still pending includes clean-checkout reproduction, permitted-use/
+retention records, a verified experimental reference recipe, its automated
+counterpart, fixed tolerances/action-count rules, and HPC evaluation. Keep
+experimental BART files, DICOM images, extractor code, credentials, private
+storage and HPC access outside AI context and the shared repository. TALC remains
+the planned HPC target; ARC is only a possible alternative.
 
 No project licence has yet been selected. Do not invent a licence or redistribute
 third-party/laboratory code.

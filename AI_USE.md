@@ -65,6 +65,28 @@ Raw private transcripts are not necessary for this disclosure.
 Human review of this initial documentation: pending at the pre-publication checkpoint.
 Actual commit identity and date must come from Git history, not retrospective claims.
 
+## Contextual documentation revision — 2026-10-26
+
+Tool/access: Copilot SDK in VS Code, using only reviewed workspace documents and
+the authorized file list. No terminal, network, browser, MCP, subagent, private
+data, or remote system was used.
+
+The documentation was updated to reflect Ricardo's current author-confirmed
+context: Python as the primary workflow language; Cartesian 2D/3D scope including
+CS; author-reported brain MRI BART `.cfl`/`.hdr` inputs; BART-generated synthetic
+phantoms as the development/testing basis; DICOM as a proposed complementary
+reference; the initial `main` push at `aad0525`; and the continuing separation
+between reported availability, validated recipes, implemented functionality and
+experimental evidence. Historical extraction and Poisson/R=8/10-volumes/"200"
+details were retained only with scope and correspondence limits.
+
+Affected files: `README.md`, `docs/project-context.md`, `docs/input-inventory.md`,
+`docs/open-questions.md`, `docs/data-and-ai-boundaries.md`,
+`docs/copilot-handoff.md`, `.github/copilot-instructions.md`, this file, and
+`.github/prompts/rvb-create-data-contract.prompt.md`. The data-contract drafts
+were not edited. No tests, commands, commits, pushes or contract approval were
+performed. Final author review of these documentation edits remains pending.
+
 ## Repository assembly and SSH preparation — 2026-10-23
 
 Tool/access: ChatGPT, web interface. Ricardo supplied the staged file listing and

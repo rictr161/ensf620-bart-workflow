@@ -1,6 +1,8 @@
 # Copilot Handoff
 
-Copilot is planned for supervised future changes. Creating these notes or
+Copilot is planned for supervised future changes. Python is the planned primary
+workflow implementation language for Cartesian 2D/3D reconstruction, including
+compressed sensing; optional Bash/HPC launchers are secondary. Creating these notes or
 connecting GitHub does not enable Copilot or authorize access to restricted data.
 No editor/Copilot integration has yet been confirmed for this project.
 
@@ -17,7 +19,8 @@ assume BART, dependencies or local synthetic files are installed remotely.
 ## Suggested initial request
 
 ```text
-Read README.md, docs/project-context.md, docs/open-questions.md,
+Read README.md, docs/project-context.md, docs/input-inventory.md,
+docs/open-questions.md,
 docs/data-and-ai-boundaries.md, environment/local-macos.md, and
 tests/synthetic_2d/README.md.
 
@@ -45,6 +48,14 @@ destination address are established by Ricardo's reports; initial publication is
 not yet evidenced by this checkpoint. Review current Git history before treating
 commit or connection tasks as still pending.
 
-Next priorities are documentation review, initial publication and reproduction
-from recorded code. Then plan input validation and the 3D Cartesian recipe using
-a non-sensitive input contract, not guessed experimental metadata.
+The initial main-branch push at commit `aad0525` is author-reported evidence.
+Do not infer publication of the current working branch, clean-checkout
+reproduction, experimental validation or implemented contract controls from it.
+
+Next priorities are review of this contextual documentation, then interactive
+data-contract development after explicit authorization. Use BART-generated
+synthetic phantoms for development and testing with matched inputs/settings.
+Experimental BART files and DICOM images remain outside AI context. Plan input
+validation and the 3D Cartesian recipe using a non-sensitive input contract, not
+guessed experimental metadata. DICOM comparison remains a proposal with no
+approved protocol.

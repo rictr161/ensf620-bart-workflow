@@ -50,10 +50,14 @@ Use these as the starting context, with their provenance; do not silently promot
 - The reviewer reproduction route uses synthetic data and does not need laboratory data, the extractor, or TALC. Synthetic success does not prove unavailable experimental results.
 - TALC is planned for HPC working storage. TrueNAS retention is proposed, with retention/deletion conditions still to be agreed. Do not invent institutional authorization or retention periods.
 
-### Later owner-reported updates
+### Current owner-reported updates
 
 - The local machine is now a MacBook Pro with Apple M5 and 24 GB RAM, replacing the Windows/WSL description in the proposal. Exact installed BART/Python versions, build, and execution evidence still need recording.
-- Original 2D and 3D Cartesian scanner files have been reported as `.h5`. This does not establish their internal structure or the format exported to the workflow. The GE extraction utility has been received; its validated interface, version, licensing, and outputs remain unresolved.
+- Current experimental inputs are reported in BART `.cfl`/`.hdr` format for brain MRI 3D Cartesian reconstruction, including CS work. Availability is not inspection or validation. Dimension meanings, sampling, calibration and recipe-specific settings remain unresolved.
+- Scanner extraction, `.h5` conversion and installation/debugging of the GE extractor are outside the current workflow implementation boundary. Preserve earlier extraction details as historical/upstream context, not as current implementation blockers.
+- The current implementation scope is Cartesian 2D/3D, including compressed sensing. Radial and 4D are outside scope. DICOM comparison is only a proposed complementary reference with no approved protocol.
+- BART-generated synthetic phantoms are the confirmed development/testing basis for matched manual and automated procedures. Fixtures, settings, tests and acceptance criteria remain to be defined and verified.
+- An author-supplied report supports the initial `main` push at commit `aad0525`; do not infer publication of the current working branch, clean-checkout reproduction, experimental validation or contract-control implementation.
 - Keep repository/course documentation in English. Work through questions incrementally in Spanish.
 
 Never infer HDF5 keys, axis order, coil count, volume count, trajectory, CS sampling mask, normalization, file naming, or the meaning of "4D" from an extension, shape, or acquisition label. Do not pull details from unrelated MRI projects into this one.
@@ -75,9 +79,9 @@ The latest explicit owner correction governs project facts when it supersedes th
 
 ### Phase 1 - Establish a useful draft
 
-1. Use the project context already above and any explicitly supplied, reviewed documents. If the owner provides `docs/DATA_CONTRACT.md`, update it rather than creating a competing contract. Use `docs/PROJECT_CONTEXT_FOR_AI.md` only when its reviewed content is supplied or deliberately attached.
+1. Use the project context already above and any explicitly supplied, reviewed documents. If the owner provides `docs/DATA_CONTRACT.md`, update it rather than creating a competing contract. Do not assume `PROJECT_CONTEXT_FOR_AI.md` exists or use it unless its reviewed content is supplied or deliberately attached.
 2. Briefly summarize confirmed constraints, later corrections, and unresolved implementation choices in Spanish.
-3. Produce a useful `DRAFT_REVIEW_REQUIRED` contract immediately from available evidence. Unknowns block only the affected real-data operation or evaluation, not safe documentation or synthetic development. Do not withhold the whole draft while waiting for a long questionnaire.
+3. In a later explicitly authorized contract-review task, produce or revise a useful `DRAFT_REVIEW_REQUIRED` contract from available evidence. Unknowns block only the affected real-data operation or evaluation, not safe documentation or synthetic development. Do not withhold the whole draft while waiting for a long questionnaire.
 4. Identify material conflicts. Preserve restrictive boundaries while resolving them; do not silently choose the more permissive interpretation.
 
 ### Phase 2 - Ask only consequential questions

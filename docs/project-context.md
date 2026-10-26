@@ -1,28 +1,49 @@
 # Project Context and Method
 
-Consolidated 2026-10-23 from the proposal, feedback and Ricardo's implementation
-updates. See `sources.md` for source identification.
+Current context consolidated from the reviewed project documents and Ricardo's
+author-confirmed updates. See `sources.md` for source identification. These
+clarifications describe current project context; they do not amend the submitted
+proposal or constitute new instructor approval.
 
 ## Committed scope
 
-The contribution is configuration, input validation, BART execution, provenance and
-comparison, not a new reconstruction algorithm or automatic parameter optimization.
-The instructor recommends one verified 3D Cartesian manual–automated pair and a
-main evaluation capped at the three datasets already received. Current receipt
-reports establish configurations, not an inspected count of usable datasets.
+The contribution is a Python workflow with a simpler interface for configuring,
+validating, executing and recording reviewed BART procedures. It is not a new
+reconstruction algorithm or an automatic parameter optimizer. Optional Bash/HPC
+launchers may invoke the Python workflow later; Bash is not the current primary
+architecture.
 
-The proposed seven configurations are 2D/3D/4D Cartesian, 3D/4D CS, and 2D/3D radial.
-Later configurations are optional and must meet the November 6, 2026 gate for
-inputs, authority, reconstruction recipe and checks. Do not guess missing metadata.
-The proposal targets three repeated runs per mode and dataset; these are planned,
-not already measured.
+The current implementation scope is Cartesian 2D and 3D reconstruction, including
+compressed sensing. Radial and 4D are outside the current implementation scope.
+The minimum target remains one verified 3D Cartesian manual–automated pair, with the
+main evaluation capped at the three datasets identified in the proposal. Intended
+support, reported dataset availability, validated recipes and implemented
+functionality are separate states; not every supported configuration must enter
+the main evaluation.
+
+Current experimental inputs are author-reported as BART `.cfl`/`.hdr` files for
+brain MRI 3D Cartesian reconstruction, including CS work. This report does not
+establish that the files were inspected or that their reconstruction is validated.
+Dimension meanings, sampling, calibration and recipe-specific settings remain
+explicitly unresolved until reviewed evidence exists. Earlier `.h5`, extractor,
+and GE-conversion questions remain historical context or upstream provenance;
+they are not current implementation blockers. Do not transfer the earlier
+Poisson/R=8/10-volumes/“200” description to these datasets without established
+correspondence.
+
+Development and testing will use BART-generated synthetic phantoms with matched
+inputs and settings for manual and automated procedures. Fixtures, settings,
+tests and acceptance criteria remain to be defined and verified. The proposal's
+three repeated runs per mode and dataset are planning targets, not completed
+measurements.
 
 ## Comparison boundary
 
-Both modes start from the same exported k-space and required metadata and finish
-with verified, organized outputs and a reviewed record. GE extraction is upstream
-and outside the comparison. Input preparation, configuration changes, initiation
-and final review remain inside the measured task. Human initiation is retained.
+Both modes start from the same reviewed BART-format inputs and required metadata
+and finish with verified, organized outputs and a reviewed record. Scanner
+extraction and `.h5` conversion are outside the workflow implementation boundary.
+Input preparation, configuration changes, initiation and final review remain inside
+the measured task. Human initiation is retained.
 
 ## Outcomes and verification
 
@@ -40,12 +61,19 @@ Match output dimensions, numerical representation and scaling. Justify tolerance
 in pilots before the main evaluation; do not relax them just to pass. Agreement
 alone does not establish correctness. Preserve independent/known-answer checks.
 
+DICOM images are a proposed complementary reconstruction reference, not approved
+ground truth or a validation protocol. Do not assume fully sampled acquisition or
+select DICOM metrics or tolerances before a separate review.
+
 ## Current implementation
 
 The observed work is a fully sampled synthetic 64 × 64 example, a NumPy inverse
 comparison and figures. It is not the verified experimental 3D manual baseline,
 automated counterpart, operational action reduction or HPC evaluation. `src/` and
-experimental `configs/` are not implemented yet.
+experimental `configs/` are not implemented yet. The initial main-branch push at
+commit `aad0525` is author-supplied evidence; it does not establish publication
+of the current working branch, clean-checkout reproduction, experimental
+validation or contract-control implementation.
 
 ## Dates
 

@@ -2,6 +2,7 @@
 
 This package contains project-owned notes and synthetic-example scripts, supplied
 synthetic measurements/PNGs, selected environment reports and public-reference links.
+Current experimental BART `.cfl`/`.hdr` files and DICOM images are not included.
 It does not include the proposal PDFs or institutional identifier. File presence and
 reviewed text do not replace a final author review of everything being shared.
 
@@ -14,8 +15,9 @@ reviewed text do not replace a final author review of everything being shared.
 Approved laboratory storage     Restricted data/extractor; not exposed to AI tools
 ```
 
-Keep laboratory measurements, extracted k-space, derived laboratory images,
-GE/laboratory extraction code, credentials, private links and unreviewed logs
+Keep experimental BART files, DICOM images, laboratory measurements, extracted
+k-space, derived laboratory images, GE/laboratory extraction code, credentials,
+private links and unreviewed logs
 outside the shared repository and AI context. Do not link them into the workspace
 through symlinks, additional folders or chat attachments. A private repository
 is not authorization to disclose restricted material.
@@ -36,6 +38,9 @@ guidance; deleting it from the newest snapshot does not erase Git history.
 ## Processing and retention
 
 The proposal assigns laboratory handling and TALC submission to Ricardo and excludes
-extraction from the paired comparison. Record permitted uses, approved locations,
-retention on TrueNAS and deletion of temporary/student-controlled copies. Do not
-infer these terms from this document or delete shared originals without agreement.
+extraction from the paired comparison. Scanner extraction and `.h5` conversion are
+also outside the current workflow implementation boundary. Record permitted uses,
+approved locations, retention on TrueNAS and deletion of temporary/student-controlled
+copies. TALC remains the planned HPC target; ARC is only a possible alternative.
+Do not infer these terms from file availability or this document, or delete shared
+originals without agreement.
