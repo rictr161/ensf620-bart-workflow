@@ -65,6 +65,21 @@ Raw private transcripts are not necessary for this disclosure.
 Human review of this initial documentation: pending at the pre-publication checkpoint.
 Actual commit identity and date must come from Git history, not retrospective claims.
 
+## Access/action boundary acceptance — 2026-10-27
+
+Tool/access mode: Copilot SDK in VS Code. Ricardo accepted the reviewed
+ENSF620-BART-DC v0.3.0 as an `OWNER_ACCEPTED` documentary policy for supervised
+AI-assisted development. This revision corrected the contract's purpose from
+an overly broad software specification and evaluation document to an AI
+data-access and action-boundary policy.
+
+The owner's explicit acceptance is recorded in this conversation. The
+acceptance does not establish technical enforcement, authorize restricted
+data access, approve a software specification or evaluation protocol, or grant
+blanket permission to execute tools. Implementation and technical-verification
+states remain unchanged. Operation-specific unresolved items remain recorded.
+No commands or tests were run for this documentation update.
+
 ## Contextual documentation revision — 2026-10-26
 
 Tool/access: Copilot SDK in VS Code, using only reviewed workspace documents and

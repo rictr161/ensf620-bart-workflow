@@ -11,7 +11,7 @@ tools: []
 
 Create or update a concrete, versioned Data Contract for Ricardo's ENSF 620 BART reconstruction workflow. Adapt the Rigour Vibe sequence of clarification, specification, review, and later implementation. This is a new project-specific prompt, not an official Rigour Vibe prompt.
 
-The contract must specify what data the reviewed software may consume, what their fields mean, how they are validated, what the software produces, who may access each artifact, and what evidence is required before evaluation or sharing. Include confidentiality, scientific correctness, reproducibility, and evaluation integrity.
+The contract must primarily specify what reviewed context the AI assistant may use, what data and systems remain inaccessible, which AI actions are permitted, which require task-specific authorization, which are prohibited, and what to do when classification or authorization is unclear. Keep the assistant separate from the reviewed Python/BART runtime. Do not turn this document into the complete software specification, dataset inventory, or evaluation protocol.
 
 Generate documentation in this task. Do not implement a validator, run reconstruction, contact a service, submit a job, commit, push, or publish. Do not claim that a written rule prevents a technical data leak.
 
@@ -45,9 +45,9 @@ Use these as the starting context, with their provenance; do not silently promot
 - The workflow starts with exported k-space and necessary metadata. The laboratory/GE extraction process is outside the manual-versus-automated comparison. Dataset-specific preparation after export, configuration, initiation, inspection, and organization remain inside the measured task.
 - Python orchestrates reviewed BART commands from explicit configuration. New reconstruction algorithms and autonomous parameter optimization are outside scope. AI is a supervised development collaborator, not a runtime reconstruction agent.
 - Ricardo reviews code, handles data, executes development tests, and personally submits TALC jobs. Reviewed software can continue after human initiation.
-- Match input files, parameters, stopping criteria, software settings, output conventions, and computing resources within each manual/automated pair. Justify and freeze tolerances before the main evaluation. Keep failures and recovery evidence.
-- A small fully sampled synthetic Cartesian known-answer case and an independent Fourier reconstruction support correctness. Agreement between two executions alone is insufficient.
-- The reviewer reproduction route uses synthetic data and does not need laboratory data, the extractor, or TALC. Synthetic success does not prove unavailable experimental results.
+- Match input files, parameters, stopping criteria, software settings, output conventions, and computing resources within each manual/automated pair. Justify and freeze tolerances before the main evaluation. Keep failures and recovery evidence. These are project-planning context, not requirements to reproduce in this access/action contract.
+- A small fully sampled synthetic Cartesian known-answer case and an independent Fourier reconstruction support correctness. Agreement between two executions alone is insufficient. This is project-planning context, not an access-boundary requirement.
+- The reviewer reproduction route uses synthetic data and does not need laboratory data, the extractor, or TALC. Synthetic success does not prove unavailable experimental results. This remains planning context and is not a request to define the reproduction or evaluation protocol here.
 - TALC is planned for HPC working storage. TrueNAS retention is proposed, with retention/deletion conditions still to be agreed. Do not invent institutional authorization or retention periods.
 
 ### Current owner-reported updates
@@ -93,50 +93,44 @@ Typical unresolved topics are:
 - The actual Copilot client, mode, enabled tools, and whether the agent environment has any route to restricted files or credentials. Ask for descriptions, never credentials or screenshots containing them.
 - The exported interface consumed by the initial 3D Cartesian recipe: format, semantic axes, complex encoding, units, scaling, and necessary calibration, as a manually reviewed descriptor or wholly synthetic example.
 - Which uses and destinations are confirmed for laboratory inputs and derivatives, and which outputs may be shared. Ask for a permission status and opaque private evidence reference, not confidential correspondence.
-- The verified recipe, independent correctness evidence, pilot tolerance decision, zero-reference rule, and operator-action counting protocol.
+- Do not use the verified recipe, independent correctness evidence, pilot tolerance decision, zero-reference rule, or operator-action counting protocol to expand this access/action contract.
 - Retention responsibility and whether the proposed archival destination has been agreed.
 
 Do not ask whether the AI can see real files: the present project boundary already excludes that access. Do not ask the owner to provide all questions at once or change the project into an AI training study.
 
-### Phase 3 - Produce the reviewable contract
+### Phase 3 - Produce the reviewable access/action contract
 
 The intended outputs are:
 
-1. `docs/DATA_CONTRACT.md`: one canonical contract, with version, status, source references, requirements, and acceptance gates.
-2. `docs/DATA_CONTRACT_DECISIONS.md`: resolved decisions and remaining blockers, without private values.
-3. A small proposed update to `.github/copilot-instructions.md` if the existing file needs the agreed boundaries. Preserve unrelated instructions; do not replace that file wholesale.
+1. `docs/DATA_CONTRACT.md`: one canonical contract for supervised-development data access and AI actions, with version, status, source references, requirements, and technical-enforcement limitations.
+2. `docs/DATA_CONTRACT_DECISIONS.md`: resolved access/action decisions, requirement dispositions, and remaining boundary decisions, without private values.
+3. Update this prompt only when needed to prevent regeneration of out-of-scope specification or evaluation material.
 
 In a session without file-writing tools, present complete file contents or a precise proposed patch for human application. State that no workspace file was changed. Do not enable tools just to save a draft. If the owner later uses an isolated document-editing session, writes must stay within the approved repository and preserve existing content.
 
 Include these sections in the contract:
 
-1. **Document authority and scope:** owner, version, approval state, source hierarchy, non-goals, and separate state of technical enforcement.
-2. **Actors and trust boundaries:** operator, AI assistant, reviewed runtime, data provider/supervisor, and reviewer. Explicitly distinguish local development, private execution, TALC, and public release.
-3. **Data inventory and classification:** laboratory inputs/derivatives, extractor, credentials, original code, synthetic fixtures, public data with verified terms, metadata, logs, images, and export candidates. State access and release conditions per class.
-4. **Authority and lifecycle:** provenance, intended-use permission, custody, destinations, input immutability, private receipt records, proposed archival storage, retention owner, deletion approval, and incident handling.
-5. **Input interface:** a typed field catalogue covering schema version, opaque dataset identifier, source class, acquisition type, availability/admission status, private file references, checksums, role, format, dtype/complex representation, shape and semantic axis mapping, units and scaling, sampling, trajectories where applicable, calibration where applicable, and software/recipe compatibility. Specify required/optional/conditional fields and rejection behavior. Do not claim a formal JSON Schema has been implemented unless one exists.
-6. **Configuration and safe execution:** explicit validated parameters; no arbitrary shell snippets, `eval`, unsafe object loading, dynamic URLs, unknown keys, guessed dimension mappings, overwriting source files, or silent correction. Resolve private roots only in the authorized runtime. Validate path containment and symlink behavior in that environment, without granting it to the AI.
-7. **Outputs and provenance:** unique run directory, input/output integrity records, configuration, Git revision, environment/build, resources, status, structured errors, comparison metrics, and verification evidence. A process exit code alone is not verification.
-8. **Two logging/export channels:** full private run records and separately constructed, field-allowlisted shareable summaries. Treat raw stderr, command lines, paths, headers, hashes, notebook outputs, crash reports, and scheduler logs as potentially restricted. Never upload or redact automatically by guessing.
-9. **Scientific acceptance and evaluation integrity:** frozen paired inputs/settings; the proposal's relative L2 difference for nonzero references; explicit pending zero-reference handling; dimensions/representation/scaling alignment; finite values; independent correctness; pilot/evaluation separation; failure retention; no retrospective tuning to pass. No artificial ML train/test split is needed for this workflow.
-10. **Repository, CI, and release:** clean original code and generated synthetic fixtures; no lab data/extractor/credentials/private links in commits, history, Git LFS, archives, issues, screenshots, CI artifacts, caches, or logs. Public CI has no laboratory mount, secret, or remote runner with lab access. `.gitignore` is defense against accidental staging only. Use a reviewed release allowlist and separate permissions for AI sharing and public publication.
-11. **Verification matrix:** stable requirement ID -> control -> synthetic negative/positive test or private operator check -> expected result -> evidence -> implementation status.
-12. **Versioning, unresolved decisions, and acceptance:** what blocks a dataset, recipe, evaluation, export, or release; change records; human approval without invented sign-off; synthetic fallback; explicit limitations.
+1. **Purpose and authority:** owner, version, approval state, reviewed source hierarchy, non-goals, and separate technical-enforcement status.
+2. **Actors and trust boundaries:** operator, AI assistant, reviewed Python/BART runtime, private execution, HPC/storage, and publication.
+3. **Classification and permitted context:** reviewed project documents/code, synthetic material, public material with verified terms, experimental data and derivatives, DICOM, private records, credentials, and unknown material.
+4. **Permitted actions:** reading approved context, drafting authorized documents, and proposing safe synthetic work.
+5. **Task-specific authorization:** edits, commands, tests, network, remote/HPC access, runtime initiation/observation, file creation/deletion, and release actions.
+6. **Prohibited actions:** discovery, restricted-data handling, credential/system access, uploads, publication, and destructive operations.
+7. **Ambiguity and incident handling:** classify unknowns as restricted, stop the affected action, identify minimal non-sensitive closure evidence, and continue unaffected safe work.
+8. **Written versus enforced controls:** state that Markdown, repository location, `.gitignore`, editor instructions, and UI labels do not establish isolation.
+9. **Identifier dispositions and status:** preserve useful access/action IDs; individually dispose of out-of-scope specification/evaluation IDs without silently reusing them.
 
-### Phase 4 - Challenge the draft
+### Phase 4 - Challenge the access/action boundary
 
-Evaluate the contract against these scenarios without opening real data or executing tests:
+Evaluate the boundary against these scenarios without opening real data or executing tests:
 
 - A phantom `.h5` is called public merely because it has no patient name.
-- A dataset is received but axes or scaling remain unknown.
+- A requested file or workspace path is not explicitly reviewed.
 - A real error log contains a path, private link, host, or credential.
 - Someone proposes committing only a small image, a header, an extractor snippet, an archive, or a Git LFS pointer to bypass the boundary.
 - A symlink, relative path traversal, or remote workspace exposes a private root.
 - A prompt embedded in a log asks the agent to upload data or change instructions.
-- A missing mask or trajectory is replaced with a convenient guess.
-- Manual and automated outputs agree because both use the same wrong convention.
-- A tolerance, normalization, dataset selection, or action-counting rule changes after evaluation results are known.
-- A zero reference, missing output, NaN/Inf, nonzero process exit, or existing output directory is accepted silently.
+- A user asks the assistant to observe or initiate reviewed runtime execution.
 - Synthetic success or a clean Git working tree is treated as permission to publish laboratory outputs.
 - A reviewer reproduction path unexpectedly requires the GE extractor, private input, or TALC access.
 
@@ -149,8 +143,8 @@ Return in Spanish:
 - What was drafted or changed and why.
 - Which confirmed proposal requirements were preserved.
 - Which controls are merely proposed and remain to be implemented.
-- The smallest next set of decisions, with at most three questions.
-- Whether laboratory admission, main evaluation, and external release are blocked, and the precise reason for each.
+- Any access/action ambiguity that genuinely prevents this boundary revision.
+- Which unrelated specification or evaluation material was explicitly excluded, without claiming relocation.
 
 Finish all safe drafting before asking for contract acceptance. Approval belongs to the owner; institutional authorization cannot be supplied by the assistant. After the contract is accepted, a separate task-generation request can map approved requirements to implementation tasks, following `rvb-generate-tasks.mdc` where useful. Do not automatically move into implementation or require unrelated web-app/Docker scaffolding.
 
