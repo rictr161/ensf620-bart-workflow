@@ -1,58 +1,92 @@
 # Input Inventory — Shareable Summary
 
-Consolidated from Ricardo's reports, not inspection of laboratory files.
-Detailed identifiers, private paths and steward records remain in approved storage.
+This inventory summarizes Ricardo's reports of experimental input availability,
+earlier acquisition descriptions and unresolved correspondence between those
+reports. No laboratory files were inspected for this summary. Detailed private
+identifiers, storage paths and steward records are not included here.
 
-The current experimental input boundary is author-reported BART `.cfl`/`.hdr` data.
-The current brain MRI data are described as 3D Cartesian, including CS work. File
-availability is not file inspection, recipe validation, or reconstruction evidence.
+The [project context](project-context.md) describes the development scope and
+synthetic-phantom approach. The [README input requirements](../README.md#input-requirements)
+describe the files used by the existing synthetic example.
 
-| Configuration | Historical report | Current reported input stage | Current extension | Readiness |
-| --- | --- | --- | --- | --- |
-| 2D Cartesian | Yes | Original scanner files | `.h5` (historical) | Not verified |
-| 3D Cartesian | Yes | BART-format reconstruction input reported | `.cfl`/`.hdr` | Not verified |
-| 3D CS | Yes, historical report | BART-format reconstruction input reported | `.cfl`/`.hdr` | Not verified |
+## Current reported experimental inputs
 
-These are configuration categories, not independently established dataset or file
-counts. A previous "No" for 3D CS was corrected by Ricardo as a reporting error,
-not a new receipt/availability change. Individual receipt dates remain unrecorded.
+Ricardo describes the current experimental inputs as brain MRI 3D Cartesian
+BART `.cfl`/`.hdr` files, including CS work. The verification column below records
+what is established in the shared project documentation.
 
-## Historical 3D CS description
-
-The following details belong to an earlier report and must not be assigned to the
-current brain datasets without established correspondence.
-
-| Field | Reported information | Status |
+| Reported configuration | Reported input stage and format | Reconstruction verification |
 | --- | --- | --- |
-| Sampling | "Poisson distributed" | Geometry/mask not verified |
-| Acceleration | Factor 8 | Definition/actual sampling not verified |
-| Volumes | "Should be 10 volumes" | Expected count only |
-| Additional quantity | "200" | Meaning and units unknown |
-| Format | Not supplied | Do not infer `.h5` from other configurations |
+| 3D Cartesian | BART-format reconstruction inputs, `.cfl`/`.hdr` | Not established in the shared record |
+| 3D CS | BART-format reconstruction inputs, `.cfl`/`.hdr` | Not established in the shared record |
 
-Do not interpret "200" as matrix size, slices or another quantity. The short label
-does not establish axis meanings, trajectory, mask or a reconstruction recipe.
+The rows describe configuration categories. They do not establish a count of
+distinct datasets, acquisitions or files. Reported availability does not establish
+file inspection, completeness, a verified recipe or reconstruction evidence.
+
+## Historical availability reports
+
+Earlier reports described receipt of 2D Cartesian, 3D Cartesian and 3D CS material.
+The earlier 2D Cartesian input stage was original scanner files in `.h5` format.
+Its current format, conversion status and availability as a reconstruction-ready
+input are not established by that historical description.
+
+A temporary "No" for 3D CS was corrected by Ricardo to "Yes" as a reporting error.
+The correction did not represent a new receipt or a change in availability.
+Individual receipt dates remain unrecorded in this summary.
+
+The proposal listed 4D Cartesian, 4D CS, 2D radial and 3D radial as pending. Those
+categories remain outside the current implementation scope. Their proposal-stage
+status does not establish present or future availability.
+
+## Earlier 3D CS description
+
+The following details come from an earlier report. Their correspondence with the
+current brain datasets has not been established.
+
+| Field | Earlier reported information | Status of that report |
+| --- | --- | --- |
+| Sampling | "Poisson distributed" | Geometry and mask not verified |
+| Acceleration | Factor 8 | Definition and actual sampling not verified |
+| Volumes | "Should be 10 volumes" | Expected count, not an established count |
+| Additional quantity | "200" | Meaning and units unknown |
+| Format | Not supplied | No format established by that earlier report |
+
+The description does not establish axis meanings, trajectory, mask or a
+reconstruction recipe. The current `.cfl`/`.hdr` report does not fill in the
+missing format of that earlier record.
 
 ## Historical extraction context
 
 Ricardo previously reported Python code described as "GE recon code" for 3D
-Cartesian data. Extraction, `.h5` conversion and installation/debugging of that
-utility are outside the current workflow implementation boundary. Preserve the
-historical provenance questions, but they are not current implementation blockers.
-Do not guess a particular GE product or transfer its metadata to the current data.
+Cartesian data. That description does not identify a particular GE product or
+establish the utility's metadata relationship to the current inputs.
 
-## Provenance and authority
+Extraction, `.h5` conversion and installation or debugging of that utility are
+outside the current workflow implementation scope. Outstanding provenance
+questions remain historical or upstream context, rather than current
+implementation blockers.
 
-The proposal describes non-human spherical-phantom GRE measurements provided through
-a supervisor-arranged laboratory collaboration, with access beginning September 23,
-2026. This proposal-stage access date does not establish each file's receipt or
-permission for every intended use. The supervisor has been involved, but the
-permitted-use record and retention terms need explicit documentation.
+## Provenance and permitted-use record
 
-Privately record source/steward, identifier/version, receipt date, completeness,
-permitted uses and locations, retention and sharing rules for each included dataset.
-Non-human measurements are not automatically publicly redistributable.
+The proposal describes non-human spherical-phantom GRE measurements provided
+through a supervisor-arranged laboratory collaboration, with access beginning
+September 23, 2026. The project documents are identified in [sources](sources.md).
+Correspondence between that proposal-stage description and the current brain MRI
+input report is not established in this summary.
 
-The proposal listed 4D Cartesian, 4D CS, 2D radial and 3D radial as pending. They
-remain outside the current implementation scope; their historical status is not a
-claim about future availability.
+The September access date does not establish each file's receipt date or
+permission for every intended use. Supervisor involvement is recorded, while
+confirmation of permitted-use and retention terms remains pending in the shared
+project record. The non-human description does not establish permission for
+public redistribution.
+
+The provenance and handling information identified for private records includes
+source/steward, identifier/version, receipt date, completeness, permitted uses and
+locations, retention and sharing rules for each included dataset. Those private
+values and the completeness of the records are not established by this summary.
+
+AI access and action boundaries are defined by the
+[accepted contract](DATA_CONTRACT.md). Outstanding decisions on permitted uses,
+destinations, sharing and retention are recorded in the
+[contract decision register](DATA_CONTRACT_DECISIONS.md).

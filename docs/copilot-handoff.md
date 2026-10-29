@@ -38,7 +38,8 @@ state of all project assistance.
 ## Repository checkpoint supplied by Ricardo
 
 The starting repository export corresponds to commit
-`5bcf772a09ced4339cc70b87eba85488713c2c41`. Ricardo reported the following Git state:
+`5bcf772a09ced4339cc70b87eba85488713c2c41`. Ricardo reported the following Git state
+for that checkpoint:
 
 | Item | Reported state |
 | --- | --- |
@@ -47,9 +48,17 @@ The starting repository export corresponds to commit
 | Integrated branch | `docs/data-contract-workflow` was merged and published on `main` |
 | Working branch | `planning/ai-dev-tasks` was created from `main` |
 
-This is a supplied checkpoint, not an independent check of live local or remote
-Git state. Publication of the working branch and commits for the documentation
-edits prepared after that export have not been verified here.
+Ricardo subsequently supplied successful push, status and log output for
+documentation commit `d59ff7d` on `planning/ai-dev-tasks`. The
+[publication checkpoint](open-questions.md#supplied-publication-checkpoint)
+records publication of that branch and its configured upstream, together with
+the limits of that evidence.
+
+These are supplied checkpoints, not independent checks of current local or
+remote Git state. The `d59ff7d` publication does not establish publication of later
+documentation edits or a merge of the working branch into `main`. Reviewer access
+and clean-checkout reproduction remain unverified, as recorded under GIT-02 and
+VERIFY-02 in the same questions record.
 
 Earlier setup and assistance checkpoints remain in the
 [Git workflow](git-workflow.md) and [AI use record](../AI_USE.md). Their dated

@@ -14,6 +14,75 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-10-29 — Follow-up documentation cleanup
+
+**Date:** Consolidated on 2026-10-29, covering the follow-up documentation blocks
+after Ricardo supplied publication evidence for `d59ff7d`, and preparation of
+this entry.
+
+**Tool/model and access mode:** ChatGPT through the web interface, with tools for
+inspecting and editing documents and read-only reviewer agents. A model identifier
+covering the complete round was not independently recorded.
+
+**Inputs:** The previously reviewed repository export at
+`5bcf772a09ced4339cc70b87eba85488713c2c41`, cumulative documentation copies and
+patches, Ricardo's project decisions, and his supplied Git push, status and log
+output for `d59ff7d`.
+
+**Assistance and affected files:** English review copies and incremental patches
+were prepared for `docs/project-context.md`, `docs/input-inventory.md`,
+`docs/open-questions.md`, `docs/copilot-handoff.md` and this `AI_USE.md` entry.
+The work clarified document purpose, reported input history, pending questions
+and the distinction between earlier and later Git checkpoints.
+
+**Corrections and decisions:**
+
+- Project context was rewritten as technical direction and evaluation planning.
+  Proposal and instructor-feedback quantities remained attributed planning,
+  without becoming AI-access rules, software limits or a newly approved protocol.
+- Current brain MRI 3D `.cfl`/`.hdr` reports were separated from historical `.h5`,
+  extraction and acquisition descriptions. Configuration rows were not treated as
+  dataset counts; correspondence between earlier descriptions and current inputs
+  remained unresolved.
+- The open-questions record retained all 18 identifiers. A draft of DATA-03 was
+  corrected to preserve the unresolved conventions of current experimental inputs
+  alongside future software support. These questions remained separate from the
+  accepted AI access/action contract.
+- GIT-02 wording was changed from "review commit" to "published commit" to reflect
+  the supplied evidence. The Git questions and handoff incorporated the
+  supplied `d59ff7d` publication evidence while retaining the starting checkpoint.
+- Planned milestone dates, supplied synthetic timestamps and Git publication
+  records remained distinct. The existing synthetic exercise remained exploratory
+  evidence without a numerical acceptance threshold or general validation claim.
+
+**Execution and evidence:** Document-handling commands read archive text and
+prepared copies, created review files and patches, compared text and checked
+relative references and heading anchors. Read-only reviewer agents checked
+factual preservation, policy hierarchy and readability. No project scripts,
+tests, reconstructions, builds or installations were run in this documentation
+pass. The assistant did not commit, push or modify the remote repository.
+
+File-content review used the supplied export and prepared copies. The assistant
+did not independently inspect the current GitHub tree; the publication evidence
+came from Ricardo's terminal output.
+
+**Review and related revision:** Ricardo authorized the successive blocks and
+requested this consolidated entry. His supplied terminal output records the
+earlier publication of `planning/ai-dev-tasks` at `d59ff7d`, with the message
+`docs: align documentation and standardize AI use records`; the
+[publication checkpoint](docs/open-questions.md#supplied-publication-checkpoint)
+records the evidence and its limits. The earlier documentation-alignment entry
+remains a record of what was known before that output. No later command output
+establishes the applied diff, commit or publication for this follow-up round.
+This entry is prepared for Ricardo's review.
+
+**Limitations:** Static documentation review did not reproduce the synthetic
+exercise, verify experimental inputs or results, or establish tool isolation.
+No experimental data, DICOM, extractor, credentials, private storage or HPC access
+formed part of this work. The accepted contract, its decision register and the
+completed contract-creation prompt were not edited. Detailed software and
+evaluation design, and preparation of ai-dev-tasks with Copilot, remained pending.
+
 ## 2026-10-29 — Documentation alignment and record standardization
 
 **Date:** Consolidated on 2026-10-29. This entry covers the repository review and
