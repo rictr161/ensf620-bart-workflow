@@ -14,6 +14,77 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-10-29 — Git workflow and historical record clarification
+
+**Date:** Consolidated on 2026-10-29, covering the final documentation cleanup
+after Ricardo supplied the `2435329` publication checkpoint, and preparation of
+this entry.
+
+**Tool/model and access mode:** ChatGPT through the web interface, with tools for
+document inspection and editing and read-only reviewer agents. Model identifiers
+for the complete round were not independently recorded.
+
+**Inputs:** The repository export at
+`5bcf772a09ced4339cc70b87eba85488713c2c41`, cumulative reviewed documentation,
+selected supplied synthetic text records, and Ricardo's commit, push, status and
+log output for `2435329`.
+
+**Assistance and affected files:** English review copies and incremental patches
+were prepared for `docs/git-workflow.md`, `docs/sources.md`,
+`docs/milestones/01-familiarization.md` and this `AI_USE.md` entry. Assistance also
+included explanations of the proposed wording and commands for Ricardo to review,
+apply, commit and publish the documentation changes.
+
+**Corrections and decisions:**
+
+- The Git guide now presents continued work on an existing branch first, with
+  separate routes for creating a new branch and consulting the historical initial
+  setup. Branch names and commit messages are examples, and historical command
+  instructions are distinguished from evidence that commands were executed.
+- The source catalogue identifies the 39-file staged listing with the
+  2026-10-23 assembly checkpoint. It is not presented as a current repository
+  file count.
+- The milestone's pending-work column and completion-review wording explicitly
+  refer to the assembly checkpoint. Historical pending statuses were preserved
+  rather than replaced by later publication outcomes.
+- The milestone now describes the timestamp recorded in the supplied start file,
+  replacing the stronger phrase "Exact initial execution timestamp". Supplied
+  timestamps, reported measurements and their evidence limits were preserved.
+- Ricardo requested a plain-language explanation of these small wording changes,
+  then authorized the limited edits, consolidation of this entry and direct
+  commit instructions. The edits did not expand into a broader historical rewrite.
+
+**Execution and evidence:** Document-handling tools read archive text and prepared
+copies, compared text, inspected headings and references, and created review
+files and patches. Read-only reviewer agents checked factual preservation,
+historical context and readability. Selected supplied text records were read to
+check timestamp wording; no values were recalculated.
+
+No project scripts, tests, reconstructions, builds or installations were run.
+The assistant did not execute the Git procedures, commit, push or modify the
+remote repository. Publication evidence came from Ricardo's terminal output;
+current GitHub contents were not independently inspected.
+
+**Review and related revision:** Ricardo authorized the successive blocks and
+requested the consolidated record and commit instructions. His supplied output
+records commit `2435329` with the message
+`docs: clarify project records and update publication evidence`, and its successful
+push to `planning/ai-dev-tasks`. The supplied status and log showed the local branch
+and its remote-tracking reference at that commit,
+with no file-change entries at that checkpoint. This evidence follows the
+previous entry's preparation; the earlier entry remains a record of what was
+known then. No subsequent Git output establishes a commit or publication of this
+final documentation round. This entry is prepared for Ricardo's review.
+
+**Limitations:** This was an internal documentation and evidence-consistency
+review. The original course PDFs were not available for direct comparison, and
+public reference links were not rechecked online. No scientific validation,
+clean-checkout reproduction or technical isolation was established. Experimental
+data, DICOM, extractor code, credentials, private storage and HPC remained outside
+the work. The accepted contract, its decision register and the completed
+contract-creation prompt were not edited. Interactive preparation of ai-dev-tasks
+with Copilot remains pending.
+
 ## 2026-10-29 — Follow-up documentation cleanup
 
 **Date:** Consolidated on 2026-10-29, covering the follow-up documentation blocks

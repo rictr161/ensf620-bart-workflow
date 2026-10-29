@@ -22,10 +22,11 @@ private conversation are not needed to explain the project.
 
 Software/hardware values and measurements are recorded from Ricardo's messages,
 not inferred from public version pages. Dataset receipt/descriptions are reports,
-not inspections. Five PNGs were uploaded. The subsequent staged listing identifies
-39 files, including both scripts, selected reports and dependency snapshots. Script
-contents and environment snapshots were supplied in the text diff. Raw arrays and
-the complete original run directory were not supplied. No fresh execution or
+not inspections. Five PNGs were uploaded. The staged listing for the
+2026-10-23 assembly checkpoint identified 39 files, including both scripts,
+selected reports and dependency snapshots. Script contents and environment
+snapshots were supplied in the text diff. Raw arrays and the complete original
+run directory were not supplied. No fresh execution or
 byte-for-byte comparison with every Mac original is implied by the documentation
 review. Clean-checkout reproduction remains pending.
 
