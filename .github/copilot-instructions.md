@@ -1,10 +1,30 @@
 # Repository instructions
 
-Read `README.md`, `docs/project-context.md`, `docs/input-inventory.md`,
-`docs/open-questions.md`,
-`docs/data-and-ai-boundaries.md`, and `docs/copilot-handoff.md` before proposing
-changes. Consult `environment/local-macos.md` and `tests/synthetic_2d/README.md`
-for execution and verification.
+## Reading order and document authority
+
+Read the following documents before proposing changes:
+
+1. [README.md](../README.md) for the project overview, current status and evidence.
+2. [docs/DATA_CONTRACT.md](../docs/DATA_CONTRACT.md) and
+   [docs/DATA_CONTRACT_DECISIONS.md](../docs/DATA_CONTRACT_DECISIONS.md) for the
+   accepted AI access/action policy, acceptance record and boundary decisions.
+3. [docs/project-context.md](../docs/project-context.md),
+   [docs/input-inventory.md](../docs/input-inventory.md) and
+   [docs/open-questions.md](../docs/open-questions.md) for project planning,
+   reported input availability and unresolved questions.
+4. [docs/data-and-ai-boundaries.md](../docs/data-and-ai-boundaries.md) for
+   supporting workspace separation and data handling notes.
+5. [docs/copilot-handoff.md](../docs/copilot-handoff.md) for collaboration context.
+
+The accepted **ENSF620-BART-DC v0.3.0** is the primary policy for AI access and
+actions and takes precedence over these instructions and supporting guidance on
+those subjects. The contract and its decision register do not define the software
+specification or evaluation protocol.
+
+Consult [environment/local-macos.md](../environment/local-macos.md) and
+[tests/synthetic_2d/README.md](../tests/synthetic_2d/README.md) for the recorded
+environment and existing synthetic procedure. These references do not authorize
+command execution.
 
 ## Scope and status
 

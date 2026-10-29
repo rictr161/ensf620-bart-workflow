@@ -24,8 +24,8 @@ workflow implementation blockers.
 | ENV-02 | TALC environment and resource configuration; ARC alternative? | Separate deployment record pending |
 | VERIFY-01 | Pilot-justified numerical tolerance and action-count rule? | Human approval before main evaluation |
 | VERIFY-02 | Negative tests and clean-checkout reproduction? | Not performed in this starter |
-| GIT-01 | Current branch publication and clean-checkout evidence? | Initial `main` push at `aad0525` is author-reported; current working branch and clean checkout not established |
-| GIT-02 | Commit identity and reviewer access? | Pending; no credentials in files |
+| GIT-01 | Working-branch publication and clean-checkout reproduction? | Ricardo reports `docs/data-contract-workflow` merged and published on `main` and `planning/ai-dev-tasks` created from `main`. The [supplied Git checkpoint](copilot-handoff.md#repository-checkpoint-supplied-by-ricardo) includes acceptance commit `5bcf772`. Publication of the working branch, later documentation commits and clean-checkout reproduction remain unverified |
+| GIT-02 | Recorded commit reference and intended reviewer access? | The owner-reported acceptance commit is recorded under GIT-01; intended reviewer access is not established in this record. No credentials in files |
 
 Pause affected experimental work if authority is unclear; continue with synthetic
 inputs. Missing acquisition information blocks recipes depending on it, not all
