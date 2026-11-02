@@ -3,7 +3,7 @@
 Use this note to resume supervised AI-assisted work on the ENSF 620 project. The
 [project README](../README.md) is the starting point for project scope, current
 usage, evidence and documentation. This handoff provides session context and a
-suggested initial review request.
+suggested request for supervised task planning.
 
 ## Accepted policy and project context
 
@@ -24,6 +24,17 @@ evaluation criteria and clean-checkout reproduction remain pending; see
 [Current status](../README.md#current-status). DICOM comparison remains a proposed
 complementary reference without an approved protocol.
 
+## Current requirements and planning
+
+The [software PRD](../tasks/prd-bart-reconstruction-workflow.md) has the status
+**Reviewed draft for task planning**. It describes the planned software behavior
+and retains proposed behavior and unresolved decisions. It does not establish
+implemented functionality or completed evaluation.
+
+The [project context](project-context.md) preserves the broader evaluation
+planning. HPC deployment is outside the current PRD. The next planning step is a
+review of top-level development tasks before expansion into subtasks.
+
 ## Recorded Copilot use
 
 [AI_USE.md](../AI_USE.md) records supervised documentation work using
@@ -34,6 +45,10 @@ editor configuration, enabled tools, permissions or technical isolation.
 The earlier entry describing Copilot as planned belongs to the familiarization
 checkpoint. Preserve it as a dated record rather than treating it as the current
 state of all project assistance.
+
+For the current PRD stage, Ricardo reports using **Copilot Chat in VS Code**.
+That identifies the reported interface for this activity; enabled tools,
+permissions and technical isolation still depend on the actual client and session.
 
 ## Repository checkpoint supplied by Ricardo
 
@@ -50,15 +65,17 @@ for that checkpoint:
 
 Ricardo subsequently supplied successful push, status and log output for
 documentation commit `d59ff7d` on `planning/ai-dev-tasks`. The
+later supplied documentation publication checkpoints were `2435329` and
+`ad532fc`; `ad532fc` is the latest checkpoint supplied for this requirements
+process. The
 [publication checkpoint](open-questions.md#supplied-publication-checkpoint)
-records publication of that branch and its configured upstream, together with
-the limits of that evidence.
+records the supplied publication evidence and its limits.
 
 These are supplied checkpoints, not independent checks of current local or
-remote Git state. The `d59ff7d` publication does not establish publication of later
-documentation edits or a merge of the working branch into `main`. Reviewer access
-and clean-checkout reproduction remain unverified, as recorded under GIT-02 and
-VERIFY-02 in the same questions record.
+remote Git state. Publication at `ad532fc` does not establish publication of the
+PRD or this documentation update, or a merge of the working branch into `main`.
+Reviewer access and clean-checkout reproduction remain unverified, as recorded
+under GIT-02 and VERIFY-02 in the same questions record.
 
 Earlier setup and assistance checkpoints remain in the
 [Git workflow](git-workflow.md) and [AI use record](../AI_USE.md). Their dated
@@ -89,12 +106,13 @@ Experimental data, DICOM, extractor code, credentials, private storage and HPC
 remain outside AI access. The assistant must not initiate or observe private
 execution. Repository visibility does not change these boundaries.
 
-## Suggested initial request
+## Suggested task-planning request
 
 ```text
 Read these reviewed project documents:
 - README.md
 - docs/DATA_CONTRACT.md and docs/DATA_CONTRACT_DECISIONS.md
+- tasks/prd-bart-reconstruction-workflow.md
 - .github/copilot-instructions.md
 - docs/project-context.md, docs/input-inventory.md and docs/open-questions.md
 - docs/data-and-ai-boundaries.md, docs/copilot-handoff.md and AI_USE.md
@@ -106,12 +124,16 @@ not authorize execution.
 Treat ENSF620-BART-DC v0.3.0 as the accepted AI access/action policy. It is
 not the software specification or evaluation protocol.
 
-During this initial review, do not edit files or run commands. Summarize the
-documented state, distinguishing executed evidence, owner-reported context
-and pending work. Identify concrete documentation inconsistencies and
-propose one small next correction, its affected files and how I should
-review it. Wait for my review before preparing changes. Do not draft
-software specifications, development task lists or implementation yet.
+Use the PRD as the reviewed draft for task planning. Preserve its requirement
+identifiers, proposed behavior and unresolved choices; do not fill in
+undecided reconstruction settings, interfaces or evaluation criteria.
+
+For this initial task-planning response, do not edit files or run commands.
+Briefly summarize the requirements and pending decisions, distinguishing
+executed evidence from planned work. Then propose only top-level development
+tasks grounded in the PRD, preserving its three reconstruction cases and
+manual-before-automation sequence. Wait for my review before expanding
+them into subtasks. Do not write code or start implementation.
 
 Keep repository content in English and explanations in Spanish. Use only
 the reviewed files listed above. Do not access laboratory data, images,
@@ -121,12 +143,14 @@ observe private execution.
 
 ## Next work
 
-Continue the documentation alignment in small blocks reviewed by Ricardo. Then
-prepare interactive use of [ai-dev-tasks](https://github.com/snarktank/ai-dev-tasks)
-with Copilot. That preparation remains pending; this handoff does not establish
-that ai-dev-tasks has been installed, configured or used.
+Use the [generate-tasks.md workflow](https://github.com/snarktank/ai-dev-tasks/blob/main/generate-tasks.md)
+with Copilot to prepare top-level development tasks from the reviewed PRD.
+Ricardo reviews those tasks before expansion into subtasks. Adapt the generic
+workflow to this repository's Python scope and existing `planning/ai-dev-tasks`
+branch; a new branch is not required for this planning step. Implementation is
+not part of the current planning block.
 
 BART-generated synthetic phantoms remain the development and testing route.
-Future software requirements, reconstruction settings and evaluation decisions
-need their own review; do not infer them from the access contract or guess
+The PRD's unresolved reconstruction settings, interface choices and evaluation
+decisions still need review; do not infer them from the access contract or guess
 experimental metadata.

@@ -20,10 +20,11 @@ files, including CS work. These private inputs remain outside the shared
 repository. The [input inventory](docs/input-inventory.md) distinguishes reported
 availability from verified reconstruction readiness.
 
-Operator intervention is the primary evaluation outcome; runtime and memory are
-secondary outcomes in the planned HPC evaluation. The
+Operator intervention is the primary evaluation outcome. The
 [project context](docs/project-context.md) records the instructor's recommendations
-and evaluation planning.
+and broader evaluation planning, including runtime and memory as secondary
+outcomes in a planned HPC evaluation. HPC deployment is outside the current
+[software PRD](tasks/prd-bart-reconstruction-workflow.md).
 
 ## Current status
 
@@ -52,6 +53,16 @@ measurements, figures and provenance. The recorded local platform is a MacBook P
 with Apple M5 and 24 GB memory; software details are in the
 [macOS environment record](environment/local-macos.md).
 
+### Requirements and task planning
+
+The [software PRD](tasks/prd-bart-reconstruction-workflow.md) is a
+**Reviewed draft for task planning**, covering Cartesian 2D, Cartesian 3D and
+Cartesian 3D compressed sensing. The first practical deliverable is the complete
+manual synthetic 2D tutorial. Top-level development tasks are the next supervised
+planning step, with review before expansion into subtasks. A development task
+list has not yet been generated. Proposed behavior and unresolved reconstruction,
+interface and evaluation choices remain identified in the PRD.
+
 ### Work still pending
 
 - The automated Python workflow in `src/` and verified experimental reconstruction
@@ -59,8 +70,7 @@ with Apple M5 and 24 GB memory; software details are in the
 - A verified 3D Cartesian manual reference procedure and its automated counterpart.
 - Additional synthetic fixtures, a formal regression suite, and approved numerical
   tolerances and operator-action counting rules.
-- Reproduction from this repository and a clean checkout, a separate TALC
-  environment record, and HPC evaluation.
+- Reproduction from this repository and a clean checkout.
 
 DICOM comparison remains a proposed complementary reference without an approved
 validation protocol.
@@ -176,9 +186,10 @@ Use the NumPy result from the same exercise as those BART files.
 
 ### Planned automated workflow
 
-The input interface, required metadata and validation rules for the planned
-Cartesian 2D/3D workflow, including CS, remain to be defined. The requirements
-above describe only the existing synthetic example. The
+The [PRD](tasks/prd-bart-reconstruction-workflow.md) describes the planned
+Cartesian 2D/3D workflow, including CS. Detailed input conventions, required
+metadata and validation details remain open. The requirements above describe
+only the existing synthetic example. The
 [input inventory](docs/input-inventory.md) separately records reported experimental
 input availability and unresolved information.
 
@@ -225,8 +236,13 @@ figure generation for the [documented synthetic example](#manual-baseline).
 BART data generation and reconstruction are currently invoked manually in that
 procedure.
 
-The workflow's execution interface and configuration format remain to be defined.
-Instructions for automated execution will accompany the reviewed implementation.
+The [PRD](tasks/prd-bart-reconstruction-workflow.md) specifies terminal execution
+through a command-line entry point backed by reusable Python functions, with no
+GUI. Required configuration will be supplied before a run; execution will not
+require windows, dialogs or interactive questions. Optional figure generation
+will save files without requiring a display. Concrete command-line arguments,
+function names and the configuration format remain open. Usage instructions will
+accompany the reviewed implementation.
 
 ## Verification and evidence
 
@@ -285,6 +301,7 @@ The following locations support documentation, review and project continuity:
 | `README.md` | Starting point for project scope, current usage, verification and documentation |
 | `AI_USE.md` | Dated record of material AI assistance, tools and access modes, review decisions and verification performed |
 | `docs/` | Project context, the accepted AI access/action contract, decision records and supporting notes |
+| `tasks/` | Software requirements and development planning; currently the reviewed PRD |
 | `results/` | Preserved reports, transcribed metrics and figure copies from the recorded synthetic exercise |
 | `.github/` | Copilot instructions and a data-contract drafting prompt |
 
@@ -297,6 +314,7 @@ README. The documents are grouped by purpose.
 
 | Document | Role |
 | --- | --- |
+| [Software requirements (PRD)](tasks/prd-bart-reconstruction-workflow.md) | Reviewed draft for task planning, with proposed behavior and unresolved decisions identified |
 | [Project context](docs/project-context.md) | Scope, methodology and evaluation planning |
 | [Input inventory](docs/input-inventory.md) | Reported input availability and historical acquisition context |
 | [Open questions](docs/open-questions.md) | Unresolved project questions, owner-reported Git context and pending evidence |
@@ -332,12 +350,12 @@ software requirements or an evaluation protocol.
 | Document | Role |
 | --- | --- |
 | [Copilot instructions](.github/copilot-instructions.md) | Guidance for supervised work with the assistant |
-| [Copilot handoff](docs/copilot-handoff.md) | Session context, recorded Copilot use, owner-reported Git checkpoint and suggested initial review request |
+| [Copilot handoff](docs/copilot-handoff.md) | Current planning phase, recorded Copilot use, supplied Git checkpoints and suggested task-planning request |
 | [Git workflow](docs/git-workflow.md) | Git procedures and the historical initial-setup checkpoint |
 | [AI use record](AI_USE.md) | Dated records of assistance, review decisions and checks performed |
 
 The accepted policy takes precedence over collaboration guidance for AI access
-and authority. Both the Copilot instructions and the handoff's initial review
+and authority. Both the Copilot instructions and the handoff's task-planning
 request include the accepted contract and decision register. The handoff
 distinguishes recorded assistance and owner-reported Git context from checks
 needed for a new session. The dated entries in `AI_USE.md` describe assistance

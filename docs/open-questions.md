@@ -14,13 +14,19 @@ The accepted [AI access/action contract](DATA_CONTRACT.md),
 **ENSF620-BART-DC v0.3.0**, governs assistant access and authority. The software
 input conventions and evaluation questions below are separate from that policy.
 
+The [reviewed draft PRD](../tasks/prd-bart-reconstruction-workflow.md#9-open-questions)
+tracks software decisions by the stage at which they are needed. This record
+retains project, experimental-input, access and evidence questions. The PRD does
+not close those questions or require every later-stage decision before the first
+synthetic 2D tutorial.
+
 ## Input conventions and metadata
 
 | ID | Question | Recorded status |
 | --- | --- | --- |
 | DATA-01 | How many files, acquisitions and datasets belong to each reported configuration? | Detailed counts are not established in the shared record |
 | DATA-02 | What complex representation and axis meanings apply to the current experimental inputs? | Input-specific metadata and dimension meanings remain unverified in the shared record |
-| DATA-03 | What scaling, centering and channel conventions apply to the current experimental `.cfl`/`.hdr` inputs? | Input-specific conventions remain unverified in the shared record; software support remains to be specified and reviewed. The synthetic example documents only its own conventions |
+| DATA-03 | What scaling, centering and channel conventions apply to the current experimental `.cfl`/`.hdr` inputs? | Input-specific conventions remain unverified in the shared record; supported software conventions remain open in the PRD. The synthetic example documents only its own conventions |
 | DATA-04 | What sampling geometry, mask and reconstruction settings apply to the current 3D CS inputs? | Not established in the shared record |
 | DATA-05 | Do the earlier acceleration and volume details describe the current inputs? | Correspondence remains unknown |
 | DATA-06 | What does the earlier "200" value mean, and does it describe the current inputs? | Meaning, units and correspondence remain unresolved |
@@ -66,8 +72,8 @@ describes the evaluation planning behind the verification questions.
 
 | ID | Question | Recorded status |
 | --- | --- | --- |
-| GIT-01 | Has the working branch been published? | Publication of `planning/ai-dev-tasks` at `d59ff7d` is supported by Ricardo's supplied push output |
-| GIT-02 | Which published commit is recorded, and can intended reviewers access it? | The supplied checkpoint identifies `d59ff7d`; intended reviewer access remains unverified |
+| GIT-01 | Has the working branch been published? | Ricardo's supplied output records publication of `planning/ai-dev-tasks`, most recently at `ad532fc` |
+| GIT-02 | Which published commit is recorded, and can intended reviewers access it? | The latest supplied checkpoint identifies `ad532fc`; intended reviewer access remains unverified |
 
 ### Supplied publication checkpoint
 
@@ -83,10 +89,24 @@ from `main`. Subsequent terminal output supplied by Ricardo records:
   `origin/planning/ai-dev-tasks` at `d59ff7d`, with the commit message
   `docs: align documentation and standardize AI use records`.
 
-This evidence applies to the supplied checkpoint; it is not an independent check
-of current GitHub content. Publication of later documentation edits and a merge
-of this working branch into `main` are not established by that output.
-Clean-checkout reproduction remains tracked under VERIFY-02.
+Later terminal output supplied by Ricardo records two further successful pushes
+on the same branch:
+
+| Published commit | Commit message |
+| --- | --- |
+| `2435329` | `docs: clarify project records and update publication evidence` |
+| `ad532fc` | `docs: clarify Git workflow and historical records` |
+
+The most recent supplied push advanced the remote branch from `2435329` to
+`ad532fc`. Its accompanying status showed no file-change entries or ahead/behind
+indication, and the log placed `HEAD`, `planning/ai-dev-tasks` and
+`origin/planning/ai-dev-tasks` at `ad532fc`.
+
+These are supplied checkpoints, not independent checks of current GitHub content.
+Publication of the PRD and this subsequent documentation update, a merge into
+`main` and intended reviewer access are not established by that evidence.
+Clean-checkout reproduction remains tracked under VERIFY-02. The
+[handoff](copilot-handoff.md) describes the current planning phase.
 
 ## Work affected by unresolved questions
 

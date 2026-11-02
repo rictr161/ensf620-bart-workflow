@@ -14,6 +14,109 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-02 — Reviewed PRD and planning documentation
+
+**Date:** Consolidated on 2026-11-02 (UTC), covering the requirements discussions
+after the supplied `ad532fc` publication checkpoint, Copilot's reported PRD save,
+and preparation of this documentation update. This date does not assign all
+activities to a single day.
+
+**Tool/model and access mode:** ChatGPT through the web interface, with public
+web retrieval and document inspection/editing tools. Delegated document editors
+and reviewers worked on the prepared copies. Ricardo identified GitHub Copilot
+Chat in VS Code as the client used for this requirements stage. Exact model
+identifiers for the complete round were not independently recorded.
+
+**Inputs:** Cumulative reviewed repository documentation, Ricardo's decisions and
+supplied Git publication output, successive PRD drafts, the supplied
+`prd-bart-reconstruction-workflow.md` attachment, and Copilot's completion report.
+Public references included ai-dev-tasks, BART and VS Code documentation. Two
+owner-supplied Python reference scripts were read statically after Ricardo
+confirmed their use for that purpose. The scripts contained local paths and
+acquisition-specific labels; those values are not reproduced in this entry or
+the prepared repository prose.
+
+**Assistance and affected files:** Assistance covered interactive requirements
+clarification, review of Copilot's PRD drafts, interpretation of the two reference
+scripts, and preparation of English documentation copies and an incremental
+patch for Ricardo to review and apply. The affected files are
+`tasks/prd-bart-reconstruction-workflow.md`, `README.md`,
+`.github/copilot-instructions.md`, `docs/copilot-handoff.md`,
+`docs/project-context.md`, `docs/open-questions.md` and this `AI_USE.md` entry.
+The PRD edits in this documentation pass correct links and align summary wording
+with its existing requirements; they do not select the pending scientific or
+implementation details.
+
+**Corrections and decisions:**
+
+- The agreed sequence begins with manual synthetic tutorials, starting with 2D,
+  followed by equivalent Python automation for Cartesian 2D, Cartesian 3D and
+  Cartesian 3D with compressed sensing. Synthetic preparation is separate from
+  the reconstruction operation that accepts compatible BART inputs.
+- The software interface means a terminal entry point backed by reusable Python
+  functions. Runs require no GUI, windows, dialogs or interactive questions;
+  optional figures are saved for later inspection.
+- Manual–automated comparisons use the same prepared synthetic inputs and
+  equivalent effective settings and requested outputs. Regeneration of a case,
+  difference from the reference, route equivalence and operator intervention
+  remain separate evaluation questions.
+- A reviewed metric and calculation procedure precede the preliminary numerical
+  comparison. A tolerance or pass/fail rule is not required for that descriptive
+  comparison; any later formal test requires its criteria in advance. Questions
+  concerning later evaluations do not automatically block the first comparison.
+- Earlier PRD edits were corrected to preserve FR-1 through FR-40 and the original
+  FR-33 through FR-37 meanings. FR-32 remains proposed behavior pending review.
+  The additional phantom-definition discussion proposed before saving the PRD
+  was deferred to the relevant task-planning work, with those choices left open.
+- Static script review identified assumptions about input layout and possible
+  reuse of existing outputs after settings change. These are review findings,
+  not observed reconstruction failures or verified recipes for the new workflow.
+- Three PRD contract links were changed from local filesystem targets to relative
+  repository links. Navigation and current planning descriptions now reference
+  the reviewed draft. The accepted contract retains its separate access/action
+  authority, and historical AI-use records remain unchanged.
+
+**Execution and evidence:** Copilot's supplied transcript reports saving the PRD
+and checking it by text searches and reads. Its read operations name `tasks/`,
+while its final message names `task/`. The supplied attachment establishes the
+document content available for review, not its location on Ricardo's computer
+or its Git publication state. The prepared documentation consistently uses
+`tasks/prd-bart-reconstruction-workflow.md`.
+
+ChatGPT read and edited review copies, checked requirement identifiers and
+relative references, compared text and prepared a patch. Text review confirmed
+one definition of each FR-1 through FR-40 and preserved the 31 PRD questions,
+18 project-question identifiers and earlier AI-use entries. Public source reads
+provided workflow context; retrieval of the project branch did not return its
+contents. File-content review therefore used the known reviewed copies and the
+supplied PRD, rather than an independently synchronized checkout.
+
+No project scripts, tests, reconstructions, builds or installations were run.
+The two reference scripts were not executed, edited or incorporated into the
+repository. No development task list or implementation was generated in this
+documentation pass. The assistant did not apply changes on Ricardo's Mac or
+perform Git operations or remote publication.
+
+**Review and related revision:** Ricardo reviewed the requirements discussions
+and requested that this documentation update be prepared with ChatGPT. His
+latest supplied publication output places `planning/ai-dev-tasks` and its
+remote-tracking reference at `ad532fc`, with the message
+`docs: clarify Git workflow and historical records`, following `2435329`.
+The supplied status showed no file-change entries or ahead/behind indication at
+that checkpoint. These records do not establish a subsequent merge into `main`.
+The PRD remains `Reviewed draft for task planning`; this update is prepared for
+Ricardo's review and application. No supplied output establishes a commit or
+publication of this round.
+
+**Limitations:** This work establishes documentation consistency, not scientific
+validation, numerical acceptance, clean-checkout reproduction or tool isolation.
+The first phantom, dimensions, sampling, channel count, metrics, tolerances and
+implementation details remain open where identified in the PRD. Experimental
+arrays, DICOM, credentials, private storage and HPC access were not part of this
+work. The accepted contract, its decision register and the completed
+contract-creation prompt were not edited. Task planning is the next supervised
+stage after review of this documentation update.
+
 ## 2026-10-29 — Git workflow and historical record clarification
 
 **Date:** Consolidated on 2026-10-29, covering the final documentation cleanup

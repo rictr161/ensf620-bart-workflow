@@ -4,8 +4,9 @@ This document summarizes the project's technical direction, reported input
 context and planned evaluation. Its basis is the reviewed project documentation
 and Ricardo's updates, identified in [Sources and evidence basis](sources.md).
 The summary does not amend the submitted proposal or record new instructor
-approval. Detailed software requirements and the evaluation protocol remain to
-be developed and reviewed.
+approval. The [software PRD](../tasks/prd-bart-reconstruction-workflow.md) is now a
+**Reviewed draft for task planning**. It records agreed behavior, proposed
+behavior and open decisions; the detailed evaluation protocol remains pending.
 
 The accepted [AI data-access and action contract](DATA_CONTRACT.md) governs
 assistant access and authority. The project and evaluation planning below have
@@ -18,13 +19,22 @@ configuring, validating, executing and recording reviewed BART procedures.
 Python is the chosen primary implementation language. The workflow will organize
 existing reconstruction procedures; a new reconstruction algorithm or automatic
 parameter optimizer is outside its scope. Optional Bash/HPC launchers may invoke
-the Python workflow later.
+the Python workflow later; HPC deployment and ARC batch processing are outside
+the initial PRD scope.
 
 The current technical scope is Cartesian 2D and 3D reconstruction, including
 compressed sensing. Radial and 4D reconstruction, changes to BART algorithms,
 scanner extraction and `.h5` conversion are outside the current implementation
 scope. Intended support, reported input availability, verified recipes and
 implemented functionality are distinct states.
+
+The current development sequence begins with a complete manual synthetic 2D
+tutorial, followed by the 3D and 3D compressed-sensing procedures. Reviewed and
+executed manual procedures will provide the reference for equivalent Python
+automation. The planned software uses a terminal entry point and reusable Python
+functions, with configuration supplied before execution and optional figures
+saved without interactive windows. Argument names, configuration formats and
+architecture remain open in the PRD.
 
 ## Inputs and development basis
 
@@ -41,8 +51,10 @@ Correspondence between the earlier Poisson/R=8/10-volumes/"200" description and
 the current brain datasets has not been established.
 
 BART-generated synthetic phantoms are the confirmed development and testing
-route. The planned manual and automated procedures will use matched inputs and
-settings. Fixtures, reconstruction settings, tests and acceptance criteria for
+route. Each planned manual–automated comparison will use the same prepared
+synthetic inputs, equivalent effective configurations and equivalent requested
+outputs. Regenerating the synthetic case is a separate reproducibility question.
+Fixtures, reconstruction settings, tests and acceptance criteria for
 that comparison remain to be defined and verified. Experimental inputs remain
 outside the shared repository and AI context.
 
