@@ -14,6 +14,42 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-03 — Simplified tutorial replacement for Task 2.3 review
+
+**Date:** 2026-11-03, covering incorporation and static review of the simplified replacement for the manual Cartesian 2D tutorial.
+
+**Tool/model and access mode:** ChatGPT prepared the replacement document supplied by Ricardo; GitHub Copilot Chat in VS Code integrated the file and updated the task tracking. Exact model identifiers were not recorded.
+
+**Inputs:** Ricardo's corrected `manual-cartesian-2d.md` attachment, the existing tutorial, the active task list, and the consolidated assistance record.
+
+**Assistance and affected files:** ChatGPT prepared the simplified tutorial replacement, performed static review of its nine sections, reviewed the shared visual PNG, and helped interpret Ricardo's reported results. Follow-ups added executable, non-interactive visual-comparison and quantitative-comparison blocks to Sections 7–8. Copilot integrated the replacement at `docs/tutorials/manual-cartesian-2d.md` and updated the Task 2.3–2.5 and later execution/comparison tracking.
+
+**Corrections and decisions:** The replacement keeps one configuration block, explicitly reuses checked preparations, organizes new preparation by stages, uses consistent command-error handling, and keeps a brief run-record format confirmed by Ricardo. Section 7 generated one headless two-panel PNG using `read_bart_2d`, transposed magnitudes, shared reference-based limits, and a new figure directory without overwriting existing files. Ricardo approved that visual method and accepted the clipping warning as a presentation limitation. Section 8 applied Ricardo's approved complex relative L2 method through `read_bart_2d` and `relative_error` on the original complex arrays without preprocessing, normalization beyond the metric denominator, tolerance, or pass/fail criterion. The historical two-generation evidence remains separate.
+
+**Execution and evidence:** Ricardo executed the BART reconstruction and shared the reported logs and results. The reconstruction returned exit code `0`; the structural check returned `VALID` with exit code `0`; figure generation returned exit code `0`; and the quantitative comparison returned `1.442448308e-07` with exit code `0`. The visual log reports reconstruction values above the display maximum and clipping. The printed maxima do not determine the exact excess or its cause. The previously reported evidence of two historical generations remains unchanged.
+
+**Review and related revision:** Ricardo executed the commands, shared the results, confirmed the manual execution record, and approved both comparison methods. ChatGPT reviewed the PNG and helped interpret the reported outputs without attributing personal visual observations to Ricardo. Copilot updated the tutorial and task tracking. The existing `run-record.md` was found in the execution directory and was not modified.
+
+**Limitations:** The execution is case-specific and does not establish general validation or clean-checkout reproduction. The visual log reports clipping above the reference display maximum; the exact excess and cause are not determined by the printed maxima. The cumulative record format remains optional and was not used as a prerequisite; stage-specific records remain the execution evidence. Ricardo's confirmations close the manual execution-record and comparison-method review tasks without changing those limitations.
+
+## 2026-11-02 — Task planning and synthetic 2D tutorial checkpoint
+
+**Date:** Consolidated on 2026-11-02, covering development-task planning, synthetic 2D preparation and regeneration, and manual-tutorial drafting.
+
+**Tool/model and access mode:** GitHub Copilot Chat in VS Code and ChatGPT through owner-provided documents, text excerpts, execution reports, and public documentation. Exact model identifiers for the complete round were not recorded.
+
+**Inputs:** Reviewed repository documentation, the PRD, the development task list, existing synthetic 2D support code, successive procedure and tutorial drafts, and execution evidence supplied by Ricardo.
+
+**Assistance and affected files:** Assistance covered task-list review, preparation-checker drafting, shell-procedure review, interpretation of reported execution results, tutorial drafting, and static integration review. This checkpoint saves the integrated nine-section tutorial draft, separates the Section 9 execution and method-review fields, marks Task 2.2 complete, and updates the task list and this assistance record.
+
+**Corrections and decisions:** The work preserved the distinction between synthetic preparation and reconstruction, retained separate generation directories, corrected shell invocation and result reporting, clarified why the case was generated twice, and separated reusable tutorial instructions from historical execution evidence. Personal installation paths were distinguished from reader-configurable paths. The proposed visual comparison uses shared magnitude display without independent normalization, while its method remains pending review; the proposed display transpose is visual only. The preliminary quantitative comparison identifies its open method, representation, preprocessing, and reporting decisions without adopting the exploratory metric or values. Section 9 now separates method-review status, operational execution status, figure generation, human inspection, and quantitative results, while preserving `MATCH`, `DIFFERENT`, and `ERROR` for generation comparisons. No run record was created and no execution was claimed. Existing visualization support was inspected but not invoked because it expects an additional NumPy reconstruction and produces a broader figure set.
+
+**Execution and evidence:** Ricardo executed both preparation generations. Each reported five successful stages. Comparisons of the four corresponding reference and k-space header and binary files returned MATCH with exit code 0. These results establish exact equality of those files between the two reported executions. AI assistance did not execute BART, Python project scripts, reconstructions, or project tests.
+
+**Review and related revision:** Copilot proposed procedures and tutorial text; ChatGPT provided static review; Ricardo reviewed and executed the preparation and comparison commands. The latest owner-supplied publication checkpoint is 657e1fa on planning/ai-dev-tasks. No publication evidence for this documentation checkpoint has been supplied.
+
+**Limitations:** The saved tutorial is an integrated Task 2.2 working draft and has not been executed as written. The visual method is not approved, the quantitative method and implementation remain pending Tasks 4.2–4.3, and the Section 9 record format remains pending Task 2.4 review. Reconstruction of the new exercise, reconstruction-output checks, visual comparison, quantitative comparison, and clean-checkout reproduction have not been demonstrated. Task 2.3 is the next review step.
+
 ## 2026-11-02 — Reviewed PRD and planning documentation
 
 **Date:** Consolidated on 2026-11-02 (UTC), covering the requirements discussions
