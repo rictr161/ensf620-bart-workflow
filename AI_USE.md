@@ -14,6 +14,79 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-05 — Manual Cartesian 3D tutorial and evidence consolidation
+
+**Date:** Consolidated on 2026-11-05, covering the drafting, review, execution
+and evidence consolidation of the manual Cartesian 3D synthetic procedure.
+
+**Tool/model and access mode:** GitHub Copilot Chat in VS Code and ChatGPT
+through owner-provided repository documents, code excerpts, execution outputs
+and a supplied figure. Exact model identifiers were not recorded.
+
+**Inputs:** The reviewed PRD and task list, the accepted project decisions,
+existing 2D tutorial and support scripts, the local environment record, and
+Ricardo's reported 3D execution evidence and observations.
+
+**Assistance and affected files:** Copilot drafted and edited
+`docs/tutorials/manual-cartesian-3d.md`,
+`docs/tutorials/manual-cartesian-2d.md`,
+`scripts/check_preparation_pair_3d.py`,
+`tasks/tasks-bart-reconstruction-workflow.md`, `README.md` and this record.
+The work covered the synthetic-case proposal, preparation and regeneration
+instructions, BART reconstruction, structural checks, static and optional
+interactive visual comparison, full-volume quantitative comparison and the
+execution-record format. The 2D tutorial also received the shared
+regeneration-comparison corrections; its historical execution evidence was
+preserved.
+
+**Corrections and decisions:** The 3D case was fixed as a BART-generated
+64 × 64 × 64 Shepp–Logan phantom, fully sampled Cartesian, single-channel and
+without simulated coil sensitivities. The reference, k-space and reconstruction
+remain separate. Regeneration review preserves the original header `DIFFERENT`
+results while allowing a documented review when both binary files match and
+header differences are limited to generation-directory paths; dimensions,
+BART version, options, base names and input/output roles must otherwise match.
+The interactive viewer backend resolution was corrected to unpack
+`backend_registry.resolve_backend()` directly into the backend and GUI
+framework before execution. The viewer remains optional and does not become a
+condition for future non-interactive automation.
+
+**Execution and evidence:** ChatGPT reviewed proposals, code excerpts,
+documentation, execution outputs and the supplied static figure, and guided
+the manual execution. Ricardo reviewed the work, personally executed the
+commands, supplied the visual observations and confirmed the optional viewer
+behavior. The two 3D preparations passed their structural checks; both binary
+comparisons returned `MATCH` with exit code `0`, while both header comparisons
+returned `DIFFERENT` with exit code `1` and were explained by the expected paths.
+BART reconstruction from `generation-3d-01` to `manual-3d-01` returned exit code
+`0`; the reconstruction structural check returned `VALID` with exit code `0`.
+Static figure generation returned exit code `0`. Ricardo reported no visually
+appreciable differences in the displayed index-32 orthogonal slices; the log
+reported reconstruction slice magnitudes above the fixed display maximum, and
+the cause was not inferred. The complete-volume complex relative L2 error was
+`1.729089800e-07` with exit code `0`, using complex64 stored data and complex128
+calculation arrays, without preprocessing or a tolerance. The optional viewer
+resolved the `macosx` backend and GUI framework, closed normally with exit code
+`0`, and Ricardo confirmed its operation and his observations without claiming
+that every slice was inspected. Reported versions were BART v1.0.00, Python
+3.13.17, NumPy 2.5.4 and Matplotlib 3.11.2.
+
+**Review and related revision:** Copilot consolidated the owner-supplied evidence
+and recorded its static review under Task 5.10. ChatGPT reviewed the proposals,
+code excerpts, documentation, execution results and consolidation diff, and
+guided Ricardo's manual execution. The task list
+records Tasks 5.1–5.10 as complete where supported by the proposal, review,
+owner execution and supplied evidence. The optional cumulative `run-record.md`
+was not made mandatory. The tutorial does not contain execution transcripts or
+historical result tables.
+
+**Limitations:** The evidence is for this synthetic case and does not establish
+general validation, a numerical acceptance criterion, clean-checkout
+reproduction, experimental 3D validation, or equivalence of a future automated
+route. The supplied execution records remain outside the repository. No
+compressed-sensing procedure was started, and no experimental data, DICOM,
+extraction code, credentials, private storage or HPC access was used.
+
 ## 2026-11-03 — Simplified tutorial replacement for Task 2.3 review
 
 **Date:** 2026-11-03, covering incorporation and static review of the simplified replacement for the manual Cartesian 2D tutorial.

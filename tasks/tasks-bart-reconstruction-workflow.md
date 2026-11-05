@@ -96,37 +96,47 @@ unchecked until the corresponding work is completed and reviewed.
     **Dependency:** 4.4 and 4.5  
     **Status:** Complete. Static review confirmed that preparation/regeneration, reconstruction, structural checking, visual figure generation, and quantitative comparison remain distinct from general validation.
 
-- [ ] **5.0 Establish, Review, Execute, and Record the Manual Cartesian 3D Procedure**
-  - [ ] **5.1 [Copilot] Identify the decisions required for the manual Cartesian 3D case**  
+- [x] **5.0 Establish, Review, Execute, and Record the Manual Cartesian 3D Procedure**
+  - [x] **5.1 [Copilot] Identify the decisions required for the manual Cartesian 3D case**\
     Organize the later-stage questions concerning the synthetic case, dimensions, input characteristics, reconstruction procedure, output representation, mandatory checks, and reference comparison without selecting their values.
     **Dependency:** 4.6
-  - [ ] **5.2 [Copilot] Prepare and explain the proposed manual Cartesian 3D procedure**  
-    Develop a future technical proposal covering the candidate synthetic case, preparation and regeneration commands, reconstruction commands, required inputs, expected outputs, reference-comparison methods, mandatory checks, and evidence record, without selecting the scientific values in this task-planning response.
+    **Status:** Complete. The accepted 3D case, dimensions, sampling, channel configuration, input roles, reconstruction procedure, output representation, checks, and comparison decisions were established before drafting the procedure.
+  - [x] **5.2 [Copilot] Prepare and explain the proposed manual Cartesian 3D procedure**\
+    Develop a technical proposal covering the confirmed candidate synthetic case, preparation and regeneration commands, reconstruction commands, required inputs, expected outputs, reference-comparison methods, mandatory checks, and evidence record.
     **Dependency:** 5.1
-  - [ ] **5.3 [Copilot] Review the proposed Cartesian 3D procedure against the PRD**  
+    **Status:** Complete. The complete manual Cartesian 3D procedure is drafted and reviewed statically; the later execution tasks record the owner-reported execution evidence.
+  - [x] **5.3 [Copilot] Review the proposed Cartesian 3D procedure against the PRD**\
     Check that the proposal separates synthetic preparation, regeneration verification, manual reconstruction, reference comparison, and evidence recording while preserving the manual-first sequence and avoiding experimental input requirements.
     **Dependency:** 5.2
-  - [ ] **5.4 [Ricardo] Review, adjust, and approve the Cartesian 3D manual procedure**  
+    **Review:** The procedure covers the confirmed BART-generated 64 × 64 × 64, fully sampled, single-channel synthetic case; preserves reference and k-space inputs; separates preparation, regeneration verification, reconstruction, structural checks, visual comparison, quantitative comparison, and execution records; uses non-interactive figure generation; and keeps comparison results case-specific without tolerances or pass/fail criteria. No material inconsistency with the reviewed PRD or accepted decisions was found. Ricardo's review and approval are recorded in Task 5.4. The only correction identified during review was the regeneration-record path wording in Section 9, which now explicitly refers to the second preparation directory.
+  - [x] **5.4 [Ricardo] Review, adjust, and approve the Cartesian 3D manual procedure**\
     Review Copilot’s technical proposal, decide the required adjustments, and approve the preparation, regeneration, reconstruction, comparison, checking, and recording procedures before execution.
     **Dependency:** 5.3
-  - [ ] **5.5 [Ricardo] Prepare, regenerate, and verify the synthetic Cartesian 3D case**  
+    **Status:** Complete. Ricardo reviewed and approved the procedure before the reported preparation and reconstruction execution; no separate approval date is asserted.
+  - [x] **5.5 [Ricardo] Prepare, regenerate, and verify the synthetic Cartesian 3D case**\
     Execute the approved preparation procedure, regenerate the intended synthetic case, and verify the reference, corresponding reconstruction input, and required metadata before performing the manual reconstruction.
     **Dependency:** 5.4
-  - [ ] **5.6 [Ricardo] Execute the reviewed manual Cartesian 3D reconstruction**  
+    **Evidence:** `generation-3d-01` and `generation-3d-02` passed reference and k-space structural checks. The two `.cfl` comparisons returned `MATCH` with exit code `0`; the two `.hdr` comparisons returned `DIFFERENT` with exit code `1`, and Ricardo's supplied diffs showed only expected generation-directory paths in `# Command` and `# Files`.
+  - [x] **5.6 [Ricardo] Execute the reviewed manual Cartesian 3D reconstruction**\
     Run the approved manual reconstruction procedure using the verified prepared synthetic inputs and perform the required stage and output checks.
     **Dependency:** 5.5
-  - [ ] **5.7 [Copilot] Prepare and explain the Cartesian 3D reference-comparison application**  
+    **Evidence:** BART reconstructed from `generation-3d-01` to `manual-3d-01` with exit code `0`; the structural output check returned `VALID` with exit code `0`.
+  - [x] **5.7 [Copilot] Prepare and explain the Cartesian 3D reference-comparison application**\
     Propose how the reviewed visual and quantitative reference-comparison method should be applied to the Cartesian 3D case, identifying any case-specific preprocessing, reporting, or limitation decisions without imposing a new metric or tolerance.
     **Dependency:** 4.3 and 5.4
-  - [ ] **5.8 [Ricardo] Review, approve, and execute the Cartesian 3D reference comparison**  
+    **Status:** Complete. The tutorial applies the reviewed visual method to three zero-based orthogonal index-32 slices and the reviewed complex relative L2 method to the complete volume without preprocessing, while keeping the comparison case-specific.
+  - [x] **5.8 [Ricardo] Review, approve, and execute the Cartesian 3D reference comparison**\
     Review the proposed application, decide whether the earlier method is suitable or requires an approved adjustment, approve the visual and quantitative comparison procedure, and execute both comparisons for the verified manual Cartesian 3D reconstruction.
     **Dependency:** 5.7 and 5.6
-  - [ ] **5.9 [Ricardo] Record the Cartesian 3D manual execution and reference-comparison results**  
+    **Evidence:** Static figure generation returned exit code `0`; Ricardo reported no visually appreciable differences in the displayed slices. The log reported reconstruction slice magnitudes above the fixed display maximum; no cause was inferred. The complete-volume complex relative L2 error was `1.729089800e-07` with exit code `0`. No tolerance or numerical pass/fail criterion was applied.
+  - [x] **5.9 [Ricardo] Record the Cartesian 3D manual execution and reference-comparison results**\
     Preserve the executed commands, effective settings, reference, inputs, outputs, figures, checks, observations, failures, corrections, and the observed visual and quantitative comparisons with the corresponding synthetic reference.
     **Dependency:** 5.8
-  - [ ] **5.10 [Copilot] Review the Cartesian 3D manual evidence as an automation prerequisite**  
+    **Evidence:** The supplied execution evidence identifies the preparations, reconstruction output, structural check, static figure and quantitative comparison. The optional cumulative `run-record.md` remains optional and is not required for this task.
+  - [x] **5.10 [Copilot] Review the Cartesian 3D manual evidence as an automation prerequisite**\
     Confirm that the Cartesian 3D procedure has been established, reviewed, executed, regenerated and verified, compared with its synthetic reference, and sufficiently evidenced before equivalent automation is developed.
     **Dependency:** 5.9
+    **Review:** Complete static evidence review found the procedure and supplied evidence sufficient for the manual 3D prerequisite. The evidence remains case-specific; clean-checkout reproduction, general validation, experimental inputs, formal tolerances, and manual–automated equivalence remain unconfirmed. The optional interactive viewer closed normally with the resolved `macosx` backend; Ricardo confirmed its operation and visual observations, but complete slice inspection is not claimed.
 
 - [ ] **6.0 Establish, Review, Execute, and Record the Manual Cartesian 3D Compressed-Sensing Procedure**
   - [ ] **6.1 [Copilot] Identify the decisions required for the manual 3D compressed-sensing case**  

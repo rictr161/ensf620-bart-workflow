@@ -171,9 +171,10 @@ unless you are specifically performing the regeneration check in Section 4.
 ## 4. Regenerate and Compare the Synthetic Generations
 
 This check asks whether repeating the preparation produces the same reference
-and k-space files in the selected environment. It is separate from reconstruction.
-The two previously reported generations already have the evidence summarized at
-the end of this document.
+and k-space files in the selected environment. It is separate from
+reconstruction. The `.hdr` files can contain generation-specific paths in
+`# Command` and `# Files` even when their dimensions, BART version, options,
+input/output functions, and stored arrays are the same.
 
 When performing a new regeneration check:
 
@@ -191,6 +192,7 @@ When performing a new regeneration check:
 3. After both preparations pass their checks, compare the four file pairs:
 
    ```bash
+   comparison_requires_review=0
    {
        printf 'First preparation: %s\nSecond preparation: %s\n' \
            "$FIRST_PREPARATION_DIR" "$PREPARATION_DIR"
@@ -199,6 +201,7 @@ When performing a new regeneration check:
                printf 'MATCH: %s (exit code 0)\n' "$pair_file"
            else
                status=$?
+               comparison_requires_review=1
                if [ "$status" -eq 1 ]; then
                    printf 'DIFFERENT: %s (exit code 1)\n' "$pair_file"
                else
@@ -208,6 +211,10 @@ When performing a new regeneration check:
        done
    } > "$PREPARATION_DIR/regeneration-comparison.txt" 2>&1 || exit "$?"
    cat "$PREPARATION_DIR/regeneration-comparison.txt"
+   if [ "$comparison_requires_review" -ne 0 ]; then
+       printf 'ERROR: one or more preparation comparisons require review; stop before reconstruction.\n' >&2
+       exit 1
+   fi
    ```
 
    Interpret each file independently: `MATCH` means byte-identical content;
@@ -220,8 +227,45 @@ When performing a new regeneration check:
    PREPARATION_DIR="$FIRST_PREPARATION_DIR"
    ```
 
-Record the observed outcomes, including differences or errors. Exact matches
-describe those two preparations only, not reconstruction quality or general
+Record the observed outcomes, including differences or errors. Do not convert
+an original `DIFFERENT` result into `MATCH`. If the comparison stops for review,
+the comparison record is complete but the preparation is not yet cleared to
+continue.
+
+After the Bash session has ended, inspect headers independently with explicit
+paths. Run each `diff -u` command separately; exit code `1` means that the
+headers differ and must be reviewed, not that the command failed:
+The paths below are examples. Replace them with the actual first and second
+preparation directories recorded in `regeneration-comparison.txt` before
+running either command.
+
+```bash
+diff -u \
+    "$HOME/bart-learning/bart-workflow-preparations/generation-01/reference.hdr" \
+    "$HOME/bart-learning/bart-workflow-preparations/generation-02/reference.hdr"
+printf 'reference.hdr diff exit code: %s\n' "$?"
+
+diff -u \
+    "$HOME/bart-learning/bart-workflow-preparations/generation-01/kspace.hdr" \
+    "$HOME/bart-learning/bart-workflow-preparations/generation-02/kspace.hdr"
+printf 'kspace.hdr diff exit code: %s\n' "$?"
+```
+
+Save each complete diff and its exit code in the records already described in
+Section 9. A documented review may clear the preparation only when both binary
+comparisons (`reference.cfl` and `kspace.cfl`, each between generations) report
+`MATCH` with exit code `0`, none of the four original comparisons reports
+`ERROR`, and both preparations pass their structural checks. Header differences
+must be limited to the expected generation-directory paths in `# Command` and
+`# Files`. Dimensions, BART version, command options, file base names, and
+input/output roles must otherwise match. Preserve the original header
+`DIFFERENT` results. Any other difference or operational error remains pending
+review.
+
+To resume after an approved header review, start a new Bash session, configure
+Section 1 with the existing first preparation selected and a new reconstruction
+output directory, then continue at Section 5. This review concerns preparation
+equality only; it does not establish reconstruction quality or general
 reproducibility.
 
 ## 5. Reconstruct the Case with BART
@@ -303,8 +347,9 @@ recorded separately below.
 ## 7. Perform the Visual Comparison
 
 Run the following block in the same Bash session and with the same `PYTHON`
-selected in Section 1. It reads only the preserved reference and the
-reconstruction output:
+selected in Section 1. This section requires Matplotlib in that same Python
+environment. It reads only the preserved reference and the reconstruction
+output:
 
 ```bash
 FIGURE_DIR="$RECONSTRUCTION_OUTPUT_DIR/figures-visual"

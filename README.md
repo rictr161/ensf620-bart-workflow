@@ -44,7 +44,11 @@ figures. The reported exploratory measurements are:
 
 **No numerical acceptance threshold was applied.** This is not yet the evaluated
 manual–automated comparison, an experimental 3D baseline, a performance benchmark,
-or validation of all BART functionality.
+or validation of all BART functionality. A separate owner-reported 3D synthetic
+case is documented by the [manual Cartesian 3D tutorial](docs/tutorials/manual-cartesian-3d.md)
+and the Task 5.0 evidence record; its preparation, reconstruction and comparison
+results are case-specific and are not stored as execution directories in this
+repository.
 
 The [synthetic procedure](tests/synthetic_2d/README.md) describes the exercise and
 its proposed reproduction route. The
@@ -57,17 +61,16 @@ with Apple M5 and 24 GB memory; software details are in the
 
 The [software PRD](tasks/prd-bart-reconstruction-workflow.md) is a
 **Reviewed draft for task planning**, covering Cartesian 2D, Cartesian 3D and
-Cartesian 3D compressed sensing. The first practical deliverable is the complete
-manual synthetic 2D tutorial. Top-level development tasks are the next supervised
-planning step, with review before expansion into subtasks. A development task
-list has not yet been generated. Proposed behavior and unresolved reconstruction,
-interface and evaluation choices remain identified in the PRD.
+Cartesian 3D compressed sensing. The development task list records the completed
+manual Cartesian 3D proposal, review, execution evidence and static evidence
+review. Automation, compressed sensing and remaining evaluation decisions are
+still pending.
 
 ### Work still pending
 
 - The automated Python workflow in `src/` and verified experimental reconstruction
   configurations in `configs/`.
-- A verified 3D Cartesian manual reference procedure and its automated counterpart.
+- The automated counterpart of the reviewed 3D Cartesian manual procedure.
 - Additional synthetic fixtures, a formal regression suite, and approved numerical
   tolerances and operator-action counting rules.
 - Reproduction from this repository and a clean checkout.
@@ -195,9 +198,11 @@ input availability and unresolved information.
 
 ## Manual baseline
 
-A verified 3D Cartesian manual reference procedure for the planned manual–automated
-comparison remains pending. The currently documented manual example is the
-exploratory 2D synthetic Fourier exercise described below.
+A reviewed and executed 3D Cartesian manual reference procedure is now documented
+in the [manual Cartesian 3D tutorial](docs/tutorials/manual-cartesian-3d.md).
+The reported case-specific evidence does not establish general validation or
+clean-checkout reproduction. The exploratory 2D synthetic Fourier exercise is
+described below.
 
 ### Existing synthetic example
 
@@ -278,8 +283,8 @@ arrays are not included in the repository.
 
 Reproduction from this repository or a clean checkout, a formal regression suite,
 negative test cases and approved acceptance criteria remain pending. The recorded
-evidence is limited to the documented 64 × 64 synthetic example and does not
-establish validation of experimental 3D or CS reconstruction.
+2D and owner-reported 3D evidence does not establish validation of experimental
+3D or CS reconstruction.
 
 ## Repository layout
 
