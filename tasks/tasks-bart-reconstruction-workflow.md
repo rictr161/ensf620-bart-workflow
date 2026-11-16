@@ -138,37 +138,47 @@ unchecked until the corresponding work is completed and reviewed.
     **Dependency:** 5.9
     **Review:** Complete static evidence review found the procedure and supplied evidence sufficient for the manual 3D prerequisite. The evidence remains case-specific; clean-checkout reproduction, general validation, experimental inputs, formal tolerances, and manual–automated equivalence remain unconfirmed. The optional interactive viewer closed normally with the resolved `macosx` backend; Ricardo confirmed its operation and visual observations, but complete slice inspection is not claimed.
 
-- [ ] **6.0 Establish, Review, Execute, and Record the Manual Cartesian 3D Compressed-Sensing Procedure**
-  - [ ] **6.1 [Copilot] Identify the decisions required for the manual 3D compressed-sensing case**  
+- [x] **6.0 Establish, Review, Execute, and Record the Manual Cartesian 3D Compressed-Sensing Procedure**
+  - [x] **6.1 [Copilot] Identify the decisions required for the manual 3D compressed-sensing case**\
     Organize the open questions concerning controlled undersampling, sampling representation, synthetic preparation, reconstruction settings, outputs, checks, and reference comparison without selecting values.
     **Dependency:** 5.10
-  - [ ] **6.2 [Copilot] Prepare and explain the proposed manual Cartesian 3D compressed-sensing procedure**  
-    Develop a future technical proposal covering the candidate synthetic case, preparation and regeneration commands, controlled undersampling, reconstruction commands, required inputs, expected outputs, reference-comparison methods, mandatory checks, and evidence record, without selecting the scientific values in this task-planning response.
+    **Progress:** Complete. The candidate case and mask decisions were identified and reviewed. Ricardo confirmed the synthetic dimensions, axis convention, sensitivity representation, Poisson/repetition settings, nominal acceleration distinction, and candidate `pics` settings. These confirmations do not approve the complete procedure or claim execution.
+  - [x] **6.2 [Copilot] Prepare and explain the manual Cartesian 3D compressed-sensing procedure for the confirmed case**\
+    Develop the procedure covering the confirmed synthetic case, preparation and regeneration commands, controlled undersampling, reconstruction commands, required inputs, expected outputs, reference-comparison methods, mandatory checks, and evidence record.
     **Dependency:** 6.1
-  - [ ] **6.3 [Copilot] Review the proposed compressed-sensing procedure against the PRD**  
+    **Progress:** The manual Cartesian 3D compressed-sensing procedure is drafted through Section 12. Execution, result review, and effective evidence preservation belong to later tasks and are not claimed here.
+  - [x] **6.3 [Copilot] Review the proposed compressed-sensing procedure against the PRD**\
     Check that the proposal separates synthetic preparation, regeneration verification, manual reconstruction, reference comparison, and evidence recording, and does not assume negligible compressed-sensing error or general validity.
     **Dependency:** 6.2
-  - [ ] **6.4 [Ricardo] Review, adjust, and approve the Cartesian 3D compressed-sensing procedure**  
+    **Review:** Complete static review of the CS tutorial against the reviewed PRD, confirmed case decisions, and the existing 3D support found no material pending issue. The review covered preparation, mask generation and validation, constant sensitivities, regeneration and header review, session recovery, reconstruction, structural checks, visual and quantitative comparisons, execution records, shared paths and filenames, and separation of operational results, human observations, and quality interpretation. No execution, tolerance, acceptance criterion, automation, or result was introduced or claimed.
+  - [x] **6.4 [Ricardo] Review, adjust, and approve the Cartesian 3D compressed-sensing procedure**\
     Review Copilot’s technical proposal, decide the required adjustments, and approve the preparation, controlled-undersampling, regeneration, reconstruction, comparison, checking, and recording procedures before execution.
     **Dependency:** 6.3
-  - [ ] **6.5 [Ricardo] Prepare, regenerate, and verify the synthetic compressed-sensing case**  
+    **Status:** Complete. Ricardo approved the procedure before guided execution; no approval date is asserted.
+  - [x] **6.5 [Ricardo] Prepare, regenerate, and verify the synthetic compressed-sensing case**\
     Execute the approved preparation and controlled-undersampling procedure, regenerate the intended synthetic case, and verify the reference, undersampled input, sampling information, and required metadata before performing the manual reconstruction.
     **Dependency:** 6.4
-  - [ ] **6.6 [Ricardo] Execute the reviewed manual Cartesian 3D compressed-sensing reconstruction**  
+    **Evidence:** The two local preparation records document the six preserved pairs, owner-reported generation statuses where logs are empty, structural checks, mask counts and effective acceleration, exact mask application checks, constant sensitivities, and the twelve regeneration comparisons. The original header differences remain `DIFFERENT`; their reviewed path-only diffs are preserved. The mask retained 583 of 4096 phase-plane positions and 37312 of 262144 positions in the repeated 3D mask, giving a sampling fraction of 0.142333984375 and an effective acceleration of 7.02572898799, distinct from the nominal per-axis product 2 × 2 = 4.
+  - [x] **6.6 [Ricardo] Execute the reviewed manual Cartesian 3D compressed-sensing reconstruction**\
     Run the approved manual reconstruction procedure using the verified prepared inputs and perform the required checks for the undersampled input and reconstructed output.
     **Dependency:** 6.5
-  - [ ] **6.7 [Copilot] Prepare and explain the compressed-sensing reference-comparison application**  
+    **Evidence:** The reconstruction used `generation-3d-cs-01`, returned BART exit code `0`, and its structural check returned `VALID` with exit code `0`; the local run record preserves the settings and evidence links.
+  - [x] **6.7 [Copilot] Prepare and explain the compressed-sensing reference-comparison application**\
     Propose how the reviewed visual and quantitative reference-comparison method should be applied to the compressed-sensing case, identifying case-specific preprocessing, reporting, and limitations without assuming negligible error or introducing an unreviewed metric or tolerance.
     **Dependency:** 4.3 and 6.4
-  - [ ] **6.8 [Ricardo] Review, approve, and execute the compressed-sensing reference comparison**  
+    **Status:** Complete. The tutorial documents the approved case-specific visual and full-volume complex relative L2 comparison without preprocessing, tolerance, or pass/fail classification.
+  - [x] **6.8 [Ricardo] Review, approve, and execute the compressed-sensing reference comparison**\
     Review the proposed application, decide whether the earlier method is suitable or requires an approved adjustment, approve the visual and quantitative comparison procedure, and execute both comparisons for the verified manual compressed-sensing reconstruction.
     **Dependency:** 6.7 and 6.6
-  - [ ] **6.9 [Ricardo] Record the compressed-sensing manual execution and reference-comparison results**  
+    **Evidence:** Ricardo approved and executed the comparisons. Static figure generation, the optional viewer, and quantitative comparison returned exit code `0`; the observed complex relative L2 error was `2.473308708e-01`, with no quality acceptance criterion applied. In the inspected slices, Ricardo reported a noisy appearance in the CS reconstruction, while the main shapes remained distinguishable.
+  - [x] **6.9 [Ricardo] Record the compressed-sensing manual execution and reference-comparison results**\
     Preserve commands, effective settings, sampling information, reference, inputs, outputs, figures, checks, observations, failures, corrections, and the observed visual and quantitative comparisons with the corresponding synthetic reference.
     **Dependency:** 6.8
-  - [ ] **6.10 [Copilot] Review the compressed-sensing manual evidence as an automation prerequisite**  
+    **Evidence:** `preparation-record.txt` exists in both preparation directories and `run-record.md` exists in the reconstruction directory. They link the local logs and figure, retain the original comparison outcomes and incidents, and record Ricardo’s visual observation separately from automated results.
+  - [x] **6.10 [Copilot] Review the compressed-sensing manual evidence as an automation prerequisite**\
     Confirm that the compressed-sensing procedure has been established, reviewed, executed, regenerated and verified, compared with its synthetic reference, and sufficiently evidenced before equivalent automation is developed.
     **Dependency:** 6.9
+    **Review:** Complete static review of the tutorial, local preparation records, reconstruction run record, headers and available logs found the manual CS prerequisite sufficiently established for the next planning gate. The evidence remains case-specific and does not establish convergence, a quality threshold, general validation or clean-checkout reproducibility.
 
 - [ ] **7.0 Design and Implement the Python Automation Equivalent**
   - [ ] **7.1 [Copilot] Confirm the manual-procedure readiness gate required by FR-22**  

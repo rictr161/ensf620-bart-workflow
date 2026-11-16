@@ -149,6 +149,13 @@ Access and authority for AI-assisted operations are governed by the accepted [Da
 
 **FR-24.** The automation must provide configurable reconstruction settings without assuming that optimal settings can be inferred automatically.
 
+The future Python workflow must expose sampling and reconstruction settings through
+clearly named parameters. Users must be able to provide explicit values, with
+documented defaults available for omitted parameters where appropriate. Each
+default must explain its meaning and intended use. The values selected for the
+current manual example do not establish universal defaults. Execution must remain
+non-interactive and record the effective parameter values, including defaults used.
+
 **FR-25.** The automation must accept compatible BART `.cfl/.hdr` reconstruction inputs.
 
 **FR-26.** Phantom generation may be used to prepare synthetic development and evaluation cases, but the reconstruction operation must be able to operate on compatible prepared BART inputs.

@@ -10,7 +10,7 @@ import numpy as np
 
 
 SPATIAL_SHAPE = (64, 64, 64)
-VALID_PAIRS = ("reference", "kspace", "reconstruction")
+VALID_PAIRS = ("reference", "kspace", "kspace_full", "reconstruction")
 COMPLEX64 = np.dtype("<c8")
 
 
@@ -26,7 +26,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "pair",
         choices=VALID_PAIRS,
-        help="Pair to validate: reference, kspace, or reconstruction.",
+        help="Pair to validate: reference, kspace, kspace_full, or reconstruction.",
     )
     return parser.parse_args()
 

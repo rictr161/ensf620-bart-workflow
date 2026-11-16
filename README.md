@@ -48,10 +48,14 @@ or validation of all BART functionality. A separate owner-reported 3D synthetic
 case is documented by the [manual Cartesian 3D tutorial](docs/tutorials/manual-cartesian-3d.md)
 and the Task 5.0 evidence record; its preparation, reconstruction and comparison
 results are case-specific and are not stored as execution directories in this
-repository.
+repository. The manual Cartesian 3D compressed-sensing case is documented by the
+[CS tutorial](docs/tutorials/manual-cartesian-3d-cs.md), with its preparations,
+logs, figure and execution records retained in Ricardo's local `~/bart-learning/`
+directories outside the repository. Its observed results are also case-specific
+and do not establish general validation or a quality acceptance criterion.
 
-The [synthetic procedure](tests/synthetic_2d/README.md) describes the exercise and
-its proposed reproduction route. The
+The [synthetic procedure](tests/synthetic_2d/README.md) describes the exercise
+and its proposed reproduction route. The
 [results record](results/familiarization-2d-20261023/README.md) documents the
 measurements, figures and provenance. The recorded local platform is a MacBook Pro
 with Apple M5 and 24 GB memory; software details are in the
@@ -61,10 +65,10 @@ with Apple M5 and 24 GB memory; software details are in the
 
 The [software PRD](tasks/prd-bart-reconstruction-workflow.md) is a
 **Reviewed draft for task planning**, covering Cartesian 2D, Cartesian 3D and
-Cartesian 3D compressed sensing. The development task list records the completed
-manual Cartesian 3D proposal, review, execution evidence and static evidence
-review. Automation, compressed sensing and remaining evaluation decisions are
-still pending.
+Cartesian 3D compressed sensing. The development task list records completed manual procedure preparation,
+review, execution evidence and static evidence review for the Cartesian 3D and
+Cartesian 3D compressed-sensing cases. Automation and remaining evaluation
+decisions are still pending.
 
 ### Work still pending
 

@@ -14,6 +14,65 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-16 — Manual Cartesian 3D compressed-sensing execution and consolidation
+
+**Date:** Consolidated on 2026-11-16, covering the reviewed manual Cartesian 3D
+compressed-sensing execution evidence and its local-record consolidation.
+
+**Tool/model and access mode:** GitHub Copilot Chat in VS Code and ChatGPT
+through owner-provided repository documents, local synthetic-case logs and
+headers, execution records, figures and Ricardo's supplied results. Exact model
+identifiers were not recorded.
+
+**Inputs:** The reviewed PRD and task list, the accepted project decisions,
+`docs/tutorials/manual-cartesian-3d-cs.md`, the existing 3D tutorial format,
+`scripts/check_preparation_pair_3d.py`, `scripts/check_fourier_numpy.py`, the
+two local CS preparations, the local reconstruction directory and Ricardo's
+execution observations.
+
+**Assistance and affected files:** Copilot drafted and edited the CS tutorial,
+updated `scripts/check_preparation_pair_3d.py` to admit `kspace_full`, prepared
+the related documentation and task tracking, and created the two preparation
+records and the reconstruction `run-record.md`. ChatGPT reviewed the shared
+fragments and results, explained the procedure, and guided the manual execution
+and recovery after paste errors.
+
+**Corrections and decisions:** The documented case uses a BART Shepp–Logan
+phantom of `64 x 64 x 64`, one channel, a Poisson mask repeated with
+`repmat 0 64`, constant sensitivities `1 + 0j`, and the reviewed `pics`
+parameters. The optional Appendix A viewer uses the existing configured
+`PYTHON`, reads existing CS files, resolves the interactive backend and GUI
+framework without forcing a backend, and does not create saved figures,
+metrics or records. The future automation is documented to expose clearly
+named sampling and reconstruction parameters, accept explicit values, and
+document defaults where appropriate; the values in this manual example are
+not universal defaults.
+
+**Execution and evidence:** Ricardo confirmed the decisions and approved the
+procedure before execution, executed the commands, inspected the static figure
+and optional viewer, and supplied the results. Copilot and ChatGPT did not
+perform the BART or Python execution. The local records preserve the observed
+mask counts and acceleration, regeneration comparison, reconstruction,
+structural check, static figure, quantitative comparison and the human visual
+observation. The viewer confirmation was `macosx` backend/framework with final
+exit code `0`. The evidence includes owner-reported statuses where the
+corresponding generation log is empty and preserves the ambiguous second
+mask-application record.
+
+**Review and related revision:** Copilot performed static review of the
+procedure, cross-references, local records and evidence consolidation. The
+review confirmed separation of operational results, human observations and
+quality interpretation, and recorded the corresponding Task 6.0 conclusions.
+Ricardo remains responsible for confirming the consolidated records and any
+later release or automation decisions.
+
+**Limitations:** Exact execution timestamps, the repository revision, and the
+state of local changes during execution remain unconfirmed. The evidence does
+not establish `pics` convergence, exactly 100
+iterations, inspection of every slice, a quality acceptance criterion, general
+validation or clean-checkout reproducibility. The local preparation data,
+logs, figure and records remain outside the repository.
+
 ## 2026-11-05 — Manual Cartesian 3D tutorial and evidence consolidation
 
 **Date:** Consolidated on 2026-11-05, covering the drafting, review, execution
