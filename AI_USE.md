@@ -14,6 +14,160 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-22 — Manual and automated multichannel CS calibration evidence
+
+**Date:** Consolidated on 2026-11-22 from Ricardo's reports of the manual and
+automated Cartesian 3D multichannel compressed-sensing executions and their
+comparison.
+
+**Tool/model and access mode:** ChatGPT statically reviewed the implementation
+and guided Ricardo's execution and comparisons. Ricardo executed the commands
+and supplied the results. Copilot implemented and corrected the route and
+applied this documentary consolidation. Exact model identifiers were not
+recorded.
+
+**Inputs:** Ricardo's supplied summary for the synthetic preparation
+`$HOME/bart-learning/bart-workflow-preparations/generation-3d-ecalib-01`,
+the preserved mask in
+`$HOME/bart-learning/bart-workflow-preparations/generation-3d-cs-01/mask3d`,
+and Ricardo's summaries of the manual run under
+`$HOME/bart-learning/bart-workflow-reconstructions/manual-3d-ecalib-01` and
+automated run under
+`$HOME/bart-learning/bart-workflow-reconstructions/automated-3d-ecalib-01`.
+The assistant did not access those local directories or execution artifacts.
+
+**Assistance and affected files:** Copilot implemented and corrected the
+multichannel CS/`ecalib` route in `src/bart_workflow.py`, documented the options
+and example in `src/README.md`, and updated the related automation behavior
+note in `docs/python-automation-behavior.md` and progress/evidence in
+`tasks/tasks-bart-reconstruction-workflow.md`. ChatGPT statically reviewed the
+implementation and guided Ricardo's executions and comparisons. Ricardo
+executed the commands and supplied the results. Copilot applied this
+documentary consolidation to `src/README.md`,
+`docs/python-automation-behavior.md`, `tasks/tasks-bart-reconstruction-workflow.md`,
+and this record; the implementation code was not modified in this consolidation.
+
+**Corrections and decisions:** The implemented extension keeps the existing
+terminal entry point and function and adds an explicit sensitivity source:
+provided maps or requested `ecalib`. The new 3D CS route supports channel axis 3
+and one map set on axis 4, matches sensitivity spatial/channel dimensions to
+k-space, uses one spatial mask across channels, and preserves generated
+sensitivities and eigenvalues. The calibration region is explicit; kernel,
+threshold, crop and set-count defaults are recorded in the source README.
+Sampling-pattern estimation, multiple map sets, CS 2D and radial reconstruction
+remain unsupported here. The existing reconstruction profile and supplied-map
+calls remain available.
+
+**Execution and evidence:** Ricardo reported BART v1.0.00 and a 64 × 64 × 64
+k-space with eight channels and singleton later axes. The preserved mask
+check reported 37,312 acquired and 224,832 omitted spatial positions, exact
+acquired-value equality across all eight channels, zeros at omitted positions,
+and a fully sampled 64 × 16 × 16 center. The reported `ecalib` invocation used
+`-r 64:16:16 -k 6:6:6 -t 0.001 -c 0.8 -m 1` and returned `0`. Sensitivity and
+eigenvalue pairs passed dimensions, binary-size and finite-value checks; the
+sensitivity maps were not completely zero, and one ESPIRiT set was used. The
+reported `pics` invocation used `--fista --wavelet dau2 -R W:7:0:0.01 -i 100
+-s 0.95 -n -w 1`, the preserved mask and generated maps, and returned `0`.
+The reconstruction passed the reported structural check for shape, singleton
+later axes, complex64 representation and finite values.
+
+Ricardo additionally reported the local automated run using the same
+64 × 64 × 64 k-space, eight synthetic channels, mask and one ESPIRiT set. The
+complete Python invocation returned `0`. `ecalib.log` records BART code `0`
+and `-r 64:16:16 -k 6:6:6 -t 0.001 -c 0.8 -m 1`. `reconstruction.log` records
+`pics` using the generated sensitivities in the automated run directory, the
+same mask and k-space, and `--fista --wavelet dau2 -R W:7:0:0.01 -i 100
+-s 0.95 -n -w 1.0`; its code was `0`. The reported `stage-records.json`
+contains eight stages, all `success` with code `0`: `input-inspection`,
+`sampling-check`, `ecalib-input-check`, `ecalib`, `ecalib-output-check`,
+`sampling-and-sensitivity-checks`, `reconstruction`, and
+`reconstruction-output-check`. Calibration and reconstruction `log_error`
+values are `null`; resolved settings and generated-map paths are recorded.
+Ricardo reported `cmp` exit code `0` for the manual/automated
+`sensitivities.cfl`, `eigenvalues.cfl`, and `reconstruction.cfl` pairs. These
+reports are owner-supplied and were not independently reproduced.
+
+**Review and related revision:** Static review by reading the changed code and
+documentation found the path organized as input/mask checks, requested
+calibration, generated-map/eigenvalue checks, `pics`, and output checks. This
+static review is distinct from Ricardo's reported local execution. The earlier
+reported in-memory compilation and CLI `--help` checks predate this integration
+and do not verify it. The `cmp` results establish byte-for-byte identity only
+for the three reported manual/automated file pairs; they are not automated
+comparisons to a synthetic reference. Task 7.6 remains partial, and the current
+task-state checkboxes remain unchanged.
+
+**Limitations:** Evidence applies only to Ricardo's reported synthetic
+preparation and paired manual/automated local executions. It does not establish
+general compatibility, ARC execution, convergence, complete FR-32 coverage, or
+scientific quality acceptance. The comparisons are not automated comparisons
+to a reference image or volume.
+
+## 2026-11-22 — First Python automation block and owner-reported checks
+
+**Date:** Consolidated on 2026-11-22 from Ricardo's report of the first
+automation implementation checks and executions.
+
+**Tool/model and access mode:** Copilot implemented and corrected
+`src/bart_workflow.py`; ChatGPT performed static review and guided the checks.
+Ricardo executed all commands and supplied the results. Exact model identifiers
+were not recorded.
+
+**Inputs:** The reviewed manual Cartesian 2D, 3D and 3D CS procedures; the
+first-block implementation and source README; and Ricardo's supplied terminal
+results and execution-record summaries for synthetic preparations under
+`$HOME/bart-learning/bart-workflow-preparations/` and reconstructions under
+`$HOME/bart-learning/bart-workflow-reconstructions/`.
+
+**Assistance and affected files:** Copilot implemented and corrected the first
+automation block in `src/bart_workflow.py` and applied the documentary
+consolidation to this record, the relevant progress/evidence notes in
+`tasks/tasks-bart-reconstruction-workflow.md`, and the owner-reported check
+summary in `src/README.md`. ChatGPT statically reviewed the implementation,
+guided Ricardo's checks, and prepared the consolidation instructions. During
+this documentary consolidation, no tutorial, PRD, reconstruction parameter,
+or local execution record was modified.
+
+**Corrections and decisions:** The 2D run used `generation-01/kspace` and wrote
+`automated-2d-01/reconstruction`, compared with
+`manual-2d-01/reconstruction.cfl`. The 3D run used `generation-3d-01/kspace`
+and wrote `automated-3d-01/reconstruction`, compared with
+`manual-3d-01/reconstruction.cfl`. The CS run used
+`generation-3d-cs-01/kspace_undersampled` with that generation's `mask3d` and
+`sensitivities`, and wrote `automated-3d-cs-01/reconstruction`, compared with
+`manual-3d-cs-01/reconstruction.cfl`. The commands correspond to `fft -i -u
+3`, `fft -i -u 7`, and `pics` with the explicit `manual-cartesian-3d-cs`
+profile. The reported destination-protection check used `output-guard-VxO0l5`
+and confirmed that an existing directory is rejected without modifying its
+pre-existing `stage-records.json`.
+
+**Execution and evidence:** Ricardo reported that in-memory syntax compilation
+and terminal `--help` both returned exit code `0`. For each of the three
+reconstruction runs, the supplied stage record reports BART exit code `0`,
+successful structural checks and `log_error: null`; each automated directory
+contains the reconstruction pair, `reconstruction.log` and
+`stage-records.json`. Ricardo ran `cmp` against the corresponding manual
+reconstruction `.cfl` in the terminal; all three returned exit code `0`,
+establishing byte-for-byte equality of those pairs for these runs. No separate
+comparison artifact was created and no automated comparison function was
+implemented. For the output-guard check, Ricardo reported workflow exit code
+`1`, unchanged dummy stage-record contents (`cmp` exit code `0`), and a
+post-check listing containing only that original record. The earlier Pylance
+syntax-check request timed out and is inconclusive, not a passing check.
+
+**Review and related revision:** ChatGPT performed static review and guided the
+checks; Ricardo executed the commands and provided the reported outputs.
+Evidence and attribution are recorded under Tasks 7.6–7.10 without changing
+their statuses or the status of Block 7.0. The manual `.cfl` comparisons are
+not the automated reconstruction-to-reference comparison work in Task 7.10.
+
+**Limitations:** The results are limited to the reported local synthetic
+preparations and these executions. They do not establish all FR-32 conditions,
+execution on ARC, general compatibility, scientific validation or a quality
+acceptance criterion. The byte comparisons establish equality only for the
+reported manual/automated output pairs; they are not comparisons to the
+synthetic reference and do not implement a reusable comparison operation.
+
 ## 2026-11-16 — Manual Cartesian 3D compressed-sensing execution and consolidation
 
 **Date:** Consolidated on 2026-11-16, covering the reviewed manual Cartesian 3D

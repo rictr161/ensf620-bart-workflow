@@ -170,7 +170,7 @@ non-interactive and record the effective parameter values, including defaults us
 
 **FR-31.** The automation must support optional non-interactive figure generation that saves files for later inspection and does not require a display window.
 
-**FR-32.** **Proposed behavior pending review:** The automation should surface invalid inputs, unsupported conditions, and execution failures explicitly rather than silently selecting fallback behavior.
+**FR-32.** **Approved behavior:** The automation must surface invalid inputs, unsupported conditions, and execution failures explicitly rather than silently selecting fallback behavior. Mandatory operation or check failures stop dependent stages; actual operation and check results are recorded separately; source inputs, existing records, and produced files are preserved; destination collisions fail explicitly without interaction, overwrite, or automatic reuse; no automatic retries, parameter changes, alternate routes, or deletion are performed; mandatory success returns exit code `0`, mandatory failure returns a non-zero code, and an optional figure-only failure is reported separately without invalidating a valid reconstruction.
 
 **FR-38.** The automation must support the three agreed reconstruction cases in the planned scope:
 
@@ -401,7 +401,7 @@ Questions 11–13 must be resolved before performing the first preliminary compa
 18. Which input information should the automation read or check, and which reconstruction decisions must remain explicit configuration?
 19. How should repeated runs with different settings be named and associated with their effective configurations?
 20. What information must be stored in each run directory?
-21. What error conditions and reporting behavior should be specified for invalid inputs, unsupported conditions, and failed BART commands? FR-32 is a proposed behavior pending review.
+21. What error conditions and reporting behavior should be specified for invalid inputs, unsupported conditions, and failed BART commands? FR-32 was approved in Task 7.5; implementation details remain open.
 22. What file formats and command-line conventions should be used for non-interactive figure generation?
 23. Which Python functions should be reusable independently of the terminal entry point?
 24. Which automated comparison outputs should be generated or recorded?
