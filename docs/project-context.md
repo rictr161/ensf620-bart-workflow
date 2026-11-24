@@ -116,9 +116,11 @@ figures. No numerical acceptance threshold was applied. The
 [results record](../results/familiarization-2d-20261023/README.md) describes the
 available measurements and their provenance.
 
-The automated workflow in `src/`, verified experimental configurations in
-`configs/`, a verified experimental 3D manual baseline, measured operator-action
-reduction, clean-checkout reproduction and HPC evaluation remain pending.
+The initial automated workflow is implemented in `src/`; its scoped static
+checks and owner-run execution review remain pending. Verified experimental
+configurations in `configs/`, a verified experimental 3D manual baseline,
+measured operator-action reduction, clean-checkout reproduction and HPC
+evaluation also remain pending.
 The [README status summary](../README.md#current-status) provides the repository's
 overview of available evidence and remaining work.
 

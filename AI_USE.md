@@ -14,6 +14,388 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-24 — Manual–automated route comparison and Block 8 closure
+
+**Date:** Consolidated on 2026-11-24 from Ricardo's explicit approvals and his
+report of direct visual inspection of the three preserved manual–automated
+pairs.
+
+**Tool/model and access mode:** Copilot reviewed the authorized task and
+behavior records and consolidated the documentation. ChatGPT reviewed the
+header contents and results Ricardo shared, guided the visual inspection, and
+prepared the instruction for this update. Ricardo executed the procedures and
+checks reported in the existing records and inspected the figures. Copilot did
+not access the local reconstruction directories or open the figures. No
+commands, Python, BART, tests, installations, or Git operations were run for
+this documentary update. Exact model identifiers were not recorded.
+
+**Inputs:** Ricardo's explicit approvals of the Task 8.2 conditions and Task
+8.4 binary method; his report of `cmp` code `0` for all three historical
+`reconstruction.cfl` pairs; the contents and comparison of all six
+reconstruction headers; and his direct visual observations and the supplied
+figure locations. Existing Task 7.8, Task 7.11, and behavior records were
+consulted. No local execution files or figures were opened or copied into the
+repository.
+
+**Assistance and affected files:** Copilot updated
+`docs/python-automation-behavior.md`, `tasks/tasks-bart-reconstruction-workflow.md`,
+and this record. No code, reconstruction parameter, PRD, tutorial, README, or
+local execution record was changed.
+
+**Corrections and decisions:** Tasks 8.4–8.7 and Block 8.0 are recorded
+complete. The three historical `.cfl` comparisons remain identified as
+pre-Block 8 executions reused transparently under the approved conditions and
+method; they are not described as new comparisons. Ricardo's current visual
+inspection of the manual and automated reconstruction panels is recorded
+separately. The original single-channel CS case with supplied sensitivities is
+the Block 8 case; the multichannel `ecalib` and automated-to-automated
+sampling-variant cases remain separate. The automatic workflow operator guide
+remains future work.
+
+**Execution and evidence:** Ricardo reported that the six headers declare
+matching dimensions for each pair: `64 × 64` for 2D and `64 × 64 × 64` for 3D
+and CS, with later axes singleton. The corresponding header commands identify
+`fft -i -u 3`, `fft -i -u 7`, and, for CS,
+`--fista --wavelet dau2 -R W:7:0:0.01 -i 100 -s 0.95 -n`, with `-w 1`
+manually and `-w 1.0` automatically. The three cases use their documented
+shared preparations; CS uses the same `mask3d` and `sensitivities`. All six
+headers declare `BART v1.0.00` in `# Creator`; expected manual/automated output
+paths differ in `# Command` and `# Files`. Ricardo's earlier `cmp` results for
+the three `.cfl` pairs were each code `0`. He also reported no visible
+differences between the manual and automated panels in the displayed figures
+for all cases; the 3D observations concern the displayed central planes.
+
+**Review and related revision:** The task review confirms each pair's shared
+inputs, effective configuration, requested and produced outputs, structural
+checks, historical binary result, header interpretation, visual observation,
+and limits are recorded. The automated command arrays and effective settings
+are available in the previously shared `reconstruction.log` and
+`stage-records.json` records. Header-declared BART version is not treated as a
+complete runtime-environment record. Task 7.11 reference evaluations and
+observations remain distinct from the direct route comparison.
+
+**Limitations:** The binary comparisons are historical and predate prospective
+Block 8 approval. The visual observation covers only the views shown, not every
+3D or CS slice. No manual–automated L2 error, tolerance, scientific acceptance,
+or operator-intervention measurement is claimed. Original Python CLI strings,
+per-run repository revisions, and a complete runtime-environment record for
+the earlier runs are not established here.
+
+## 2026-11-23 — Automated synthetic reference evaluations and Block 7 review
+
+**Date:** Later consolidation on 2026-11-23 from Ricardo's report of visual and
+quantitative evaluations for the three synthetic automated reconstructions.
+Earlier records dated the same day preserve their own checkpoint status.
+
+**Tool/model and access mode:** Copilot consolidated the documentation and
+reviewed the task evidence. ChatGPT reviewed the reported results, guided the
+executions, and prepared the instruction for this update. Ricardo executed the
+tutorial comparison blocks and inspected the figures. Copilot did not access
+the local evaluation directories. No Python, BART, test, installation, or Git
+command was run for this documentary update. Exact model identifiers were not
+recorded.
+
+**Inputs:** Ricardo's reported comparison errors, command results, visual
+observations, environment versions, display-limit diagnostics, and local
+evaluation-directory names, together with the existing Task 7.10 proposal and
+project documentation. No evaluation data, logs, or figures were copied into
+the repository.
+
+**Assistance and affected files:** Copilot updated
+`tasks/tasks-bart-reconstruction-workflow.md`,
+`docs/python-automation-behavior.md`, `src/README.md`, `README.md`, and this
+record. No code, parameters, tutorials, PRD, or local execution records were
+changed.
+
+**Corrections and decisions:** The evaluations are described as use of the
+existing tutorial blocks on the existing automatic reconstructions, not as a
+new comparison CLI or an integrated `bart_workflow.py` operation. Task 7.11
+records Ricardo's execution and review; Task 7.12 records the evidence review.
+Block 7.0 is complete because Tasks 7.1–7.12 are complete. Tasks 8.0 onward
+remain open, and `docs/automated-workflow.md` remains a future guide that has
+not been created. Reference comparison remains optional for reconstruction;
+no reference is fabricated for real acquisitions.
+
+**Execution and evidence:** Ricardo reported using the existing reference and
+automated reconstruction pairs for Cartesian 2D, Cartesian 3D, and the original
+single-channel Cartesian 3D CS case. The evaluation root is
+`$HOME/bart-learning/bart-workflow-reconstructions/automated-reference-evaluations`:
+`cartesian-2d-TAT46E` recorded relative L2 error `1.442448308e-07`,
+`cartesian-3d-EqHsLn` recorded `1.729089800e-07`, and
+`cartesian-3d-cs-hBicqH` recorded `2.473308708e-01`. Each calculation and
+figure-generation code was `0`. Each directory contains
+`quantitative-comparison.txt`, `visual-comparison.log`, and the corresponding
+figure under `figures-visual/`. Records report Python `3.13.17`, NumPy `2.5.4`,
+and Matplotlib `3.11.2`. Ricardo reported no evident visual differences for
+2D and 3D; for CS he observed a noisier appearance than the reference and an
+appearance similar to the manual result. Display limits were `1` for 2D and
+`2` for 3D and CS; the 3D log records small exceedances in each displayed
+cut, and the CS reconstruction global maximum was `2.851191679`. These
+warnings did not change figure-generation codes. Results match the previously
+reported manual-to-reference errors at the displayed precision. They remain
+separate from the earlier manual-to-automated binary identity comparisons.
+
+**Review and related revision:** The task review confirms that the three
+automated-to-reference evaluations are documented separately from manual
+reference results and manual-to-automated `.cfl` comparisons, with all reported
+calculation and figure-generation codes recorded. No failures were reported.
+
+**Limitations:** The results are case-specific. Human observations concern
+only the reviewed figures, not every slice, and are not scientific acceptance.
+No tolerance, quality threshold, general validation, ARC execution, or
+multichannel `ecalib` reference comparison is established. The local evaluation
+data, figures, and records remain outside the repository.
+
+## 2026-11-23 — Automated pattern/`ecalib` evidence and Task 7.7–7.9 review
+
+**Date:** Consolidated on 2026-11-23 from Ricardo's report of the automated
+Cartesian 3D CS `bart-pattern`/`ecalib` run and his reconstruction-file
+comparison.
+
+**Tool/model and access mode:** Copilot applied this documentation
+consolidation; the earlier code implementation is recorded in prior entries.
+ChatGPT performed the static review, reviewed the logs and
+`stage-records.json` shared by Ricardo, and guided the checks. Ricardo executed
+the commands and supplied the reported results. Copilot did not access the
+local execution directory. No Python, BART, test, installation, or Git command
+was run during this documentary update. Exact model identifiers were not
+recorded.
+
+**Inputs:** Ricardo's supplied run configuration, log and stage-record
+summaries, `cmp` result, and the existing task, source, behavior, and project
+status documentation. No experimental data or additional local files were
+accessed.
+
+**Assistance and affected files:** Copilot updated
+`tasks/tasks-bart-reconstruction-workflow.md`, `src/README.md`,
+`docs/python-automation-behavior.md`, the directly outdated status in
+`README.md`, and this record. No implementation, parameter, or local record was
+changed.
+
+**Corrections and decisions:** The new `bart-pattern`/`ecalib` run is recorded
+as case-specific execution evidence. Its reconstruction `cmp` is explicitly
+identified as automated-to-automated, not manual-to-automated or
+reference-based. The 7.7 matrix separates static review from Ricardo's
+execution evidence. Tasks 7.7, 7.8, and 7.9 are marked complete against their
+current criteria; Tasks 7.10–7.12 and the overall 7.0 block remain open.
+
+**Execution and evidence:** Ricardo reported BART `version -V`, `pattern`,
+`ecalib`, and `pics` exit codes of `0`; all 11 stages reported `success` and
+code `0`. He reported a successful structural output check, effective CS
+settings, BART/Python/NumPy/platform versions, and a successful figure record
+for `figures/reconstruction.png`. Log-write error fields were reported as
+`null`. The global CLI exit code was not provided. Ricardo's `cmp` returned
+`0` between `reconstruction.cfl` files in the prior supplied-mask automated
+run and the new pattern-estimated automated run. No new human visual review of
+the figure was reported.
+
+**Review and related revision:** Static review covered explicit sampling-source
+guards, validation before calibration, use of the same effective mask by
+`pics`, runtime environment/version association, output-directory protections,
+and optional non-interactive figures. Pylance's successful static check is
+recorded separately from Ricardo's executions. The review also retained
+historical direct manual-to-automated comparisons for the three delivery cases
+and for the earlier multichannel `ecalib` case.
+
+**Limitations:** Results are limited to the reported synthetic runs. The new
+automated-to-automated `cmp` is not a manual or reference comparison. No global
+CLI result or new visual inspection is claimed. This work does not establish
+scientific quality, general compatibility, or ARC execution; Tasks 7.10–7.12
+remain subsequent work.
+
+## 2026-11-23 — Runtime environment and software-version records
+
+**Date:** Consolidated on 2026-11-23 from Ricardo's request to add runtime
+environment and software-version records to the existing BART workflow.
+
+**Tool/model and access mode:** Copilot edited the workflow and documentation.
+ChatGPT statically reviewed the changes. No Python, BART, test, installation, or
+Git command was run. Pylance diagnostics for `src/bart_workflow.py` reported no
+errors. Exact model identifiers were not recorded.
+
+**Inputs:** The reviewed workflow and directly related documentation, the
+approved sampling-source and optional-figure behavior, and the task-planning
+record. No local execution directory, experimental file, or private input was
+accessed by the assistant.
+
+**Assistance and affected files:** Copilot updated `src/bart_workflow.py`,
+`src/README.md`, `docs/python-automation-behavior.md`,
+`tasks/tasks-bart-reconstruction-workflow.md`, `README.md`,
+`docs/project-context.md`, `docs/copilot-handoff.md`, and this record. The final
+operator guide `docs/automated-workflow.md` remains planned and was not created.
+
+**Corrections and decisions:** After k-space validation, the
+`runtime-environment` stage records the active Python executable/version,
+imported NumPy version, operating-system details and architecture, and configured
+BART executable. It queries that exact executable with `version -V`, records
+the command, exit code and response, and requires `bart-version.log`; a query or
+log-write failure stops dependent processing and is recorded without claiming
+an unsaved log. Matplotlib's version is captured only when the optional figure
+path imports it. The module description now accurately distinguishes pattern
+estimation from phantom generation or retrospective undersampling. Task 7.6 is
+marked complete based on implementation review; Tasks 7.7 and 7.8 remain open,
+and no later comparison task was advanced.
+
+**Execution and evidence:** No runtime execution was performed. In particular,
+the new BART version query and the automated `bart-pattern` route have not been
+run in this update. Previously reported executions predate the new
+runtime-environment stage and were not changed or presented as evidence for it.
+
+**Review and related revision:** Static review covered stage ordering, use of
+the configured BART executable without resolving away its configured spelling,
+captured command output, mandatory-log and protected-stage-record handling,
+optional Matplotlib import/version capture, and updated status descriptions.
+Pylance diagnostics reported no errors; this is static evidence only.
+
+**Limitations:** The implementation has not been exercised after this change.
+Task 7.7 static-check coverage and Task 7.8 owner-run execution review remain
+pending. This update establishes neither ARC compatibility nor scientific
+reconstruction acceptance. The final operator guide remains planned until the
+interface is settled.
+
+## 2026-11-23 — Explicit BART sampling-source implementation
+
+**Date:** Consolidated on 2026-11-23 from Ricardo's request to add an explicit
+sampling-information source to the existing Cartesian 3D CS workflow and from
+his report of a manual BART `pattern` check.
+
+**Tool/model and access mode:** Copilot edited the workflow and documentation.
+ChatGPT statically reviewed the implementation and guided the changes.
+Ricardo supplied the manual-check evidence. No Python, BART, test, install, or
+Git command was run during this update. Exact model identifiers were not
+recorded.
+
+**Inputs:** The existing workflow and documentation, Ricardo's scope decisions,
+and his report for `generation-3d-ecalib-01/kspace_undersampled` and
+`sampling-check-CCWi6Z/sampling_mask`. No local execution directory or file
+was accessed by the assistant.
+
+**Assistance and affected files:** Copilot updated `src/bart_workflow.py`,
+`src/README.md`, `docs/python-automation-behavior.md`,
+`tasks/tasks-bart-reconstruction-workflow.md`, and this record. The final
+`docs/automated-workflow.md` guide remains planned for after the command-line
+interface is settled; it was not created in this update.
+
+**Corrections and decisions:** The CLI and reusable configuration now select
+`provided` or `bart-pattern`, defaulting to `provided`. An explicitly selected
+pattern is estimated from the same inspected k-space used downstream; invalid
+provided masks do not trigger fallback estimation. The generated pair is
+validated before the calibration-region check and reconstruction, and the
+same effective mask is used by `ecalib` and `pics`. The feature is documented
+as estimation of nonzero k-space support, with exact-zero and all-channel-zero
+limitations. Cartesian 2D CS, radial, and multiple map sets remain outside
+delivery scope.
+
+**Execution and evidence:** Ricardo reported manually running
+`bart pattern <kspace_undersampled> <sampling_mask>` with BART v1.0.00. The
+reported output header declares `64 64 64`, later axes singleton, and creator
+`BART v1.0.00`. `cmp` between the generated mask `.cfl` and the known
+`generation-3d-cs-01/mask3d` `.cfl` returned `0`. Ricardo did not provide the
+`bart pattern` process exit code. This manual command and comparison do not
+establish execution of the automated `--sampling-source bart-pattern` route.
+
+**Review and related revision:** Static review covered explicit option
+validation, mask estimation before mask checks and `ecalib`, shared use of the
+effective mask, the mandatory log and stage-result handling, and documentation
+of requested versus effective settings. No execution-based verification was
+performed.
+
+**Limitations:** The automated pattern route remains to be executed and
+reviewed under Task 7.8. The implementation does not yet explicitly record
+effective software versions and execution environment as specified by the
+portability objective. Task 7.6 remains partial for that concrete gap; it is
+not being held open solely for the Task 7.8 execution. The final operator guide
+is deferred until the interface is settled.
+
+## 2026-11-23 — Optional reconstruction figure execution evidence
+
+**Date:** Consolidated on 2026-11-23 from Ricardo's report of local 2D and 3D
+figure-enabled executions and visual review.
+
+**Tool/model and access mode:** Copilot implemented the optional figure
+generation in the existing workflow. ChatGPT statically reviewed the
+implementation and guided the checks. Ricardo executed the commands and
+reviewed the generated figures. Exact model identifiers were not recorded.
+
+**Inputs:** Ricardo's reported runs to `automated-2d-figures-01` and
+`automated-3d-figures-01`, including their `stage-records.json` summaries and
+visual review. The assistant did not access the local run directories or
+generated files.
+
+**Assistance and affected files:** Copilot updated `src/README.md`,
+`tasks/tasks-bart-reconstruction-workflow.md`, and this record to consolidate
+the reported evidence. No code, tutorial, parameter, or local execution record
+was modified during this documentation update.
+
+**Corrections and decisions:** The earlier statement that execution of
+`--save-figures` remained pending is superseded by Ricardo's reported normal
+2D and 3D runs. The task states and delivery scope, including the exclusion of
+Cartesian 2D CS, remain unchanged.
+
+**Execution and evidence:** Ricardo reported that both full workflow
+invocations with `--save-figures` returned global exit code `0`. Each
+`stage-records.json` records `reconstruction-figure` with status `success`,
+exit code `0`, and `figures/reconstruction.png` within its run directory. The
+2D figure displays the full 64 × 64 image. The 3D figure displays three
+central planes of a 64 × 64 × 64 volume at indices `[32, 32, 32]`. The records
+include magnitude scale and presentation settings. Ricardo confirmed that
+both visualizations function correctly.
+
+**Review and related revision:** ChatGPT performed static review and guided
+the checks; Ricardo executed and reviewed the outputs; Copilot implemented
+the option and applied this documentary consolidation. The behavior note was
+reviewed and left unchanged because it contains no stale implementation or
+execution-status claim.
+
+**Limitations:** This is owner-reported local evidence for normal figure
+generation in two FFT cases. It does not establish every error path, reference
+comparison, scientific quality acceptance, or completion of the automation
+block. Task 7 remains open.
+
+## 2026-11-23 — December delivery scope adjustment
+
+**Date:** Recorded on 2026-11-23 from Ricardo's decision to remove Cartesian
+2D compressed sensing from the December 1, 2026 delivery scope.
+
+**Tool/model and access mode:** Ricardo supplied the scope decision and
+identified the published base as commit `713db75` on
+`planning/ai-dev-tasks`. Copilot updated documentation only; no commands or
+Git operations were run.
+
+**Inputs:** Ricardo's scope decision and the reviewed PRD, task list, automation
+behavior note, source README, project README, and existing AI-use record.
+
+**Assistance and affected files:** Copilot applied the scope clarification in
+`tasks/prd-bart-reconstruction-workflow.md`,
+`tasks/tasks-bart-reconstruction-workflow.md`,
+`docs/python-automation-behavior.md`, `src/README.md`, `README.md`, and this
+record. No code, tutorial, execution result, or local record was modified.
+
+**Corrections and decisions:** The December 1 delivery cases are fully sampled
+Cartesian 2D without CS, fully sampled Cartesian 3D without CS, and Cartesian
+3D CS using supplied sensitivities or explicitly requested `ecalib`.
+Cartesian 2D CS is no longer a delivery requirement; it may be considered as a
+future extension without an implementation commitment. This supersedes its
+earlier inclusion in the planned scope without deleting that historical record.
+Multiple ESPIRiT map-set support remains a separate unresolved capability;
+radial remains out of scope. The existing program rejection of 2D CS and the
+recorded manual and automated evidence are unchanged.
+
+**Execution and evidence:** This was a documentation-only scope decision. No
+implementation, reconstruction, comparison, or test was performed. Existing
+case-specific manual and automated evidence remains recorded in its original
+entries and task notes.
+
+**Review and related revision:** Task checkboxes were preserved. Optional
+figures remain optional per run, while their support remains an automation
+requirement under FR-31. ARC usability is an interface objective; deployment
+or execution in ARC is not required for this delivery under the PRD and remains
+unverified.
+
+**Limitations:** This decision does not implement or execute Cartesian 2D CS,
+resolve support for multiple ESPIRiT map sets, establish general scientific
+validation, or verify ARC execution.
+
 ## 2026-11-22 — Manual and automated multichannel CS calibration evidence
 
 **Date:** Consolidated on 2026-11-22 from Ricardo's reports of the manual and

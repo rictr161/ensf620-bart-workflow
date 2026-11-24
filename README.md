@@ -9,10 +9,14 @@ intervention in MRI reconstruction while maintaining numerical equivalence with
 verified reference reconstructions. Python is the primary implementation language
 for configuring, validating, executing and recording reviewed BART procedures.
 
-The technical scope is **Cartesian 2D and 3D reconstruction, including compressed
-sensing (CS)**. The workflow will organize existing BART commands. Changes to BART's
-reconstruction algorithms, radial and 4D reconstruction, scanner extraction and
-`.h5` conversion are outside the current implementation scope.
+The December 1, 2026 delivery scope is **fully sampled Cartesian 2D, fully
+sampled Cartesian 3D, and Cartesian 3D compressed sensing (CS)**. Ricardo's
+2026-11-23 decision supersedes the earlier inclusion of Cartesian 2D CS as a
+capability required for this delivery. Cartesian 2D CS may be considered as a
+future extension without an implementation commitment. Support for multiple
+ESPIRiT map sets is a separate unresolved capability. Radial and 4D
+reconstruction, scanner extraction, and `.h5` conversion remain outside the
+current implementation scope.
 
 Development and testing will use **BART-generated synthetic phantoms**. Current
 experimental inputs are reported as brain MRI 3D Cartesian BART `.cfl`/`.hdr`
@@ -53,6 +57,11 @@ repository. The manual Cartesian 3D compressed-sensing case is documented by the
 logs, figure and execution records retained in Ricardo's local `~/bart-learning/`
 directories outside the repository. Its observed results are also case-specific
 and do not establish general validation or a quality acceptance criterion.
+Ricardo additionally reported a local automated 3D multichannel `ecalib` run
+and `cmp` exit code `0` for the manual/automated sensitivity,
+eigenvalue, and reconstruction files. These are case-specific paired-run
+results, not reference comparisons; see the [Task 7.6 evidence](tasks/tasks-bart-reconstruction-workflow.md)
+and [source workflow notes](src/README.md).
 
 The [synthetic procedure](tests/synthetic_2d/README.md) describes the exercise
 and its proposed reproduction route. The
@@ -64,20 +73,25 @@ with Apple M5 and 24 GB memory; software details are in the
 ### Requirements and task planning
 
 The [software PRD](tasks/prd-bart-reconstruction-workflow.md) is a
-**Reviewed draft for task planning**, covering Cartesian 2D, Cartesian 3D and
-Cartesian 3D compressed sensing. The development task list records completed manual procedure preparation,
-review, execution evidence and static evidence review for the Cartesian 3D and
-Cartesian 3D compressed-sensing cases. Automation and remaining evaluation
-decisions are still pending.
+**Reviewed draft for task planning**, covering the three delivery cases listed
+above. The development task list records completed manual procedure preparation,
+review and execution evidence for those cases. Block 7.0 and Tasks 7.1–7.12 are
+complete. Tasks 7.10–7.12 record the comparison proposal, Ricardo's
+tutorial-block evaluations of the three existing synthetic automated outputs,
+and the evidence review. These comparisons do not add a general comparison CLI
+to `bart_workflow.py`.
 
 ### Work still pending
 
-- The automated Python workflow in `src/` and verified experimental reconstruction
-  configurations in `configs/`.
-- The automated counterpart of the reviewed 3D Cartesian manual procedure.
+- A formal evaluation protocol and acceptance criteria for interpreting the
+  case-specific manual–automated comparisons.
 - Additional synthetic fixtures, a formal regression suite, and approved numerical
   tolerances and operator-action counting rules.
 - Reproduction from this repository and a clean checkout.
+- ARC deployment or execution is not required for this delivery; actual ARC
+  compatibility has not been verified and remains a possible later direction.
+- The final operator guide `docs/automated-workflow.md` remains a planned
+  documentation deliverable and has not been created.
 
 DICOM comparison remains a proposed complementary reference without an approved
 validation protocol.
@@ -235,8 +249,13 @@ repository or a clean checkout has not yet been verified.
 
 ## Automated execution
 
-The automated Python/BART workflow is **not implemented yet**. The
-[source notes](src/README.md) describe the planned role of `src/`; the
+The initial Python/BART workflow is implemented in [`src/bart_workflow.py`](src/bart_workflow.py)
+for the three delivery cases, including explicit Cartesian 3D CS sampling and
+sensitivity-source options. Tasks 7.7–7.9 record the static-check review,
+owner-run execution evidence, and implementation/evidence review. These
+case-specific results do not establish general scientific quality or ARC
+compatibility. The [source notes](src/README.md) document current behavior and
+limits; the
 [configuration notes](configs/README.md) record that no experimental reconstruction
 configuration has been verified.
 
@@ -297,7 +316,7 @@ Their intended roles and current contents are shown separately.
 
 | Directory | Intended role | Current contents |
 | --- | --- | --- |
-| `src/` | Python workflow implementation | A README describing the planned workflow; implementation is pending |
+| `src/` | Python workflow implementation | `bart_workflow.py` and its behavior notes; scoped static checks and execution review remain pending |
 | `configs/` | Reconstruction settings | A README describing configuration responsibilities; no configuration files are included yet |
 | `tests/` | Verification cases | READMEs describing verification status and the exploratory synthetic 2D procedure; a formal regression suite remains pending |
 | `scripts/` | Supporting utilities for data generation, execution and analysis | The NumPy checker, the synthetic visualization script and their documentation |

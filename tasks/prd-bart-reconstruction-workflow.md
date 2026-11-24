@@ -43,8 +43,8 @@ Access and authority for AI-assisted operations are governed by the accepted [Da
 - Record the commands, configurations, outputs, and observed results of manual execution.
 - Develop Python automation that performs the reviewed manual procedures under equivalent conditions.
 - Support automation for all three agreed reconstruction cases:
-  - Cartesian 2D.
-  - Cartesian 3D.
+  - Fully sampled Cartesian 2D without CS.
+  - Fully sampled Cartesian 3D without CS.
   - Cartesian 3D with compressed sensing.
 - Keep reconstruction inputs unchanged and organize outputs in separate run directories.
 - Associate each result with the settings used to produce it.
@@ -78,7 +78,7 @@ Access and authority for AI-assisted operations are governed by the accepted [Da
 ### 3.2 Reconstruction workflow user
 
 - As a user, I want the reconstruction workflow to accept compatible BART `.cfl/.hdr` inputs so that reconstruction can be separated from scanner-specific extraction.
-- As a user, I want the workflow to support Cartesian 2D, Cartesian 3D, and Cartesian 3D compressed-sensing procedures.
+- As a user, I want the workflow to support fully sampled Cartesian 2D, fully sampled Cartesian 3D, and Cartesian 3D compressed-sensing procedures.
 - As a user, I want to run the workflow from a terminal without a graphical interface.
 - As a user, I want to provide all required configuration before execution so that the run does not require interactive questions.
 - As a user, I want source inputs preserved so that a reconstruction run does not alter the original case.
@@ -174,9 +174,16 @@ non-interactive and record the effective parameter values, including defaults us
 
 **FR-38.** The automation must support the three agreed reconstruction cases in the planned scope:
 
-- Cartesian 2D.
-- Cartesian 3D.
+- Fully sampled Cartesian 2D without CS.
+- Fully sampled Cartesian 3D without CS.
 - Cartesian 3D with compressed sensing.
+
+For the December 1, 2026 delivery, Cartesian 2D CS is outside the agreed
+scope. Ricardo's decision on 2026-11-23 supersedes its earlier inclusion as a
+capability for this delivery. It may be considered as a future extension, with
+no implementation commitment. This decision does not change the separate
+status of support for multiple ESPIRiT map sets. Radial reconstruction remains
+outside the current scope.
 
 **FR-39.** The automation must execute without windows, dialogs, or interactive questions. All required configuration must be available before execution begins.
 
@@ -203,10 +210,13 @@ non-interactive and record the effective parameter values, including defaults us
 
 ### 5.1 Software scope
 
-The initial software scope includes:
+For the December 1, 2026 delivery, the software scope includes:
 
-- Manual procedures for Cartesian 2D, Cartesian 3D, and Cartesian 3D compressed-sensing reconstruction.
-- Python automation equivalent to those reviewed manual procedures.
+- Manual procedures for fully sampled Cartesian 2D, fully sampled Cartesian
+  3D, and Cartesian 3D compressed-sensing reconstruction.
+- Python automation equivalent to those reviewed procedures, including
+  Cartesian 3D CS with supplied sensitivities or explicitly requested
+  `ecalib`.
 - Terminal execution through a non-graphical command-line entry point.
 - Reusable Python functions supporting the terminal workflow.
 - Configurable reconstruction settings.
@@ -215,6 +225,11 @@ The initial software scope includes:
 - Separate run directories and association of outputs with their effective settings.
 - Comparison of manual and automated routes using the same prepared synthetic inputs, equivalent effective configurations, and equivalent requested outputs.
 - Synthetic phantom generation for preparation of development and evaluation examples.
+
+Cartesian 2D CS is not required for this delivery and may be considered only
+as a future extension. This does not imply support for multiple ESPIRiT map
+sets; that is an independent unresolved capability. Radial reconstruction
+remains out of scope.
 
 The initial software scope does not include:
 
@@ -229,6 +244,8 @@ The initial software scope does not include:
 - A graphical user interface.
 
 Batch reconstruction and reuse in ARC remain possible future directions. Their scope, interface, deployment details, and implementation are not committed by this PRD.
+ARC deployment or execution is not an acceptance requirement for the December
+1, 2026 delivery; compatibility and execution in ARC remain unverified.
 
 ### 5.2 AI access and authority boundary
 

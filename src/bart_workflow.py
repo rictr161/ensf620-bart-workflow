@@ -7,7 +7,9 @@ The module supports the first implementation block only:
 * Cartesian 3D compressed-sensing ``pics`` with supplied maps or an explicitly
   requested ``ecalib`` calibration, supporting one ESPIRiT map set.
 
-It does not generate phantoms or sampling masks.
+When requested, it estimates and saves a sampling pattern from the input
+k-space. It does not generate phantoms or prepare a new retrospective
+undersampling operation.
 """
 
 from __future__ import annotations
@@ -15,6 +17,7 @@ from __future__ import annotations
 import argparse
 from dataclasses import asdict, dataclass
 import json
+import platform
 from pathlib import Path
 import subprocess
 import sys
@@ -26,6 +29,8 @@ import numpy as np
 MANUAL_CS_PROFILE = "manual-cartesian-3d-cs"
 SENSITIVITY_SOURCE_PROVIDED = "provided"
 SENSITIVITY_SOURCE_ECALIB = "ecalib"
+SAMPLING_SOURCE_PROVIDED = "provided"
+SAMPLING_SOURCE_BART_PATTERN = "bart-pattern"
 _ECALIB_DEFAULT_KERNEL_SIZE = "6:6:6"
 _ECALIB_DEFAULT_THRESHOLD = 0.001
 _ECALIB_DEFAULT_CROP = 0.8
@@ -67,6 +72,8 @@ class ReconstructionConfig:
     ecalib_threshold: float | None = None
     ecalib_crop: float | None = None
     ecalib_map_sets: int | None = None
+    save_figures: bool = False
+    sampling_source: str = SAMPLING_SOURCE_PROVIDED
 
 
 @dataclass(frozen=True)
@@ -173,15 +180,108 @@ def run_reconstruction(config: ReconstructionConfig) -> ReconstructionResult:
             raise WorkflowInputError(f"k-space inspection failed: {exc}") from exc
         _record_stage(stage_records, "input-inspection", "success", 0)
 
+        runtime_environment = {
+            "python_executable": sys.executable,
+            "python_version": platform.python_version(),
+            "numpy_version": np.__version__,
+            "operating_system": platform.system(),
+            "os_release": platform.release(),
+            "os_version": platform.version(),
+            "architecture": platform.machine(),
+            "bart_executable": config.bart_executable,
+        }
+        bart_version_command = [
+            config.bart_executable,
+            "version",
+            "-V",
+        ]
+        bart_version_log = output_directory / "bart-version.log"
+        (
+            bart_version_result,
+            bart_version_log_error,
+            bart_version_response,
+        ) = _run_bart(bart_version_command, bart_version_log)
+        _record_stage(
+            stage_records,
+            "runtime-environment",
+            "success" if bart_version_result == 0 else "failed",
+            bart_version_result,
+            environment=runtime_environment,
+            bart_version_command=bart_version_command,
+            bart_version_exit_code=bart_version_result,
+            bart_version_response=bart_version_response,
+            bart_version_log=(
+                str(bart_version_log) if bart_version_log_error is None else None
+            ),
+            bart_version_log_requested=str(bart_version_log),
+            bart_version_log_error=bart_version_log_error,
+        )
+        if bart_version_log_error is not None:
+            _record_stage(
+                stage_records,
+                "bart-version-log",
+                "failed",
+                1,
+                requested_path=str(bart_version_log),
+                error=bart_version_log_error,
+            )
+        if bart_version_result != 0 or bart_version_log_error is not None:
+            records_saved = _try_write_stage_records(
+                stage_records_path, config, stage_records
+            )
+            return ReconstructionResult(
+                bart_version_result if bart_version_result != 0 else 1,
+                output_directory,
+                None,
+                stage_records_path if records_saved else None,
+            )
+
         effective_settings = _effective_settings(config, output_directory)
         sensitivity_path: Path | None = None
         if config.compressed_sensing:
-            try:
-                if config.sampling_mask is None:
-                    raise WorkflowInputError(
-                        "compressed sensing requires a sampling mask"
+            sampling_mask_path = Path(effective_settings["sampling_mask"])
+            if config.sampling_source == SAMPLING_SOURCE_BART_PATTERN:
+                sampling_log = output_directory / "sampling-pattern.log"
+                sampling_command = _build_sampling_pattern_command(
+                    config, sampling_mask_path
+                )
+                sampling_result, sampling_log_error, _ = _run_bart(
+                    sampling_command, sampling_log
+                )
+                _record_stage(
+                    stage_records,
+                    "sampling-pattern-estimation",
+                    "success" if sampling_result == 0 else "failed",
+                    sampling_result,
+                    command=sampling_command,
+                    log=str(sampling_log),
+                    log_error=sampling_log_error,
+                    source=config.sampling_source,
+                    kspace=str(config.kspace),
+                    requested_output=str(sampling_mask_path),
+                    method="BART pattern nonzero k-space support",
+                )
+                if sampling_log_error is not None:
+                    _record_stage(
+                        stage_records,
+                        "sampling-pattern-log",
+                        "failed",
+                        1,
+                        error=sampling_log_error,
+                        log=str(sampling_log),
                     )
-                mask_values = read_bart_array(config.sampling_mask)
+                if sampling_result != 0 or sampling_log_error is not None:
+                    records_saved = _try_write_stage_records(
+                        stage_records_path, config, stage_records
+                    )
+                    return ReconstructionResult(
+                        sampling_result if sampling_result != 0 else 1,
+                        output_directory,
+                        None,
+                        stage_records_path if records_saved else None,
+                    )
+            try:
+                mask_values = read_bart_array(sampling_mask_path)
                 _validate_cs_mask_shape(mask_values, input_values)
                 _validate_binary_mask(mask_values)
                 _validate_masked_kspace(mask_values, input_values)
@@ -192,11 +292,20 @@ def run_reconstruction(config: ReconstructionConfig) -> ReconstructionResult:
                     "failed",
                     1,
                     error=str(exc),
+                    source=config.sampling_source,
+                    candidate_path=str(sampling_mask_path),
                 )
                 raise WorkflowInputError(
-                    f"sampling input validation failed: {exc}"
+                    f"sampling mask validation failed: {exc}"
                 ) from exc
-            _record_stage(stage_records, "sampling-check", "success", 0)
+            _record_stage(
+                stage_records,
+                "sampling-check",
+                "success",
+                0,
+                source=config.sampling_source,
+                sampling_mask=str(sampling_mask_path),
+            )
 
             if config.sensitivity_source == SENSITIVITY_SOURCE_ECALIB:
                 try:
@@ -222,7 +331,7 @@ def run_reconstruction(config: ReconstructionConfig) -> ReconstructionResult:
                     sensitivity_path,
                     eigenvalues_path,
                 )
-                calibration_result, calibration_log_error = _run_bart(
+                calibration_result, calibration_log_error, _ = _run_bart(
                     calibration_command, calibration_log
                 )
                 _record_stage(
@@ -335,7 +444,7 @@ def run_reconstruction(config: ReconstructionConfig) -> ReconstructionResult:
             sensitivity_path,
         )
         reconstruction_log = output_directory / "reconstruction.log"
-        command_result, log_error = _run_bart(command, reconstruction_log)
+        command_result, log_error, _ = _run_bart(command, reconstruction_log)
         _record_stage(
             stage_records,
             "reconstruction",
@@ -396,6 +505,48 @@ def run_reconstruction(config: ReconstructionConfig) -> ReconstructionResult:
                 f"reconstruction output validation failed: {exc}"
             ) from exc
         _record_stage(stage_records, "reconstruction-output-check", "success", 0)
+        if config.save_figures:
+            figure_path = output_directory / "figures" / "reconstruction.png"
+            presentation: dict[str, Any] = {
+                "spatial_dimensionality": config.spatial_dimensionality,
+                "colormap": "gray",
+                "origin": "lower",
+                "aspect": "equal",
+                "interpolation": "none",
+                "transpose_each_plane": True,
+                "dpi": 160,
+            }
+            try:
+                panels, presentation = _prepare_reconstruction_figure(
+                    output_values, config.spatial_dimensionality
+                )
+                _save_reconstruction_figure(
+                    figure_path, panels, presentation
+                )
+            except (ImportError, OSError, RuntimeError, ValueError) as exc:
+                _record_stage(
+                    stage_records,
+                    "reconstruction-figure",
+                    "failed",
+                    1,
+                    destination=str(figure_path),
+                    presentation=presentation,
+                    error=str(exc),
+                )
+                _report_warning(
+                    "optional reconstruction figure generation failed; the "
+                    "reconstruction remains valid. The destination was not "
+                    f"confirmed as saved: {figure_path}: {exc}"
+                )
+            else:
+                _record_stage(
+                    stage_records,
+                    "reconstruction-figure",
+                    "success",
+                    0,
+                    path=str(figure_path),
+                    presentation=presentation,
+                )
         if not _try_write_stage_records(stage_records_path, config, stage_records):
             return ReconstructionResult(1, output_directory, None, None)
         return ReconstructionResult(
@@ -425,6 +576,15 @@ def _validate_configuration(config: ReconstructionConfig) -> None:
         raise WorkflowInputError("spatial dimensionality must be 2 or 3")
     if not isinstance(config.compressed_sensing, bool):
         raise WorkflowInputError("compressed sensing selection must be boolean")
+    if not isinstance(config.save_figures, bool):
+        raise WorkflowInputError("figure-generation selection must be boolean")
+    if not isinstance(config.sampling_source, str) or config.sampling_source not in (
+        SAMPLING_SOURCE_PROVIDED,
+        SAMPLING_SOURCE_BART_PATTERN,
+    ):
+        raise WorkflowInputError(
+            "sampling source must be 'provided' or 'bart-pattern'"
+        )
     if not isinstance(config.fft_normalization, str):
         raise WorkflowInputError("FFT normalization must be a string")
     if config.fft_normalization != "unitary":
@@ -473,8 +633,16 @@ def _validate_configuration(config: ReconstructionConfig) -> None:
         config.ecalib_map_sets,
     )
     if config.compressed_sensing:
-        if config.sampling_mask is None:
-            raise WorkflowInputError("compressed sensing requires a sampling mask")
+        if config.sampling_source == SAMPLING_SOURCE_PROVIDED:
+            if config.sampling_mask is None:
+                raise WorkflowInputError(
+                    "sampling source 'provided' requires --sampling-mask"
+                )
+        elif config.sampling_mask is not None:
+            raise WorkflowInputError(
+                "--sampling-mask cannot be combined with sampling source "
+                "'bart-pattern'"
+            )
         _resolve_cs_settings(config)
         if config.sensitivity_source == SENSITIVITY_SOURCE_PROVIDED:
             if config.sensitivities is None:
@@ -493,6 +661,7 @@ def _validate_configuration(config: ReconstructionConfig) -> None:
             _resolve_ecalib_settings(config)
     elif (
         config.sampling_mask is not None
+        or config.sampling_source != SAMPLING_SOURCE_PROVIDED
         or config.sensitivities is not None
         or config.sensitivity_source != SENSITIVITY_SOURCE_PROVIDED
         or any(value is not None for value in ecalib_options)
@@ -511,8 +680,9 @@ def _validate_configuration(config: ReconstructionConfig) -> None:
         )
     ):
         raise WorkflowInputError(
-            "sampling, sensitivity, calibration, profiles, and pics options are "
-            "only accepted for the CS route"
+            "sampling masks and non-default sampling sources, sensitivity, "
+            "calibration, profiles, and pics options are only accepted for "
+            "the CS route"
         )
 
 
@@ -633,7 +803,7 @@ def _validate_ecalib_compatibility(
     if not np.all(calibration_region == 1):
         raise WorkflowInputError(
             "the configured ecalib calibration region is not fully sampled by "
-            "the supplied mask"
+            "the effective sampling mask"
         )
 
 
@@ -771,6 +941,119 @@ def _validate_output_shape(
         raise WorkflowInputError("reconstruction spatial shape does not match input")
 
 
+def _prepare_reconstruction_figure(
+    values: np.ndarray, spatial_dimensionality: int
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    spatial_shape = tuple(values.shape[:spatial_dimensionality])
+    magnitude = np.abs(values.reshape(spatial_shape, order="F"))
+    maximum_magnitude = float(np.max(magnitude))
+    zero_magnitude = maximum_magnitude == 0.0
+    display_maximum = 1.0 if zero_magnitude else maximum_magnitude
+
+    if spatial_dimensionality == 2:
+        panels = [
+            {
+                "title": "Full 2D reconstruction",
+                "values": magnitude,
+                "horizontal_axis": 0,
+                "vertical_axis": 1,
+            }
+        ]
+        center_indices: list[int] | None = None
+    else:
+        center_indices = [size // 2 for size in spatial_shape]
+        center_0, center_1, center_2 = center_indices
+        panels = [
+            {
+                "title": f"Array axes 0 and 1; axis 2 index {center_2}",
+                "values": magnitude[:, :, center_2],
+                "horizontal_axis": 0,
+                "vertical_axis": 1,
+            },
+            {
+                "title": f"Array axes 0 and 2; axis 1 index {center_1}",
+                "values": magnitude[:, center_1, :],
+                "horizontal_axis": 0,
+                "vertical_axis": 2,
+            },
+            {
+                "title": f"Array axes 1 and 2; axis 0 index {center_0}",
+                "values": magnitude[center_0, :, :],
+                "horizontal_axis": 1,
+                "vertical_axis": 2,
+            },
+        ]
+
+    presentation = {
+        "spatial_shape": list(spatial_shape),
+        "center_indices": center_indices,
+        "magnitude_limits": {"vmin": 0.0, "vmax": display_maximum},
+        "maximum_magnitude": maximum_magnitude,
+        "zero_magnitude_fallback": zero_magnitude,
+        "colormap": "gray",
+        "origin": "lower",
+        "aspect": "equal",
+        "interpolation": "none",
+        "transpose_each_plane": True,
+        "dpi": 160,
+        "figure_size_inches": (
+            [6.5, 6.5] if len(panels) == 1 else [13.0, 4.5]
+        ),
+        "views": [
+            {
+                "title": panel["title"],
+                "horizontal_axis": panel["horizontal_axis"],
+                "vertical_axis": panel["vertical_axis"],
+            }
+            for panel in panels
+        ],
+    }
+    return panels, presentation
+
+
+def _save_reconstruction_figure(
+    path: Path,
+    panels: list[dict[str, Any]],
+    presentation: dict[str, Any],
+) -> None:
+    import matplotlib
+    presentation["matplotlib_version"] = matplotlib.__version__
+
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.figure import Figure
+
+    path.parent.mkdir(exist_ok=False)
+    figure = Figure(
+        figsize=tuple(presentation["figure_size_inches"]),
+        dpi=presentation["dpi"],
+        constrained_layout=True,
+    )
+    canvas = FigureCanvasAgg(figure)
+    axes = figure.subplots(1, len(panels), squeeze=False).ravel()
+    images = []
+    limits = presentation["magnitude_limits"]
+    for axis, panel in zip(axes, panels):
+        image = axis.imshow(
+            panel["values"].T,
+            cmap=presentation["colormap"],
+            origin=presentation["origin"],
+            aspect=presentation["aspect"],
+            interpolation=presentation["interpolation"],
+            vmin=limits["vmin"],
+            vmax=limits["vmax"],
+        )
+        images.append(image)
+        axis.set_title(panel["title"])
+        axis.set_xlabel(f"Array axis {panel['horizontal_axis']} index")
+        axis.set_ylabel(f"Array axis {panel['vertical_axis']} index")
+    figure.colorbar(images[-1], ax=axes, label="Magnitude")
+
+    with path.open("xb") as figure_file:
+        canvas.print_png(figure_file)
+    if not path.is_file() or path.stat().st_size == 0:
+        raise OSError(f"figure output was not saved as a non-empty PNG: {path}")
+
+
 def _resolve_cs_settings(config: ReconstructionConfig) -> dict[str, Any]:
     values = dict(_CS_PROFILE_VALUES) if config.reconstruction_profile == MANUAL_CS_PROFILE else {}
     overrides = {
@@ -810,12 +1093,28 @@ def _resolve_cs_settings(config: ReconstructionConfig) -> dict[str, Any]:
 def _effective_settings(
     config: ReconstructionConfig, output_directory: Path
 ) -> dict[str, Any]:
+    sampling_mask_path: Path | None = None
+    sampling_estimation: dict[str, str] | None = None
+    if config.compressed_sensing:
+        if config.sampling_source == SAMPLING_SOURCE_PROVIDED:
+            sampling_mask_path = config.sampling_mask
+        else:
+            sampling_mask_path = output_directory / "sampling_mask"
+            sampling_estimation = {
+                "method": "BART pattern nonzero k-space support",
+                "kspace": str(config.kspace),
+            }
     settings: dict[str, Any] = {
         "spatial_dimensionality": config.spatial_dimensionality,
         "compressed_sensing": config.compressed_sensing,
         "fft_normalization": config.fft_normalization,
+        "save_figures": config.save_figures,
         "kspace": str(config.kspace),
-        "sampling_mask": str(config.sampling_mask) if config.sampling_mask else None,
+        "sampling_source": config.sampling_source,
+        "sampling_mask": (
+            str(sampling_mask_path) if sampling_mask_path is not None else None
+        ),
+        "sampling_estimation": sampling_estimation,
         "sensitivity_source": config.sensitivity_source,
         "sensitivities": (
             str(config.sensitivities)
@@ -834,6 +1133,17 @@ def _effective_settings(
         settings["ecalib"] = _resolve_ecalib_settings(config)
         settings["eigenvalues"] = str(output_directory / "eigenvalues")
     return settings
+
+
+def _build_sampling_pattern_command(
+    config: ReconstructionConfig, sampling_mask_path: Path
+) -> list[str]:
+    return [
+        config.bart_executable,
+        "pattern",
+        str(config.kspace),
+        str(sampling_mask_path),
+    ]
 
 
 def _build_ecalib_command(
@@ -881,7 +1191,8 @@ def _build_command(
 
     pics = settings["pics"]
     regularization = f"W:7:0:{pics['regularization_weight']}"
-    if config.sampling_mask is None or sensitivity_path is None:
+    sampling_mask_path = settings["sampling_mask"]
+    if sampling_mask_path is None or sensitivity_path is None:
         raise WorkflowInputError(
             "CS reconstruction requires a sampling mask and sensitivity maps"
         )
@@ -907,7 +1218,7 @@ def _build_command(
             "-w",
             str(pics["data_scaling"]),
             "-p",
-            str(config.sampling_mask),
+            str(sampling_mask_path),
             str(config.kspace),
             str(sensitivity_path),
             str(reconstruction_path),
@@ -918,7 +1229,7 @@ def _build_command(
 
 def _run_bart(
     command: Sequence[str], log_path: Path
-) -> tuple[int, str | None]:
+) -> tuple[int, str | None, str | None]:
     try:
         completed = subprocess.run(
             list(command),
@@ -932,7 +1243,7 @@ def _run_bart(
         log_error = _try_write_text(log_path, f"ERROR: {exc}\n")
         if log_error:
             _report_error(f"BART invocation diagnostic could not be saved: {log_error}")
-        return 1, log_error
+        return 1, log_error, None
     log_error = _try_write_text(
         log_path,
         f"Command: {json.dumps(list(command))}\n"
@@ -946,7 +1257,7 @@ def _run_bart(
         )
     elif completed.returncode != 0:
         _report_error(f"BART returned exit code {completed.returncode}")
-    return completed.returncode, log_error
+    return completed.returncode, log_error, completed.stdout
 
 
 def _record_stage(
@@ -994,6 +1305,10 @@ def _report_error(message: str) -> None:
     print(f"ERROR: {message}", file=sys.stderr)
 
 
+def _report_warning(message: str) -> None:
+    print(f"WARNING: {message}", file=sys.stderr)
+
+
 def _jsonable(value: Any) -> Any:
     if isinstance(value, Path):
         return str(value)
@@ -1015,6 +1330,11 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--bart-executable", default="bart")
     parser.add_argument("--fft-normalization", default="unitary")
     parser.add_argument("--sampling-mask", type=Path)
+    parser.add_argument(
+        "--sampling-source",
+        choices=(SAMPLING_SOURCE_PROVIDED, SAMPLING_SOURCE_BART_PATTERN),
+        default=SAMPLING_SOURCE_PROVIDED,
+    )
     parser.add_argument("--sensitivities", type=Path)
     parser.add_argument(
         "--sensitivity-source",
@@ -1034,6 +1354,7 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--pics-step", type=float)
     parser.add_argument("--pics-disable-random-shift", action=argparse.BooleanOptionalAction)
     parser.add_argument("--pics-data-scaling", type=float)
+    parser.add_argument("--save-figures", action="store_true")
     return parser.parse_args(argv)
 
 

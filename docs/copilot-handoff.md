@@ -19,8 +19,10 @@ Python is the chosen primary implementation language for the Cartesian 2D/3D
 workflow, including compressed sensing. The existing evidence is Ricardo's
 fully sampled, single-channel, 64 × 64 synthetic 2D exercise, with an independent
 NumPy inverse of the BART-generated k-space. No numerical acceptance threshold was
-applied. The automated workflow, verified experimental 3D baseline, approved
-evaluation criteria and clean-checkout reproduction remain pending; see
+applied. The initial automated workflow is implemented; its scoped static
+verification and owner-run execution review remain pending. A verified
+experimental 3D baseline, approved evaluation criteria and clean-checkout
+reproduction also remain pending; see
 [Current status](../README.md#current-status). DICOM comparison remains a proposed
 complementary reference without an approved protocol.
 
