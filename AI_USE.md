@@ -14,6 +14,93 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-24 — Automated Cartesian workflow tutorial
+
+**Date:** Prepared on 2026-11-24.
+
+**Tool/model and access mode:** Copilot reviewed repository source and
+documentation and drafted user-facing documentation. No commands, Python,
+BART, tests, installations, or Git operations were performed. Exact model
+identifiers were not recorded.
+
+**Inputs:** `src/bart_workflow.py`, `src/README.md`, the project README, the
+automation task record, the local macOS and BART environment records, the
+synthetic 2D procedure, and existing synthetic execution reports.
+
+**Assistance and affected files:** Copilot created
+`docs/tutorials/automated-cartesian-workflow.md` and updated `README.md`,
+`tasks/tasks-bart-reconstruction-workflow.md`, and this record. The
+implementation, tutorials describing manual procedures, PRD, parameters, and
+execution records were not changed.
+
+**Corrections and decisions:** The guide documents the four routes and their
+actual CLI arguments, input validation limits, profile behavior, outputs,
+logs, and failure handling as found in the current source. It distinguishes
+coil channels from ESPIRiT map sets, identifies the profile as a synthetic
+example, and does not make a reference comparison part of reconstruction.
+
+**Execution and evidence:** The guide's sample invocations were not executed.
+This documentation work adds no new reconstruction, comparison, or ARC
+execution evidence.
+
+**Review and related revision:** CLI names, accepted values, defaults,
+configuration validation, BART command construction, stage records, and
+output paths were checked by reading the implementation and existing
+documentation. The README and Task 7.6 note link the guide while distinguishing
+document drafting from execution of its examples.
+
+**Limitations:** The existence and readiness of the local synthetic input
+pairs and new output destinations were not checked. The guide does not verify
+acquired-data suitability, clean-checkout reproduction, ARC execution, or
+laboratory batch processing.
+
+## 2026-11-24 — Operator-intervention measurement closure
+
+**Date:** Consolidated on 2026-11-24 from Ricardo's reported execution evidence,
+follow-up confirmations, and the existing results artifacts.
+
+**Tool/model and access mode:** Copilot reviewed the authorized repository
+documents and consolidated the task records. ChatGPT guided the checks and
+prepared the results report, workbook, and calculations. Ricardo executed,
+reviewed, and confirmed the actions. No commands, Python, BART, tests,
+installations, or Git operations were performed for this documentary
+consolidation. Exact model identifiers were not recorded.
+
+**Inputs:** Block 9 of the task list; the intervention results report and
+workbook; the approved protocol and checklist; Task 4.6 evidence and the
+manual Cartesian 2D tutorial; and the recent AI-use record format. Only
+repository documents were consulted.
+
+**Assistance and affected files:** Copilot updated
+`tasks/tasks-bart-reconstruction-workflow.md`,
+`docs/operator-intervention-results.md`, and this record. The report's two
+workbook links now point to the existing workbook directly under `docs/`;
+neither the workbook nor its location was changed.
+
+**Corrections and decisions:** Tasks 9.0–9.6 are recorded complete. Task 9.4
+attributes the eight reported executions and associated reviews to Ricardo.
+Task 9.5 preserves the reported case and aggregate action counts and links the
+results report. Task 9.6 cites the earlier 2D tutorial evidence. Untranscribed
+numeric exit codes remain unspecified.
+
+**Execution and evidence:** The repository report records four manual–automated
+pairs, with totals of 26 manual and 12 automated actions, a difference of 14,
+and a 53.85% aggregate reduction. Its 58-row ledger contains 38 counted actions:
+28 documented and 10 subsequently confirmed by Ricardo. This consolidation
+performed no reconstruction or new measurement.
+
+**Review and related revision:** The action-count results were checked against
+the approved protocol and checklist. Task 4.6 and the tutorial support the
+finding that the initial 2D tutorial and preliminary comparison were completed
+independently of the later intervention protocol. The Excel file's repository
+location was confirmed as `docs/operator-intervention-results.xlsx`.
+
+**Limitations:** The results describe action counts under the approved
+protocol only; they do not establish time savings, image quality, causality,
+general advantage, or ARC performance. The report retains the missing numeric
+status transcriptions and the retrospective confirmation status of ten
+counted actions. No local measurement directories were accessed.
+
 ## 2026-11-24 — Manual–automated route comparison and Block 8 closure
 
 **Date:** Consolidated on 2026-11-24 from Ricardo's explicit approvals and his

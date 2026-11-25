@@ -85,13 +85,17 @@ to `bart_workflow.py`.
 
 - A formal evaluation protocol and acceptance criteria for interpreting the
   case-specific manual–automated comparisons.
-- Additional synthetic fixtures, a formal regression suite, and approved numerical
-  tolerances and operator-action counting rules.
+- Additional synthetic fixtures, a formal regression suite, and approved
+  numerical tolerances for image-quality acceptance. The operator-intervention
+  protocol and descriptive action counts are recorded in the
+  [results report](docs/operator-intervention-results.md).
 - Reproduction from this repository and a clean checkout.
 - ARC deployment or execution is not required for this delivery; actual ARC
   compatibility has not been verified and remains a possible later direction.
-- The final operator guide `docs/automated-workflow.md` remains a planned
-  documentation deliverable and has not been created.
+- The separate final operator guide `docs/automated-workflow.md` remains a
+  planned documentation deliverable and has not been created. The
+  [current-CLI tutorial](docs/tutorials/automated-cartesian-workflow.md) has
+  been drafted, but its example commands have not been executed as a tutorial.
 
 DICOM comparison remains a proposed complementary reference without an approved
 validation protocol.
@@ -208,9 +212,13 @@ Use the NumPy result from the same exercise as those BART files.
 ### Planned automated workflow
 
 The [PRD](tasks/prd-bart-reconstruction-workflow.md) describes the planned
-Cartesian 2D/3D workflow, including CS. Detailed input conventions, required
-metadata and validation details remain open. The requirements above describe
-only the existing synthetic example. The
+Cartesian 2D/3D workflow, including CS. Input conventions, required metadata,
+and validation for acquired inputs remain open. The requirements above describe
+only the existing 64 × 64 tutorial fixture. The current implementation's
+supported routes, CLI settings, and synthetic examples are documented in the
+[automated Cartesian workflow tutorial](docs/tutorials/automated-cartesian-workflow.md)
+and [workflow source notes](src/README.md). The tutorial is a documentation
+deliverable; its example commands have not been executed as written. The
 [input inventory](docs/input-inventory.md) separately records reported experimental
 input availability and unresolved information.
 
