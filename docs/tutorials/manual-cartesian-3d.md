@@ -672,6 +672,11 @@ quantitative results distinguishable through their local records and links.
 
 ## Appendix A. Optional Interactive Slice Inspection
 
+For inspection of a single existing reconstruction without copying this
+comparison block, see the separate
+[interactive slice viewer](automated-cartesian-workflow.md#optional-interactive-slice-viewer).
+The historical two-panel reference comparison below remains unchanged.
+
 This optional inspection reads an existing reference and reconstruction and
 opens an interactive Matplotlib window for manual review. It requires an
 interactive Matplotlib backend in the `PYTHON` environment selected in
