@@ -24,11 +24,17 @@ files, including CS work. These private inputs remain outside the shared
 repository. The [input inventory](docs/input-inventory.md) distinguishes reported
 availability from verified reconstruction readiness.
 
-Operator intervention is the primary evaluation outcome. The
+Operator intervention is the primary evaluation outcome. Blocks 7–9 document
+the synthetic procedures, route comparisons, and intervention study. The
 [project context](docs/project-context.md) records the instructor's recommendations
 and broader evaluation planning, including runtime and memory as secondary
-outcomes in a planned HPC evaluation. HPC deployment is outside the current
-[software PRD](tasks/prd-bart-reconstruction-workflow.md).
+outcomes in a planned HPC evaluation. Ricardo's 2026-11-26 approved delivery
+scope additionally includes owner-reported local use with acquired BART inputs,
+use from a separate local Python environment, one ARC Slurm run, and local
+download and visual review of its reconstruction pair. This is a bounded
+operational validation, not generalized ARC deployment or batch support; see
+the [environment validation results](docs/environment-validation-results.md)
+and [software PRD](tasks/prd-bart-reconstruction-workflow.md).
 
 ## Current status
 
@@ -63,6 +69,21 @@ eigenvalue, and reconstruction files. These are case-specific paired-run
 results, not reference comparisons; see the [Task 7.6 evidence](tasks/tasks-bart-reconstruction-workflow.md)
 and [source workflow notes](src/README.md).
 
+### Acquired-input and ARC evidence
+
+Ricardo reports using the workflow locally with acquired laboratory BART
+inputs, including from a new Python environment separate from the original
+development environment. The environment used the existing BART installation;
+this was not a new operating-system installation or BART build. Ricardo also
+reports one non-interactive ARC Slurm run for a 3D CS volume, downloading its
+`reconstruction.hdr`/`.cfl` pair and reviewing it with the local slice viewer.
+The [validation record](docs/environment-validation-results.md) distinguishes
+the shared script configuration from the owner-reported execution and review.
+The repository does not contain numeric execution codes, a Slurm ID, resource
+measurements, or an effective ARC version for that job. No equivalence between
+the Mac and ARC outputs, general input validation, or scientific/clinical
+quality acceptance is claimed.
+
 The [synthetic procedure](tests/synthetic_2d/README.md) describes the exercise
 and its proposed reproduction route. The
 [results record](results/familiarization-2d-20261023/README.md) documents the
@@ -80,6 +101,10 @@ complete. Tasks 7.10–7.12 record the comparison proposal, Ricardo's
 tutorial-block evaluations of the three existing synthetic automated outputs,
 and the evidence review. These comparisons do not add a general comparison CLI
 to `bart_workflow.py`.
+Block 10 is also complete under the revised delivery scope; it links the
+existing synthetic and operator-intervention evidence to the owner-reported
+local, clean-environment, and ARC workflow use without claiming unsupported
+execution details.
 
 ### Work still pending
 
@@ -90,8 +115,9 @@ to `bart_workflow.py`.
   protocol and descriptive action counts are recorded in the
   [results report](docs/operator-intervention-results.md).
 - Reproduction from this repository and a clean checkout.
-- ARC deployment or execution is not required for this delivery; actual ARC
-  compatibility has not been verified and remains a possible later direction.
+- One ARC Slurm execution for one volume is included as owner-reported
+  operational evidence; generalized ARC deployment and batch support remain
+  outside the delivery and unverified.
 - The separate final operator guide `docs/automated-workflow.md` remains a
   planned documentation deliverable and has not been created. The
   [current-CLI tutorial](docs/tutorials/automated-cartesian-workflow.md) has
@@ -112,9 +138,11 @@ is not established or verified by the contract.
 
 ## Installation and environment
 
-The setup information currently covers the recorded synthetic 2D exercise on
-macOS with Apple Silicon. A fresh installation based on these records and
-reproduction from a clean checkout have not yet been verified.
+The setup information covers the recorded synthetic 2D exercise on macOS with
+Apple Silicon. A separate local Python environment was used for owner-reported
+acquired-data workflow use, with the existing BART executable. This does not
+establish a fresh operating-system setup, a new BART installation/build, or
+reproduction from a clean checkout.
 
 ### Recorded software
 
@@ -169,7 +197,10 @@ The direct requirement files are not complete environment locks. The
 [BART installation record](environment/bart-installation.md) describes the guided
 preparation and available build evidence, but does not contain the complete
 `Makefile.local` or full build log. A complete fresh-installation procedure and a
-separate TALC environment record remain pending.
+general HPC environment record remain pending. The
+[environment validation record](docs/environment-validation-results.md)
+contains the owner-reported clean Python environment and ARC details without
+presenting them as reproducible environment locks.
 
 ## Input requirements
 
@@ -212,9 +243,11 @@ Use the NumPy result from the same exercise as those BART files.
 ### Planned automated workflow
 
 The [PRD](tasks/prd-bart-reconstruction-workflow.md) describes the planned
-Cartesian 2D/3D workflow, including CS. Input conventions, required metadata,
-and validation for acquired inputs remain open. The requirements above describe
-only the existing 64 × 64 tutorial fixture. The current implementation's
+Cartesian 2D/3D workflow, including CS. Acquired-input dimensions, axis
+semantics, and general validation remain open even though owner-reported
+workflow use is now documented for specific local and ARC cases. The
+requirements above describe only the existing 64 × 64 tutorial fixture. The
+current implementation's
 supported routes, CLI settings, and synthetic examples are documented in the
 [automated Cartesian workflow tutorial](docs/tutorials/automated-cartesian-workflow.md)
 and [workflow source notes](src/README.md). The tutorial is a documentation
@@ -260,12 +293,14 @@ repository or a clean checkout has not yet been verified.
 The initial Python/BART workflow is implemented in [`src/bart_workflow.py`](src/bart_workflow.py)
 for the three delivery cases, including explicit Cartesian 3D CS sampling and
 sensitivity-source options. Tasks 7.7–7.9 record the static-check review,
-owner-run execution evidence, and implementation/evidence review. These
-case-specific results do not establish general scientific quality or ARC
-compatibility. The [source notes](src/README.md) document current behavior and
-limits; the
-[configuration notes](configs/README.md) record that no experimental reconstruction
-configuration has been verified.
+owner-run synthetic execution evidence, and implementation/evidence review.
+The separate owner-reported acquired-data and ARC use is documented in the
+[environment validation results](docs/environment-validation-results.md).
+These case-specific reports do not establish general scientific quality or
+compatibility with arbitrary ARC environments. The [source notes](src/README.md)
+document current behavior and limits; the
+[configuration notes](configs/README.md) distinguish the one script-described
+acquired-data configuration from a generally verified experimental profile.
 
 The existing [Python scripts](scripts/README.md) provide the NumPy comparison and
 figure generation for the [documented synthetic example](#manual-baseline).

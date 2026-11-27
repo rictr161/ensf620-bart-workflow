@@ -238,14 +238,31 @@ The initial software scope does not include:
 - Automatic selection of optimal reconstruction parameters.
 - Automatic parameter search or optimization.
 - Batch reconstruction implementation for ARC.
-- ARC deployment or a commitment to implement ARC reuse at this stage.
-- HPC deployment.
+- Generalized ARC deployment, reusable deployment support, or operational
+  support beyond the single owner-run validation included in the approved
+  delivery scope.
+- General HPC deployment or support beyond the one documented ARC Slurm run.
 - A complete implementation architecture before the reviewed manual procedures are established.
 - A graphical user interface.
 
-Batch reconstruction and reuse in ARC remain possible future directions. Their scope, interface, deployment details, and implementation are not committed by this PRD.
-ARC deployment or execution is not an acceptance requirement for the December
-1, 2026 delivery; compatibility and execution in ARC remain unverified.
+### Owner-approved delivery evidence scope (2026-11-26)
+
+The delivery includes the owner-reported use of the existing workflow with
+acquired BART inputs locally, use from a new separate local Python environment
+with the existing BART executable, and one non-interactive ARC Slurm run for a
+single volume, followed by download and local visual review of its BART
+reconstruction pair. This is a bounded operational validation of the current
+workflow, not a new feature requirement or a general ARC deployment commitment.
+
+Processing all laboratory data, batch execution, multiple ESPIRiT map sets,
+Cartesian 2D CS, and non-Cartesian trajectories remain outside this delivery.
+General ARC deployment and reuse remain future directions whose scope,
+interface, and implementation are not committed by this PRD. The
+[environment validation results](../docs/environment-validation-results.md)
+distinguish the shared script configuration from owner-reported execution and
+review, and record the missing execution logs and measurements. The absence of
+a fully sampled reference for the undersampled acquisition does not block these
+operational checks and is not filled by an invented ground truth.
 
 ### 5.2 AI access and authority boundary
 
@@ -383,6 +400,11 @@ The project will retain enough information to determine:
 - Which metric and calculation procedure were used for a quantitative comparison.
 - What differences were observed.
 - Whether the evidence concerns reference similarity, route equivalence, or operator intervention.
+- For the owner-approved delivery scope, whether workflow use was reported for
+  the local acquired-input cases and the one ARC Slurm volume, and whether the
+  ARC output pair was downloaded and reviewed locally. This operational
+  evidence is separate from scientific reference comparison and does not imply
+  Mac-to-ARC output equivalence or generalized ARC support.
 
 ## 9. Open Questions
 

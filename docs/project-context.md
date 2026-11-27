@@ -18,9 +18,10 @@ The intended contribution is a Python workflow with a simpler interface for
 configuring, validating, executing and recording reviewed BART procedures.
 Python is the chosen primary implementation language. The workflow will organize
 existing reconstruction procedures; a new reconstruction algorithm or automatic
-parameter optimizer is outside its scope. Optional Bash/HPC launchers may invoke
-the Python workflow later; HPC deployment and ARC batch processing are outside
-the initial PRD scope.
+parameter optimizer is outside its scope. The 2026-11-26 owner-approved delivery
+includes one reported non-interactive ARC Slurm run for one volume. General HPC
+deployment, operational support, and ARC batch processing remain outside the
+software scope.
 
 The current technical scope is Cartesian 2D and 3D reconstruction, including
 compressed sensing. Radial and 4D reconstruction, changes to BART algorithms,
@@ -41,9 +42,13 @@ architecture remain open in the PRD.
 Ricardo reports that the current experimental inputs are brain MRI 3D Cartesian
 BART `.cfl`/`.hdr` files, including CS work. The
 [input inventory](input-inventory.md) records that report and its historical
-context. Availability does not establish inspection or a validated reconstruction.
-The shared record does not yet establish dimension meanings, sampling,
-calibration or recipe-specific settings for a verified experimental procedure.
+context. Ricardo subsequently reported local workflow use with acquired BART
+inputs and one ARC 3D CS run; the script settings and evidence limits are recorded
+in the [environment validation results](environment-validation-results.md).
+This does not establish general input support or validated reconstruction
+quality. General dimension semantics, sampling behavior, and universally valid
+experimental settings remain unestablished. ARC job logs and resource records
+were not supplied for this consolidation.
 
 Earlier `.h5`, extractor and GE-conversion questions concern upstream provenance
 and historical context. They are outside the current implementation work.
@@ -116,11 +121,16 @@ figures. No numerical acceptance threshold was applied. The
 [results record](../results/familiarization-2d-20261023/README.md) describes the
 available measurements and their provenance.
 
-The initial automated workflow is implemented in `src/`; its scoped static
-checks and owner-run execution review remain pending. Verified experimental
-configurations in `configs/`, a verified experimental 3D manual baseline,
-measured operator-action reduction, clean-checkout reproduction and HPC
-evaluation also remain pending.
+The initial automated workflow is implemented in `src/`; its synthetic cases
+and comparisons are documented in Blocks 7–9. Ricardo reports local use with
+acquired BART inputs from both the original and a separate local Python
+environment, plus an ARC Slurm run and successful local visual review of the
+downloaded reconstruction pair. This is owner-reported operational evidence,
+not log-backed general validation, a Mac/ARC equivalence result, image-quality
+acceptance, or a verified experimental manual baseline. A clean-checkout
+reproduction, general experimental configurations, and broader HPC evaluation
+remain pending. The [README status summary](../README.md#current-status)
+provides the repository overview.
 The [README status summary](../README.md#current-status) provides the repository's
 overview of available evidence and remaining work.
 

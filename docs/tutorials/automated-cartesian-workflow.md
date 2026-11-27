@@ -292,13 +292,76 @@ to a reference. Generated sensitivity maps are retained in the run directory
 for later file-level review. The workflow does not provide a sensitivity-map
 visualization feature.
 
+## Optional interactive slice viewer
+
+The separate [`view_bart_slices.py`](../../src/view_bart_slices.py) utility
+opens an existing scalar reconstruction locally. Install the documented
+[visualization requirements](../../environment/requirements-visualization.txt)
+in your Python environment and activate that environment before running it:
+
+```bash
+python -m pip install -r environment/requirements-visualization.txt
+python src/view_bart_slices.py --input "/path/to/run/reconstruction" --axis 2
+```
+
+For example, `/path/to/run` is the containing folder;
+`reconstruction.hdr` is its BART header and `reconstruction.cfl` is the
+matching complex binary. Pass `/path/to/run/reconstruction`, the **base
+path**, not the folder alone or either extension. Relative paths are resolved
+from the terminal's current working directory. The commands above assume the
+repository root. Run `python src/view_bart_slices.py --help` for options.
+
+The viewer reads scalar 2D or 3D pairs; channel, map-set, and all later axes
+must be singleton. The first three dimensions are treated as spatial; the
+header shape alone cannot prove that interpretation or identify anatomical
+orientation. Select
+`--axis 0`, `1`, or `2` to navigate that array axis; the default is `2`.
+The slider uses integer indices and starts at the central index. An axis
+with one slice is displayed without a slider. The display uses the maximum
+magnitude of the complete volume as its fixed scale; an all-zero volume uses
+an upper display limit of `1`.
+
+Without voxel spacing, the image axes are sample indices and equal sample
+proportions are used. A plane with fewer samples along one axis can therefore
+look like a narrow strip; its shape alone does not establish physical
+dimensions. If reliable spacing is known, supply three finite positive values
+in millimeters for array axes 0, 1, and 2:
+
+```bash
+python src/view_bart_slices.py --input "/path/to/run/reconstruction" \
+  --axis 2 --voxel-spacing 1.0 1.0 2.0
+```
+
+These illustrative values are not inferred from the file or recommended for
+an acquisition. The displayed coordinates are array-axis positions in
+millimeters, with sample zero at zero; they are not anatomical coordinates.
+Equal physical proportions are retained rather than stretching the image to
+fill the panel.
+
+An interactive desktop Matplotlib backend and its GUI toolkit must be
+available in the local environment. A non-interactive backend or an
+unavailable window produces an error; the utility does not permanently
+change backend configuration. The viewer reads existing inputs only, does
+not invoke BART or require a reference, and does not automatically save
+images or metrics. It is separate from the reconstruction workflow's
+`--save-figures`, which saves a non-interactive PNG during reconstruction.
+For a result previously calculated on ARC, the operator may use the viewer
+locally on an authorized local copy of its BART pair; this does not require
+an interactive GUI on ARC. Ricardo reports a successful local review of the
+downloaded pair from the single ARC run documented in the
+[environment validation results](../environment-validation-results.md). This
+case-specific report does not verify general ARC compatibility.
+
 ## Acquired data and ARC
 
-The examples in this guide use synthetic BART preparations. Before applying a
-route to an acquired volume, establish its dimensions and axis meanings,
-sampling information, channel layout, sensitivity-map requirements, and
-effective reconstruction parameters. Do not infer a mask or trajectory from
-an acceleration factor alone.
+The invocation examples in this guide use synthetic BART preparations. For an
+acquired volume, establish its dimensions and axis meanings, sampling
+information, channel layout, sensitivity-map requirements, and effective
+reconstruction parameters. Do not infer a mask or trajectory from an
+acceleration factor alone. Ricardo's reported acquired-data cases, including
+the one ARC script configuration, are documented separately in the
+[environment validation results](../environment-validation-results.md); they
+do not establish general support for other acquisitions.
 
 The `manual-cartesian-3d-cs` profile reflects the reviewed synthetic example;
 it is not a reproduction of a colleague's acquisition protocol. That protocol
@@ -306,10 +369,12 @@ must be checked separately against the input and the settings actually
 supported and used here.
 
 For another machine, configure paths to the Python environment, BART
-executable, inputs, and a new output directory for that environment. ARC
-execution and laboratory batch processing have not been verified and remain
-outside this guide. The examples describe one non-interactive reconstruction
-per invocation.
+executable, inputs, and a new output directory for that environment; the paths
+in examples are placeholders, not universal requirements. Ricardo reports one
+non-interactive ARC Slurm execution for one volume. This does not establish
+general ARC deployment or laboratory batch processing, which remain outside
+the delivery. The examples describe one non-interactive reconstruction per
+invocation and have not been executed as a tutorial.
 
 ## Related documentation
 

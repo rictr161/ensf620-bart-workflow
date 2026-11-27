@@ -16,13 +16,17 @@ actions. It does not define the software specification or evaluation protocol,
 and acceptance does not establish technical enforcement.
 
 Python is the chosen primary implementation language for the Cartesian 2D/3D
-workflow, including compressed sensing. The existing evidence is Ricardo's
-fully sampled, single-channel, 64 × 64 synthetic 2D exercise, with an independent
-NumPy inverse of the BART-generated k-space. No numerical acceptance threshold was
-applied. The initial automated workflow is implemented; its scoped static
-verification and owner-run execution review remain pending. A verified
-experimental 3D baseline, approved evaluation criteria and clean-checkout
-reproduction also remain pending; see
+workflow, including compressed sensing. Blocks 7–9 document synthetic
+procedures, manual–automated comparisons, and operator-intervention results.
+The 64 × 64 exploratory 2D exercise remains limited to its reported values and
+has no numerical acceptance threshold. Ricardo additionally reports local use
+with acquired BART inputs, use from a separate local Python environment with
+the existing BART executable, one ARC Slurm run, and successful local review
+of the downloaded ARC reconstruction pair. The [environment validation
+results](environment-validation-results.md) distinguish reported execution
+from available records and preserve the limits. General input validation,
+Mac/ARC output equivalence, scientific quality acceptance, and clean-checkout
+reproduction remain unestablished; see
 [Current status](../README.md#current-status). DICOM comparison remains a proposed
 complementary reference without an approved protocol.
 
@@ -34,8 +38,10 @@ and retains proposed behavior and unresolved decisions. It does not establish
 implemented functionality or completed evaluation.
 
 The [project context](project-context.md) preserves the broader evaluation
-planning. HPC deployment is outside the current PRD. The next planning step is a
-review of top-level development tasks before expansion into subtasks.
+planning. The approved delivery includes one owner-reported ARC Slurm run, but
+general HPC/ARC deployment, reuse, and batch processing remain outside scope.
+Block 10 is closed under that revised delivery scope; see the task list and
+[environment validation record](environment-validation-results.md).
 
 ## Recorded Copilot use
 

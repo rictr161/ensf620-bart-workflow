@@ -14,6 +14,92 @@ A consolidation date can cover earlier activities. Entries with the same date do
 not establish an execution order. The blank form at the end is a template, not
 an activity record.
 
+## 2026-11-26 — Final delivery evidence consolidation
+
+**Date:** Prepared on 2026-11-26.
+
+**Tool/model and access mode:** Copilot in VS Code consolidated owner-supplied
+execution reports and authorized repository documentation. No laboratory
+files or private execution records were accessed.
+
+**Inputs:** Ricardo's report of local acquired-data runs, a clean separated
+local Python environment, one ARC Slurm execution, transfer of its BART output
+pair, and successful local visual review. The ARC script configuration and
+the repository's existing synthetic, comparison, and operator-intervention
+records were used as context.
+
+**Assistance and affected files:** Ricardo prepared the environments, ran the
+local commands and ARC job, transferred the output files, and reviewed the
+reconstruction. ChatGPT explained the workflow, prepared instructions, and
+guided the checks. Copilot consolidated the documentation in
+`docs/environment-validation-results.md`, `tasks/tasks-bart-reconstruction-workflow.md`,
+`tasks/prd-bart-reconstruction-workflow.md`, `README.md`, `docs/project-context.md`,
+`docs/copilot-handoff.md`, `docs/input-inventory.md`, `docs/open-questions.md`,
+`docs/data-and-ai-boundaries.md`, `docs/python-automation-behavior.md`,
+`docs/tutorials/automated-cartesian-workflow.md`, `src/README.md`,
+`configs/README.md`, `environment/README.md`, and `environment/local-macos.md`,
+and added this record.
+
+**Corrections and decisions:** The approved delivery scope includes the
+documented synthetic and comparison evidence in Blocks 7–9, owner-reported
+local use with acquired BART inputs, use from a separate clean local Python
+environment with the existing BART installation, one ARC Slurm run for one
+volume, and download and local visual review of its reconstruction pair.
+Batch processing of all laboratory data, multiple ESPIRiT map sets, 2D CS,
+and non-Cartesian trajectories remain outside this delivery. Scripted ARC
+settings are distinguished from execution records; no unprovided status,
+resource, version, or revision values were inferred.
+
+**Execution and evidence:** Copilot made documentation-only changes. No
+reconstruction, project Python, installation, or experimental test was run.
+Read-only Git status, diff, and whitespace checks were used to prepare the
+documentation review; the results are reported in the session response.
+
+**Limitations:** Local and ARC execution details are owner-reported. No
+numeric exit codes, Slurm ID, resource measurements, effective ARC versions,
+or per-run Git revisions are claimed. No Mac-to-ARC output equivalence,
+general input validation, image-quality acceptance, or ground-truth comparison
+is established. The owner-reported “listo todo perfecto” refers to the ARC
+pair download and local visual review.
+
+## 2026-11-26 — Reusable interactive slice viewer
+
+**Date:** Prepared on 2026-11-26.
+
+**Tool/model and access mode:** Copilot reviewed authorized repository
+source and documentation and prepared a separate local viewer. Exact model
+identifiers were not recorded.
+
+**Inputs:** The accepted access policy, project instructions, existing BART
+reader, interactive manual-tutorial appendices, workflow and environment
+documentation, and task status. No laboratory data or private execution
+records were accessed.
+
+**Assistance and affected files:** Copilot added `src/view_bart_slices.py`
+and updated the automated workflow tutorial, the two 3D tutorial appendices,
+`src/README.md`, and this record.
+
+**Corrections and decisions:** The viewer is separate from the non-interactive
+reconstruction workflow, reads a user-supplied BART base path, supports
+scalar 2D/3D arrays and optional user-supplied voxel spacing, and does not
+run BART or generate outputs. Existing reference-comparison blocks remain
+unchanged. No task status was changed.
+
+**Execution and evidence:** No commands, Python, tests, BART, installations,
+or GUI windows were run or opened for this change.
+
+**Review and related revision:** The reader interface and the existing
+appendices were reviewed by reading the repository files; the new code and
+documentation were reviewed statically. No reconstruction or GUI behavior is
+claimed as verified by execution.
+
+**Limitations:** At the time this entry was prepared, Ricardo still needed to
+review and run focused synthetic checks, including GUI availability, axis
+navigation, singleton slices, spacing, invalid inputs, and error handling.
+Clean-checkout usage and ARC were not verified at that checkpoint; Blocks 7–9
+were closed and Block 10 remained open then. The later Block 10 closure and
+owner-reported ARC use are recorded separately above.
+
 ## 2026-11-24 — Automated Cartesian workflow tutorial
 
 **Date:** Prepared on 2026-11-24.

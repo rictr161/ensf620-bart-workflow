@@ -431,8 +431,12 @@ review:
 - optional figures and later visualization of saved results.
 
 ARC usability here describes the non-interactive entry/interface objective; it
-does not commit to ARC deployment or execution for the December 1, 2026 delivery.
-The PRD excludes that deployment, and ARC execution has not been verified.
+does not commit to generalized ARC deployment or batch support. The PRD's
+2026-11-26 approved delivery scope includes one owner-reported ARC Slurm run for
+one volume. Its script configuration and the limits of the available evidence
+are recorded in the
+[environment validation results](environment-validation-results.md); this
+single report does not verify general ARC compatibility.
 
 Ricardo has reported a local synthetic Cartesian 3D multichannel CS execution
 using `bart-pattern` with `ecalib` and one map set. BART `version -V`,

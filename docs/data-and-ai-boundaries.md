@@ -63,7 +63,9 @@ access to laboratory storage or HPC systems.
 
 Scanner extraction and `.h5` conversion remain outside the current workflow
 implementation scope, as described in the [project context](project-context.md).
-TALC remains the planned HPC target; ARC is only a possible alternative.
+TALC remains part of broader HPC planning. Ricardo reports one ARC Slurm run
+within the approved delivery scope; general deployment and batch use remain
+outside scope. See the [environment validation results](environment-validation-results.md).
 Permitted uses, processing destinations, retention on TrueNAS and deletion of
 temporary or student-controlled copies require their applicable confirmations.
 These planning references do not establish authorization or retention terms.

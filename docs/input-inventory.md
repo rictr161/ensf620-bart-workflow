@@ -15,14 +15,16 @@ Ricardo describes the current experimental inputs as brain MRI 3D Cartesian
 BART `.cfl`/`.hdr` files, including CS work. The verification column below records
 what is established in the shared project documentation.
 
-| Reported configuration | Reported input stage and format | Reconstruction verification |
+| Reported configuration | Reported input stage and format | Reconstruction evidence |
 | --- | --- | --- |
-| 3D Cartesian | BART-format reconstruction inputs, `.cfl`/`.hdr` | Not established in the shared record |
-| 3D CS | BART-format reconstruction inputs, `.cfl`/`.hdr` | Not established in the shared record |
+| 3D Cartesian | BART-format reconstruction inputs, `.cfl`/`.hdr` | Local acquired-input workflow use is reported, but its specific input category and effective settings are not distinguished in the shared account. No local execution logs or codes are included in this repository record; see [environment validation results](environment-validation-results.md). |
+| 3D CS | BART-format reconstruction inputs, `.cfl`/`.hdr` | Ricardo reports local workflow use and one ARC Slurm run; ARC output download and local visual review are owner-reported. The script configuration and missing execution records are detailed in [environment validation results](environment-validation-results.md). |
 
 The rows describe configuration categories. They do not establish a count of
 distinct datasets, acquisitions or files. Reported availability does not establish
-file inspection, completeness, a verified recipe or reconstruction evidence.
+file inspection, completeness, general input validation, or scientific-quality
+acceptance. The reported cases do not establish that one recipe applies to all
+inputs.
 
 ## Historical availability reports
 

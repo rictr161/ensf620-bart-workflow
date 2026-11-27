@@ -194,7 +194,7 @@ unchecked until the corresponding work is completed and reviewed.
   - [x] **7.3 [Ricardo] Review the proposed automation decisions**\
     Review which information may be read or checked from supported inputs, which decisions must remain explicit configuration, and how the terminal workflow should be invoked non-interactively.
     **Dependency:** 7.2
-    **Review:** Complete. Ricardo reviewed and accepted the behavior decisions documented in [the proposed automation behavior](../docs/python-automation-behavior.md): one readable non-interactive entry; prepared BART-compatible k-space; explicit Cartesian dimensionality and CS selection; configurable parameters with documented modifiable defaults where appropriate; automatic file inspection and compatibility checks; conditional supplied-map or explicitly requested `ecalib` sensitivity routes; supplied or explicitly requested and checked sampling information; stage results, separate run directories, effective-parameter records, and optional saved figures. At that review checkpoint, sampling estimation, CS 2D, `ecalib`, and multiple ESPIRiT map sets were noted for bounded manual checks. Ricardo later reported the manual 3D multichannel `ecalib` case under 7.6. On 2026-11-23 Ricardo removed Cartesian 2D CS from the December 1 delivery scope; that supersedes its earlier inclusion as a delivery capability, not the historical review record. Ricardo subsequently reported the manual `bart pattern` check and the automated `bart-pattern` execution under 7.8; Task 7.8 is complete. Multiple map sets remain a separate unsupported capability. The accepted local/ARC-usable entry is a non-interactive interface objective; ARC deployment or execution is not required for the December 1 delivery under the PRD and has not been verified. This completion records behavior review only and does not claim implementation, execution, or scientific validation.
+    **Review:** Complete. Ricardo reviewed and accepted the behavior decisions documented in [the proposed automation behavior](../docs/python-automation-behavior.md): one readable non-interactive entry; prepared BART-compatible k-space; explicit Cartesian dimensionality and CS selection; configurable parameters with documented modifiable defaults where appropriate; automatic file inspection and compatibility checks; conditional supplied-map or explicitly requested `ecalib` sensitivity routes; supplied or explicitly requested and checked sampling information; stage results, separate run directories, effective-parameter records, and optional saved figures. At that review checkpoint, sampling estimation, CS 2D, `ecalib`, and multiple ESPIRiT map sets were noted for bounded manual checks. Ricardo later reported the manual 3D multichannel `ecalib` case under 7.6. On 2026-11-23 Ricardo removed Cartesian 2D CS from the December 1 delivery scope; that supersedes its earlier inclusion as a delivery capability, not the historical review record. Ricardo subsequently reported the manual `bart pattern` check and the automated `bart-pattern` execution under 7.8; Task 7.8 is complete. Multiple map sets remain a separate unsupported capability. At this review checkpoint, ARC deployment or execution was outside the then-current PRD delivery scope and had not been verified. Ricardo's later owner-reported ARC run is documented under Block 10 and does not change this historical behavior review or establish general ARC support. This completion records behavior review only and does not claim implementation, execution, or scientific validation.
   - [x] **7.4 [Copilot] Prepare and explain the proposed FR-32 behavior**\
     Describe how invalid inputs, unsupported conditions, and execution failures could be surfaced explicitly, including expected reporting points and limitations, while preserving FR-32 as proposed behavior pending Ricardo’s review.
     **Dependency:** 7.3
@@ -318,24 +318,37 @@ unchecked until the corresponding work is completed and reviewed.
     **Dependency:** 4.6 and 9.5
     **Review:** Complete. Task 4.6 records completion and review of the initial 2D preparation, manual reconstruction, structural check, visual comparison, and preliminary quantitative comparison in Tasks 1.0–4.5. The [manual Cartesian 2D tutorial](../docs/tutorials/manual-cartesian-2d.md) documents the reconstruction/output check and its separate reference-comparison sections. This evidence predates the later Block 9 protocol and shows the initial tutorial and comparison were completed independently; no new date is assigned here.
 
-- [ ] **10.0 Consolidate Verification Evidence and Reproducibility Records**
-  - [ ] **10.1 [Copilot] Define the evidence index across all workflow stages**  
-    Organize records for synthetic preparation, regeneration verification, manual procedures, automated procedures, reference comparisons, manual–automated comparisons, and operator-intervention measurements as separate evidence categories.
+- [x] **10.0 Consolidate Verification Evidence and Reproducibility Records**
+  **Completion:** Complete under the revised delivery scope approved by Ricardo on 2026-11-26. The evidence package links the completed synthetic procedures and comparisons and operator-intervention results in Blocks 7–9 with owner-reported local acquired-data use, use from a separate clean local Python environment, one ARC Slurm run, and local download and visual review. It separates script configuration, repository records, and owner-reported outcomes. See the [environment validation results](../docs/environment-validation-results.md). This closure does not claim unreported execution metrics, scientific image-quality acceptance, or output equivalence between machines.
+  - [x] **10.1 [Copilot] Define the evidence index across all workflow stages**
+    Organize records for synthetic preparation, regeneration verification, manual procedures, automated procedures, reference comparisons, manual–automated comparisons, operator-intervention measurements, and the approved local and ARC acquired-data workflow checks as separate evidence categories.
+
+    **Evidence:** Blocks 7–9 retain the stage-specific synthetic and operator-intervention records; [environment validation results](../docs/environment-validation-results.md) indexes the local, clean-environment, ARC, transfer, and visual-review reports. **Complete under the revised delivery scope.**
     **Dependency:** 7.12, 8.7, and 9.5
-  - [ ] **10.2 [Copilot] Map each record to the relevant PRD requirements**  
+  - [x] **10.2 [Copilot] Map each record to the relevant PRD requirements**
     Trace planned and completed evidence to applicable requirements, including FR-22, FR-32, FR-33 through FR-40, and the separate comparison obligations.
+
+    **Evidence:** The task records under Blocks 7–9 link manual and automated synthetic procedures, comparisons, and intervention evidence to their stage criteria. The acquired-input and ARC operational report is linked under the revised delivery scope; it is not substituted for the separate synthetic comparison requirements. ARC scope is clarified in the [PRD](prd-bart-reconstruction-workflow.md#5-non-goals-and-scope-boundaries). **Complete under the revised delivery scope.**
     **Dependency:** 10.1
-  - [ ] **10.3 [Ricardo] Review reproducibility and regeneration evidence**  
+  - [x] **10.3 [Ricardo] Review reproducibility and regeneration evidence**
     Confirm that each synthetic case has evidence of both preparation and regeneration verification, and that logs or collected records have not been treated as substitutes for checking the regenerated case.
+
+    **Review:** Complete. Ricardo's approved closure instruction retains the existing preparation and regeneration evidence in Blocks 7–9 and reports use from a new separate local Python environment; the environment result does not claim that the system or BART was installed or built from scratch. Missing per-run logs are not treated as proof of individual execution details. **Complete under the revised delivery scope.**
     **Dependency:** 10.1
-  - [ ] **10.4 [Copilot] Identify unresolved decisions and limitations in the final records**  
+  - [x] **10.4 [Copilot] Identify unresolved decisions and limitations in the final records**
     Preserve open questions about metrics, tolerances, input semantics, interface details, architecture, and future ARC or HPC use rather than presenting them as resolved.
+
+    **Evidence:** [Environment validation results](../docs/environment-validation-results.md) identifies missing logs, exit codes, Slurm ID, resource measurements, effective ARC versions, and Git revisions; it also excludes general validation, quality acceptance, Mac/ARC output equivalence, and batch or out-of-scope workflows. Existing metric, tolerance, input-semantics, and scientific limitations remain recorded in Blocks 7–9. **Complete under the revised delivery scope.**
     **Dependency:** 10.2 and 10.3
-  - [ ] **10.5 [Ricardo] Review the consolidated evidence package**  
+  - [x] **10.5 [Ricardo] Review the consolidated evidence package**
     Confirm that the records distinguish reference similarity, manual–automated equivalence, and operator intervention, and that the 64 × 64 exploratory exercise is not presented as general validation or clean-checkout reproduction.
+
+    **Review:** Complete under the revised delivery scope. Ricardo's 2026-11-26 instruction explicitly approves the scope and requires these evidence categories and limitations to remain distinct. The owner's “listo todo perfecto” confirmation is attributed only to downloading and visually reviewing the ARC output pair; it is not represented as a ground-truth or scientific-quality review.
     **Dependency:** 10.4
-  - [ ] **10.6 [Copilot] Prepare the verification summary for subsequent review**  
-    Summarize completed checks, observed results, failed or incomplete checks, and remaining decisions without modifying the PRD or claiming implementation that has not been executed and reviewed.
+  - [x] **10.6 [Copilot] Prepare the verification summary for subsequent review**
+    Summarize completed checks, observed results, failed or incomplete checks, and remaining decisions without claiming implementation that has not been executed and reviewed.
+
+    **Evidence:** The [environment validation results](../docs/environment-validation-results.md) records the approved scope and evidence limits. The PRD was adjusted only to distinguish this one-off ARC execution from future general deployment and batch support. **Complete under the revised delivery scope.**
     **Dependency:** 10.5
 
 ## Relevant Files
@@ -348,6 +361,7 @@ unchecked until the corresponding work is completed and reviewed.
 - [`scripts/check_fourier_numpy.py`](../scripts/check_fourier_numpy.py) — Existing independent NumPy comparison script; its current 64 × 64 behavior must not be generalized without review.
 - [`scripts/visualize_synthetic.py`](../scripts/visualize_synthetic.py) — Existing synthetic visualization support.
 - [`src/README.md`](../src/README.md) — Current source-area documentation.
+- [`environment-validation-results.md`](../docs/environment-validation-results.md) — Owner-reported local, clean-environment, ARC, transfer, and visual-review evidence and limitations.
 - [`configs/README.md`](../configs/README.md) — Current configuration-area documentation.
 - [`tests/README.md`](../tests/README.md) — Current test-area documentation.
 - [`results/familiarization-2d-20261023/README.md`](../results/familiarization-2d-20261023/README.md) — Existing exploratory 2D evidence and limitations.

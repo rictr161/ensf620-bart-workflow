@@ -31,6 +31,11 @@ local automated run are documented below.
 This case-specific evidence does not claim compatibility with unreviewed BART
 array layouts.
 
+The separate interactive [`view_bart_slices.py`](view_bart_slices.py) utility
+opens an existing scalar reconstruction locally; see the
+[viewer instructions](../docs/tutorials/automated-cartesian-workflow.md#optional-interactive-slice-viewer).
+It is not part of the non-interactive reconstruction workflow.
+
 ## Terminal examples
 
 Run the module from the repository root with a configured BART executable and
@@ -274,9 +279,14 @@ for those reported local executions; they are distinct from the separate
 tutorial-block comparisons to synthetic references reported under Task 7.11.
 The reported existing-output guard rejected the
 pre-existing destination and preserved its dummy record. An earlier Pylance
-syntax-check request timed out and is inconclusive. These checks do not
-establish ARC execution, general compatibility, all FR-32 behavior, or
-scientific quality acceptance.
+syntax-check request timed out and is inconclusive. These synthetic checks do
+not establish general compatibility, all FR-32 behavior, or scientific quality
+acceptance. Ricardo separately reports one ARC execution for an acquired 3D CS
+input; the configuration, reporting limits, and local visual review are
+documented in the
+[environment validation results](../docs/environment-validation-results.md).
+That report does not establish general ARC compatibility or equivalence with a
+Mac reconstruction.
 
 For the local multichannel 3D CS `ecalib` case, Ricardo reported that the
 automated invocation returned `0`. `ecalib.log` records BART code `0` and
@@ -290,5 +300,7 @@ between the manual and automated directories returned `0` for
 `sensitivities.cfl`, `eigenvalues.cfl`, and `reconstruction.cfl`. This is
 owner-reported byte-for-byte identity for those three files in this case; it
 is not an automated comparison to a synthetic reference and does not establish
-general compatibility, ARC execution, convergence, or scientific quality
-acceptance.
+general compatibility, convergence, or scientific quality acceptance. The
+separate owner-reported ARC execution is summarized in the
+[environment validation results](../docs/environment-validation-results.md);
+it is not evidence that multiple ESPIRiT map sets or other inputs are supported.

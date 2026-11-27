@@ -64,7 +64,7 @@ describes the evaluation planning behind the verification questions.
 | ID | Question | Recorded status |
 | --- | --- | --- |
 | ENV-01 | What are the full BART commit and actual `Makefile.local` contents? | Only v1.0.00, short commit `37f3c5f` and selected flags are recorded; the full commit and configuration remain unrecorded |
-| ENV-02 | What environment and resource configuration will TALC use, with ARC as a possible alternative? | A separate deployment record remains pending |
+| ENV-02 | What environment and resource configuration will support future general HPC deployment and comparable resource evaluation? | One owner-reported ARC Slurm run is documented in [environment validation results](environment-validation-results.md); a general deployment record, matched resource configuration, and measurements remain pending |
 | VERIFY-01 | What pilot-justified numerical tolerances and operator-action counting rule will be used? | Definition and human approval remain pending before the main evaluation |
 | VERIFY-02 | Have negative tests and reproduction from a clean checkout been completed? | Both remain pending in the shared record |
 
