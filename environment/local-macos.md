@@ -58,5 +58,14 @@ The supplied direct dependency files are not full locks. The imported snapshots
 are included as `python-requirements-verification.txt` and
 `python-requirements-visualization.txt`, together with `bart-build.txt`.
 The shared diff shows package-version entries in these snapshots, not private
-direct URLs. Final review remains the author's responsibility. Fresh setup and
-clean-checkout reproduction remain pending.
+direct URLs. Final review remains the author's responsibility.
+
+Ricardo additionally reports using the workflow with acquired BART inputs from
+a new separate local Python environment at
+`/Users/ricardoaguilar/bart-learning/bart-clean-simple-01`. The BART executable
+was the existing `/Users/ricardoaguilar/software/bart-1.0.00/bart`; this was
+not a fresh system installation or a new BART build. This test is owner-reported
+and does not update the recorded software versions above. A reproducible fresh
+setup and clean-checkout reproduction remain pending. The separate ARC Slurm
+run is recorded in [environment validation results](../docs/environment-validation-results.md);
+it does not alter this Mac environment record or establish matched resources.
